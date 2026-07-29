@@ -1,0 +1,163 @@
+[
+  {
+    "objectID": "pribehy.html",
+    "href": "pribehy.html",
+    "title": "Príbehy",
+    "section": "",
+    "text": "Zoradiť podľa\n       Prednastavené\n         \n          Názov\n        \n         \n          Dátum - Najstaršie\n        \n         \n          Dátum - Najnovšie\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nOravský odlev\n\n\n\n\n\n\nregióny\n\n\nverejné dáta\n\n\nmapy\n\n\n\nKoľko mladých odchádza z Oravy — a čo to o regióne hovorí. Pilotný príbeh.\n\n\n\n\n\n29. 7. 2026\n\n\n2 minút\n\n\n\n\n\n\nŽiadne nájdené výsledky"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Dátová Dana",
+    "section": "",
+    "text": "Volám sa Dana a viac než dvadsať rokov pomáham číslam prehovoriť. Tento web je ukážkou toho, čo sa dá z dát vyčítať — na verejných dátach, aby ste videli postup skôr, než sa spýtate, čo by povedal o tých vašich. Píšem hlavne pre malé firmy a podnikateľov, ktorí sedia na dátach bez toho, aby o tom vedeli.\nKaždý príbeh má rovnakú stavbu: aké dáta boli k dispozícii, čo sa z nich dalo zistiť, a kde by rovnaký postup fungoval na firemných dátach. Viac o mne →"
+  },
+  {
+    "objectID": "index.html#najnovšie-príbehy",
+    "href": "index.html#najnovšie-príbehy",
+    "title": "Dátová Dana",
+    "section": "Najnovšie príbehy",
+    "text": "Najnovšie príbehy\n\n\n\n\n\nOravský odlev\n\n\n\n\n\n\nregióny\n\n\nverejné dáta\n\n\nmapy\n\n\n\nKoľko mladých odchádza z Oravy — a čo to o regióne hovorí. Pilotný príbeh.\n\n\n\n\n\n29. 7. 2026\n\n\n\n\n\n\nŽiadne nájdené výsledky"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "O mne",
+    "section": "",
+    "text": "Volám sa Dana. Vyše dvadsať rokov pomáham číslam prehovoriť — a tento web je ukážkou toho, čo všetko sa dá z dát vyčítať, keď sa na ne pozrie štatistik."
+  },
+  {
+    "objectID": "about.html#pre-koho-je-tento-web",
+    "href": "about.html#pre-koho-je-tento-web",
+    "title": "O mne",
+    "section": "Pre koho je tento web",
+    "text": "Pre koho je tento web\nHlavne pre malé firmy a podnikateľov. Väčšina z nich sedí na dátach bez toho, aby o tom vedela: faktúry, objednávky, dochádzka, e-shopové štatistiky, pokladňa. Nie sú to „big data” — a nemusia byť. Aj obyčajná tabuľka objednávok za dva roky vie odpovedať na otázky ako: ktorí zákazníci sa vracajú, kedy má zmysel akcia, či sa nová prevádzka správa inak než stará, alebo čo príde budúcu sezónu.\nČlánky na tomto webe fungujú ako ukážky. Každý má rovnakú stavbu:\n\nAké dáta boli k dispozícii — vždy poctivo poviem, s čím sa pracovalo a čo v dátach naopak nebolo.\nČo sa z nich dalo zistiť — samotný príbeh: grafy, mapy, zistenia, aj slepé uličky.\nKde sa ten postup dá použiť — na akých firemných dátach by rovnaký prístup fungoval a akú otázku by vedel zodpovedať.\n\nNie sú to teda články o štatistike. Sú to ukážky práce — na verejných dátach, aby ste videli postup skôr, než sa spýtate, čo by povedal o tých vašich."
+  },
+  {
+    "objectID": "about.html#prečo-ja",
+    "href": "about.html#prečo-ja",
+    "title": "O mne",
+    "section": "Prečo ja",
+    "text": "Prečo ja\nSom štatistička a učiteľka — a to spojenie je presne to, čo pri práci s firmami treba. Analytikov, ktorí spravia model, je veľa. Menej je tých, ktorí vám výsledok vysvetlia tak, že na jeho základe viete rozhodnúť.\n\n20+ rokov praxe so štatistikou a dátami — R, Python, SQL.\nUčím a vysvetľujem profesionálne: doučujem matematiku a štatistiku na hodinovaucitelka.sk a viedla som kurz dátovej analýzy v Pythone v Coders Lab.\nDržím krok: dokončujem magisterské štúdium matematicko-štatistických metód v ekonómii na Masarykovej univerzite v Brne — časové rady, strojové učenie, ekonomické dáta.\n\nA jedna vec, ktorú sa dozviete už z článkov: nebudem vám predávať zázraky. Jeden z prvých príbehov je práve o tom, ako model s „94 % presnosťou” môže byť v skutočnosti nanič — a ako sa nenechať oklamať peknými číslami. Presne takto pristupujem aj k firemným dátam: poviem vám, čo v nich je, aj čo v nich nie je."
+  },
+  {
+    "objectID": "about.html#pod-kapotou",
+    "href": "about.html#pod-kapotou",
+    "title": "O mne",
+    "section": "Pod kapotou",
+    "text": "Pod kapotou\nPre tých, ktorí si chcú pozrieť kód: každý článok odkazuje na GitHub repozitár s kompletným postupom. Celé portfólio je na github.com/danakozakova — okrem iného end-to-end machine learning projekt (predikcia dažďa v Austrálii), ekonometria časových radov v Pythone a materiály z kurzu, ktorý som učila."
+  },
+  {
+    "objectID": "about.html#spolupráca",
+    "href": "about.html#spolupráca",
+    "title": "O mne",
+    "section": "Spolupráca",
+    "text": "Spolupráca\nMáte dáta? Alebo len otázky, na ktoré by dáta mohli odpovedať?\nSpojme sa a uvidíme, či vám viem pomôcť. Niekedy je to analýza, niekedy len hodinový rozhovor o tom, čo vaše dáta vedia a nevedia — a niekedy vám poviem, že to, čo hľadáte, sa z vašich dát vyčítať nedá. Aj to je odpoveď.\n\nE-mail: [DOPLNIŤ]\nLinkedIn: [DOPLNIŤ odkaz]\n\nA mimochodom — popri dátach aj učím: matematiku a štatistiku doučujem na hodinovaucitelka.sk."
+  },
+  {
+    "objectID": "datovadana-implementacny-plan.html",
+    "href": "datovadana-implementacny-plan.html",
+    "title": "datovadana.sk — implementačný plán",
+    "section": "",
+    "text": "Pracovný dokument. Vznikol z kontextu GitHub portfólio vlákna, aby ho vedela prečítať aj budúca Cowork session priamo z priečinka (bez toho, aby „videla” pôvodné vlákno). Doplň chýbajúce miesta označené [DOPLNIŤ] a plán slúži ako mapa celého projektu.\n\n\n\n\nTretia noha k tomu, čo už máš. GitHub ukazuje, že to vieš spraviť; hodinovaucitelka.sk a LinkedIn, že o tom vieš hovoriť; datovadana.sk ukáže, že to vieš vysvetliť — čiže tvoja najsilnejšia kombinácia: učiteľka + štatistička.\n\nPublikum (primárne): malé firmy a podnikatelia. Web je ukážka toho, čo sa dá vyčítať z dát a načo sú rôzne prístupy — na verejných dátach, aby čitateľ videl postup skôr, než sa spýta na svoje vlastné. Sekundárne: študenti, laici, personalisti.\nTón: populárno-náučný, ale s obchodným presahom. Žiadne vzorce ako prvý dojem; príbeh, čísla, obrázok, „aha” moment — a na konci most k firemnej praxi.\nFormát obsahu: dátové príbehy s pevnou trojdielnou stavbou (viď sekcia 5).\n\n\n\n\n\nRozhodnuté v prospech Quarto (potvrdené: Quarto nie je len pre R — Python beží cez Jupyter, R cez knitr, jeden web môže miešať oboje).\nPrečo Quarto sedí práve tebe: - Píšeš .qmd súbory (markdown + kódové bloky) alebo rovno renderuješ existujúce .ipynb notebooky z univerzitných projektov. - Grafy sa vygenerujú pri builde — na hotovom webe je z nich statické HTML/obrázok, prípadne JS-interaktívny widget (Plotly, Leaflet mapy). Po publikovaní už nebeží Python kernel, takže interaktivita ide cez JavaScript — pre popularizačný web presne to, čo treba. - Hostuje sa zadarmo na GitHub Pages, doména datovadana.sk sa naň dá namieriť. - Reprodukovateľné: kód, ktorý vyrobil graf, je súčasťou článku.\nPrečo nie alternatívy: WordPress je jednoduchší na klikaciu správu, ale horší na kód a grafy a nereprodukovateľný. Iné statické generátory (Hugo, Jekyll) nemajú natívne spúšťanie Python/R kódu.\n\n\n\n\nNavrhovaná štruktúra stránok:\n\nDomov — kto som (1 odsek) + najnovšie / vybrané príbehy.\nPríbehy (blog) — zoznam článkov s náhľadmi.\nJednotlivé príbehy — samotné články.\nO mne — kratší profil, odkazy na hodinovaucitelka.sk, GitHub, LinkedIn.\n(voliteľné) Pre študentov — výučbové materiály (napr. z Python-CodersLab).\n\nNavrhovaná repo štruktúra (Quarto website):\ndatovadana/\n├─ _quarto.yml            # konfigurácia webu, menu, motív\n├─ index.qmd             # domov\n├─ about.qmd             # o mne\n├─ styles.css            # vlastný vzhľad\n├─ posts/\n│  ├─ orava/\n│  │  ├─ index.qmd       # článok\n│  │  └─ data/           # zdrojové dáta príbehu\n│  ├─ pasca-presnosti/\n│  ├─ okun/\n│  └─ glykemia/\n└─ _site/                # výstup buildu (gitignore)\nZásada source vs. derived z GitHub upratovania platí aj tu: do data/ idú zdrojové dáta, výstupy (_site/, generované obrázky) sa neverzujú a regenerujú sa z kódu.\n\n\n\nOrava, pasca presnosti, Okun: Plotly / Leaflet widgety priamo v článku. Statické HTML, funguje na GitHub Pages bez servera, plne interaktívne (zoom, hover, filter). Dát je málo → widget sa načíta okamžite.\nWeather miniapka: embed (iframe) zo Streamlit Cloud (Python) alebo Shinyapps.io (R) — zadarmo v základe, appka beží na ich serveri, v článku vyzerá ako súčasť webu. Dát je veľa → výpočty na serveri, nie v prehliadači.\n\n\n\n\n\n\nPripravenosť: 🟢 hotový projekt, len prerozprávať · 🟡 čiastočne · 🔴 treba doplniť dáta.\n\n\n\nHook: osobný + regionálny — koľko mladých odchádza z Oravy a čo to o regióne hovorí.\nPrečo ako prvý: má všetko, čo dobrý vzor potrebuje — osobný vzťah, zrozumiteľné čísla, mapy aj trend v čase, a dá sa z neho spraviť šablóna pre ostatné.\nVizuály: mapa Oravy (Leaflet), časový trend, prípadne porovnanie okresov.\nZdroj: ŠÚSR + INEKO, transformované do vlastnej DB štruktúry (hviezdicový model: skoly, poctyVSkolach, poctyVek, hodnotenie + číselníky). Len počty, bez smeru odchodu — odliv sa odhaduje nepriamo (býva vs. chodí do školy). Detaily v md súbore v pracovnom priečinku.\nUhol: nie kvalita škôl, ale štruktúra ponuky — málo rôznorodé odbory (chýba zdravotná, obchodná akadémia) + kontrast megaškoly vs. malotriedky.\nAplikácia pre firmy: analýza pokrytia/dostupnosti — „kde sú diery v ponuke” funguje rovnako na pobočky, sortiment či služby v regióne.\n\n\n\n\n\nHook: „Postavila som model s vysokou presnosťou — a napriek tomu je na nič. Prečo presnosť klame.”\nO čom to je: predikcia dažďa v Austrálii. Trieda „neprší” tvorí ~78 % dní, takže aj hlúpy model, čo vždy povie „neprší”, má ~78 % presnosť. Skutočná kvalita je inde: recall ~0,45 (polovicu skutočných dažďov model prehliadne), ROC-AUC ~0,87. Nevyváženosť tried ~78/22. Riešenie: class_weight='balanced' alebo SMOTE.\nVizuály: confusion matrix, porovnanie „accuracy vs recall”, ROC krivka.\nPoučenie pre čitateľa: jedno číslo (presnosť) nikdy nestačí; treba sa pýtať „presnosť v čom a za akú cenu”.\nRepo: MachineLearningProjekt (tvoja samostatná práca).\nAplikácia pre firmy: predikcia zriedkavých udalostí — odchod zákazníka, reklamácia, nesplatená faktúra. Všade tam „presnosť” klame rovnako a treba sa pýtať na recall/náklady chýb.\n\n\n\n\n\nHook: učebnica povie „keď HDP klesne o X, nezamestnanosť stúpne o Y” — akoby to bola konštanta. Realita: žiadne jedno univerzálne číslo neexistuje.\nO čom to je: Okunov zákon — vzťah medzi rastom HDP a zmenou nezamestnanosti. Koeficient sa mení podľa krajiny, obdobia a metódy odhadu. Pekná ukážka, ako sa „jednoduché pravidlo” rozpadne, keď sa naň pozrieš dátami.\nVizuály: rozptylový graf HDP vs nezamestnanosť, koeficient v čase / naprieč krajinami.\nRepo: time-series-econometrics (CARA, riešené v Pythone; FRED dáta).\nStatus: repo sa ešte dokončuje (reprodukovateľnosť FRED API — CSV fallback + os.environ[\"FRED_API_KEY\"]).\nAplikácia pre firmy: pozor na „univerzálne pomery” — konverzný pomer, marža či sezónny koeficient tiež nie sú jedno číslo; menia sa v čase a podľa segmentu, a treba ich odhadovať na vlastných dátach, nie preberať z benchmarku.\n\n\n\n\n\nHook: osobné dáta — čo krivka cukru v krvi prezradí o tele/dni.\nVizuály: priebeh krivky, reakcie na jedlo/aktivitu.\nZdroj/repo: [DOPLNIŤ — odkiaľ dáta (CGM senzor?), č**í dáta, čo chceš ukázať, je to publikovateľné?]\n\n\n\n\n\nMateriály z kurzu dátovej analýzy v Pythone, ktorý si učila. Môže z toho byť samostatná sekcia „Pre študentov” — tvoj učiteľský rozmer, ktorý ostatné weby neukazujú.\n\n\n\n\n\n\nOravský príbeh spracujeme naplno ako vzor a z jeho štruktúry spravíme šablónu:\n\nHook — osobná/prekvapivá veta.\nAké dáta boli k dispozícii — odkiaľ sú, ako vyzerajú, a poctivo aj čo v nich nebolo (limity dát sú súčasť príbehu, nie hanba).\nČo sa z nich dalo zistiť — samotný príbeh: grafy/mapy + slovný výklad, vrátane slepých uličiek.\nKde sa tento postup dá použiť — most k firemnej praxi: na akých dátach malej firmy (faktúry, objednávky, dochádzka, e-shop…) by rovnaký prístup fungoval a akú obchodnú otázku by zodpovedal. Toto je sekcia, ktorá odlišuje tento web od bežného dátového blogu.\nPre zvedavých — odkaz na GitHub repo a metódu.\n\nKaždý ďalší príbeh potom vznikne rýchlo naplnením tejto kostry.\n\n\n\n\n\ndatovadana.sk má vlastný kontakt/spoluprácu — mäkké pozvanie v štýle „máte dáta / máte otázky? spojme sa a uvidíme, či vám viem pomôcť”. Kontakt = e-mail + LinkedIn, nie presmerovanie na hodinovaucitelka.sk.\nhodinovaucitelka.sk = výslovne doučovanie (prípadne výskumy). Na datovadana.sk sa spomína len okrajovo, v duchu „aha, ešte aj toto robím” — a recipročne.\nVzájomné odkazy: datovadana.sk ↔︎ hodinovaucitelka.sk ↔︎ GitHub ↔︎ LinkedIn.\nDo Fázy 4 zvážiť, či mäkké pozvanie na stránke O mne časom povýšiť na samostatnú stránku „Spolupráca”.\n\n\n\n\n\n\nFáza 0 — rozhodnutia: značka, doména, štruktúra. (čiastočne hotové)\nFáza 1 — technický základ: Quarto skeleton → prázdny web nasadený na GitHub Pages → namierenie domény datovadana.sk. Cieľ: „hello world” web, ktorý žije.\nFáza 2 — vzorový článok: oravský príbeh end-to-end, vyladenie šablóny a vzhľadu.\nFáza 3 — rozbeh obsahu: príbehy 2–4 podľa šablóny (94 %, Okun, glykémia).\nFáza 4 — leštenie: stránka O mne, prepojenia, náhľadové obrázky, jednoduché SEO.\n\n\n\n\n\n\nOravský md súbor — nahrať do vlákna / priečinka spísanú analýzu, nech sa na ňu nadviaže.\nGlykemické krivky — zdroj dát a je to publikovateľné (osobné/zdravotné dáta)?\nKontakt — doplniť e-mail a LinkedIn odkaz do stránky O mne.\nJazyk webu — slovensky (predpoklad), alebo aj anglicky/bilingválne?\n\n\nĎalší krok podľa plánu: Fáza 1 — postaviť Quarto skeleton a nasadiť prázdny web. To vieme spraviť v Cowork session s pripojeným priečinkom, kde budem mať prístup k súborom aj ku GitHubu."
+  },
+  {
+    "objectID": "datovadana-implementacny-plan.html#čo-je-datovadana.sk-a-pre-koho",
+    "href": "datovadana-implementacny-plan.html#čo-je-datovadana.sk-a-pre-koho",
+    "title": "datovadana.sk — implementačný plán",
+    "section": "",
+    "text": "Tretia noha k tomu, čo už máš. GitHub ukazuje, že to vieš spraviť; hodinovaucitelka.sk a LinkedIn, že o tom vieš hovoriť; datovadana.sk ukáže, že to vieš vysvetliť — čiže tvoja najsilnejšia kombinácia: učiteľka + štatistička.\n\nPublikum (primárne): malé firmy a podnikatelia. Web je ukážka toho, čo sa dá vyčítať z dát a načo sú rôzne prístupy — na verejných dátach, aby čitateľ videl postup skôr, než sa spýta na svoje vlastné. Sekundárne: študenti, laici, personalisti.\nTón: populárno-náučný, ale s obchodným presahom. Žiadne vzorce ako prvý dojem; príbeh, čísla, obrázok, „aha” moment — a na konci most k firemnej praxi.\nFormát obsahu: dátové príbehy s pevnou trojdielnou stavbou (viď sekcia 5)."
+  },
+  {
+    "objectID": "datovadana-implementacny-plan.html#platforma-quarto-website",
+    "href": "datovadana-implementacny-plan.html#platforma-quarto-website",
+    "title": "datovadana.sk — implementačný plán",
+    "section": "",
+    "text": "Rozhodnuté v prospech Quarto (potvrdené: Quarto nie je len pre R — Python beží cez Jupyter, R cez knitr, jeden web môže miešať oboje).\nPrečo Quarto sedí práve tebe: - Píšeš .qmd súbory (markdown + kódové bloky) alebo rovno renderuješ existujúce .ipynb notebooky z univerzitných projektov. - Grafy sa vygenerujú pri builde — na hotovom webe je z nich statické HTML/obrázok, prípadne JS-interaktívny widget (Plotly, Leaflet mapy). Po publikovaní už nebeží Python kernel, takže interaktivita ide cez JavaScript — pre popularizačný web presne to, čo treba. - Hostuje sa zadarmo na GitHub Pages, doména datovadana.sk sa naň dá namieriť. - Reprodukovateľné: kód, ktorý vyrobil graf, je súčasťou článku.\nPrečo nie alternatívy: WordPress je jednoduchší na klikaciu správu, ale horší na kód a grafy a nereprodukovateľný. Iné statické generátory (Hugo, Jekyll) nemajú natívne spúšťanie Python/R kódu."
+  },
+  {
+    "objectID": "datovadana-implementacny-plan.html#architektúra-webu",
+    "href": "datovadana-implementacny-plan.html#architektúra-webu",
+    "title": "datovadana.sk — implementačný plán",
+    "section": "",
+    "text": "Navrhovaná štruktúra stránok:\n\nDomov — kto som (1 odsek) + najnovšie / vybrané príbehy.\nPríbehy (blog) — zoznam článkov s náhľadmi.\nJednotlivé príbehy — samotné články.\nO mne — kratší profil, odkazy na hodinovaucitelka.sk, GitHub, LinkedIn.\n(voliteľné) Pre študentov — výučbové materiály (napr. z Python-CodersLab).\n\nNavrhovaná repo štruktúra (Quarto website):\ndatovadana/\n├─ _quarto.yml            # konfigurácia webu, menu, motív\n├─ index.qmd             # domov\n├─ about.qmd             # o mne\n├─ styles.css            # vlastný vzhľad\n├─ posts/\n│  ├─ orava/\n│  │  ├─ index.qmd       # článok\n│  │  └─ data/           # zdrojové dáta príbehu\n│  ├─ pasca-presnosti/\n│  ├─ okun/\n│  └─ glykemia/\n└─ _site/                # výstup buildu (gitignore)\nZásada source vs. derived z GitHub upratovania platí aj tu: do data/ idú zdrojové dáta, výstupy (_site/, generované obrázky) sa neverzujú a regenerujú sa z kódu.\n\n\n\nOrava, pasca presnosti, Okun: Plotly / Leaflet widgety priamo v článku. Statické HTML, funguje na GitHub Pages bez servera, plne interaktívne (zoom, hover, filter). Dát je málo → widget sa načíta okamžite.\nWeather miniapka: embed (iframe) zo Streamlit Cloud (Python) alebo Shinyapps.io (R) — zadarmo v základe, appka beží na ich serveri, v článku vyzerá ako súčasť webu. Dát je veľa → výpočty na serveri, nie v prehliadači."
+  },
+  {
+    "objectID": "datovadana-implementacny-plan.html#dátové-príbehy-plán-pre-každý-zvlášť",
+    "href": "datovadana-implementacny-plan.html#dátové-príbehy-plán-pre-každý-zvlášť",
+    "title": "datovadana.sk — implementačný plán",
+    "section": "",
+    "text": "Pripravenosť: 🟢 hotový projekt, len prerozprávať · 🟡 čiastočne · 🔴 treba doplniť dáta.\n\n\n\nHook: osobný + regionálny — koľko mladých odchádza z Oravy a čo to o regióne hovorí.\nPrečo ako prvý: má všetko, čo dobrý vzor potrebuje — osobný vzťah, zrozumiteľné čísla, mapy aj trend v čase, a dá sa z neho spraviť šablóna pre ostatné.\nVizuály: mapa Oravy (Leaflet), časový trend, prípadne porovnanie okresov.\nZdroj: ŠÚSR + INEKO, transformované do vlastnej DB štruktúry (hviezdicový model: skoly, poctyVSkolach, poctyVek, hodnotenie + číselníky). Len počty, bez smeru odchodu — odliv sa odhaduje nepriamo (býva vs. chodí do školy). Detaily v md súbore v pracovnom priečinku.\nUhol: nie kvalita škôl, ale štruktúra ponuky — málo rôznorodé odbory (chýba zdravotná, obchodná akadémia) + kontrast megaškoly vs. malotriedky.\nAplikácia pre firmy: analýza pokrytia/dostupnosti — „kde sú diery v ponuke” funguje rovnako na pobočky, sortiment či služby v regióne.\n\n\n\n\n\nHook: „Postavila som model s vysokou presnosťou — a napriek tomu je na nič. Prečo presnosť klame.”\nO čom to je: predikcia dažďa v Austrálii. Trieda „neprší” tvorí ~78 % dní, takže aj hlúpy model, čo vždy povie „neprší”, má ~78 % presnosť. Skutočná kvalita je inde: recall ~0,45 (polovicu skutočných dažďov model prehliadne), ROC-AUC ~0,87. Nevyváženosť tried ~78/22. Riešenie: class_weight='balanced' alebo SMOTE.\nVizuály: confusion matrix, porovnanie „accuracy vs recall”, ROC krivka.\nPoučenie pre čitateľa: jedno číslo (presnosť) nikdy nestačí; treba sa pýtať „presnosť v čom a za akú cenu”.\nRepo: MachineLearningProjekt (tvoja samostatná práca).\nAplikácia pre firmy: predikcia zriedkavých udalostí — odchod zákazníka, reklamácia, nesplatená faktúra. Všade tam „presnosť” klame rovnako a treba sa pýtať na recall/náklady chýb.\n\n\n\n\n\nHook: učebnica povie „keď HDP klesne o X, nezamestnanosť stúpne o Y” — akoby to bola konštanta. Realita: žiadne jedno univerzálne číslo neexistuje.\nO čom to je: Okunov zákon — vzťah medzi rastom HDP a zmenou nezamestnanosti. Koeficient sa mení podľa krajiny, obdobia a metódy odhadu. Pekná ukážka, ako sa „jednoduché pravidlo” rozpadne, keď sa naň pozrieš dátami.\nVizuály: rozptylový graf HDP vs nezamestnanosť, koeficient v čase / naprieč krajinami.\nRepo: time-series-econometrics (CARA, riešené v Pythone; FRED dáta).\nStatus: repo sa ešte dokončuje (reprodukovateľnosť FRED API — CSV fallback + os.environ[\"FRED_API_KEY\"]).\nAplikácia pre firmy: pozor na „univerzálne pomery” — konverzný pomer, marža či sezónny koeficient tiež nie sú jedno číslo; menia sa v čase a podľa segmentu, a treba ich odhadovať na vlastných dátach, nie preberať z benchmarku.\n\n\n\n\n\nHook: osobné dáta — čo krivka cukru v krvi prezradí o tele/dni.\nVizuály: priebeh krivky, reakcie na jedlo/aktivitu.\nZdroj/repo: [DOPLNIŤ — odkiaľ dáta (CGM senzor?), č**í dáta, čo chceš ukázať, je to publikovateľné?]\n\n\n\n\n\nMateriály z kurzu dátovej analýzy v Pythone, ktorý si učila. Môže z toho byť samostatná sekcia „Pre študentov” — tvoj učiteľský rozmer, ktorý ostatné weby neukazujú."
+  },
+  {
+    "objectID": "datovadana-implementacny-plan.html#vzorový-článok-šablóna-pre-všetky-ostatné",
+    "href": "datovadana-implementacny-plan.html#vzorový-článok-šablóna-pre-všetky-ostatné",
+    "title": "datovadana.sk — implementačný plán",
+    "section": "",
+    "text": "Oravský príbeh spracujeme naplno ako vzor a z jeho štruktúry spravíme šablónu:\n\nHook — osobná/prekvapivá veta.\nAké dáta boli k dispozícii — odkiaľ sú, ako vyzerajú, a poctivo aj čo v nich nebolo (limity dát sú súčasť príbehu, nie hanba).\nČo sa z nich dalo zistiť — samotný príbeh: grafy/mapy + slovný výklad, vrátane slepých uličiek.\nKde sa tento postup dá použiť — most k firemnej praxi: na akých dátach malej firmy (faktúry, objednávky, dochádzka, e-shop…) by rovnaký prístup fungoval a akú obchodnú otázku by zodpovedal. Toto je sekcia, ktorá odlišuje tento web od bežného dátového blogu.\nPre zvedavých — odkaz na GitHub repo a metódu.\n\nKaždý ďalší príbeh potom vznikne rýchlo naplnením tejto kostry."
+  },
+  {
+    "objectID": "datovadana-implementacny-plan.html#prepojenie-s-ostatnými-webmi-rozhodnuté",
+    "href": "datovadana-implementacny-plan.html#prepojenie-s-ostatnými-webmi-rozhodnuté",
+    "title": "datovadana.sk — implementačný plán",
+    "section": "",
+    "text": "datovadana.sk má vlastný kontakt/spoluprácu — mäkké pozvanie v štýle „máte dáta / máte otázky? spojme sa a uvidíme, či vám viem pomôcť”. Kontakt = e-mail + LinkedIn, nie presmerovanie na hodinovaucitelka.sk.\nhodinovaucitelka.sk = výslovne doučovanie (prípadne výskumy). Na datovadana.sk sa spomína len okrajovo, v duchu „aha, ešte aj toto robím” — a recipročne.\nVzájomné odkazy: datovadana.sk ↔︎ hodinovaucitelka.sk ↔︎ GitHub ↔︎ LinkedIn.\nDo Fázy 4 zvážiť, či mäkké pozvanie na stránke O mne časom povýšiť na samostatnú stránku „Spolupráca”."
+  },
+  {
+    "objectID": "datovadana-implementacny-plan.html#roadmapa",
+    "href": "datovadana-implementacny-plan.html#roadmapa",
+    "title": "datovadana.sk — implementačný plán",
+    "section": "",
+    "text": "Fáza 0 — rozhodnutia: značka, doména, štruktúra. (čiastočne hotové)\nFáza 1 — technický základ: Quarto skeleton → prázdny web nasadený na GitHub Pages → namierenie domény datovadana.sk. Cieľ: „hello world” web, ktorý žije.\nFáza 2 — vzorový článok: oravský príbeh end-to-end, vyladenie šablóny a vzhľadu.\nFáza 3 — rozbeh obsahu: príbehy 2–4 podľa šablóny (94 %, Okun, glykémia).\nFáza 4 — leštenie: stránka O mne, prepojenia, náhľadové obrázky, jednoduché SEO."
+  },
+  {
+    "objectID": "datovadana-implementacny-plan.html#otvorené-otázky-pre-teba",
+    "href": "datovadana-implementacny-plan.html#otvorené-otázky-pre-teba",
+    "title": "datovadana.sk — implementačný plán",
+    "section": "",
+    "text": "Oravský md súbor — nahrať do vlákna / priečinka spísanú analýzu, nech sa na ňu nadviaže.\nGlykemické krivky — zdroj dát a je to publikovateľné (osobné/zdravotné dáta)?\nKontakt — doplniť e-mail a LinkedIn odkaz do stránky O mne.\nJazyk webu — slovensky (predpoklad), alebo aj anglicky/bilingválne?\n\n\nĎalší krok podľa plánu: Fáza 1 — postaviť Quarto skeleton a nasadiť prázdny web. To vieme spraviť v Cowork session s pripojeným priečinkom, kde budem mať prístup k súborom aj ku GitHubu."
+  },
+  {
+    "objectID": "posts/orava/index.html",
+    "href": "posts/orava/index.html",
+    "title": "Oravský odlev",
+    "section": "",
+    "text": "Poznámka\n\n\n\nToto je pilotný / vzorový článok — zatiaľ kostra podľa šablóny. Text a grafy sa dopĺňajú. Slúži ako šablóna pre všetky ďalšie príbehy."
+  },
+  {
+    "objectID": "posts/orava/index.html#hook",
+    "href": "posts/orava/index.html#hook",
+    "title": "Oravský odlev",
+    "section": "Hook",
+    "text": "Hook\n(Osobná/prekvapivá veta — koľko mladých odchádza z Oravy a čo to o regióne hovorí. Osobný + regionálny uhol.)"
+  },
+  {
+    "objectID": "posts/orava/index.html#aké-dáta-boli-k-dispozícii",
+    "href": "posts/orava/index.html#aké-dáta-boli-k-dispozícii",
+    "title": "Oravský odlev",
+    "section": "Aké dáta boli k dispozícii",
+    "text": "Aké dáta boli k dispozícii\nOdkiaľ dáta sú, ako vyzerajú — a poctivo aj to, čo v nich nebolo.\n\nZdroj: ŠÚSR + INEKO, transformované do vlastnej DB štruktúry (hviezdicový model: skoly, poctyVSkolach, poctyVek, hodnotenie + číselníky).\nLimit: len počty, bez smeru odchodu — odliv sa odhaduje nepriamo (kto býva vs. kto chodí do školy).\n\n\n# Dôkaz, že Python (Jupyter) engine renderuje. Skutočné dáta pridáme neskôr.\nskoly = [\"megaškola\", \"malotriedka A\", \"malotriedka B\"]\nziaci = [820, 140, 95]\nspolu = sum(ziaci)\nprint(f\"Škôl v ukážke: {len(skoly)} · žiakov spolu: {spolu}\")\n\nŠkôl v ukážke: 3 · žiakov spolu: 1055"
+  },
+  {
+    "objectID": "posts/orava/index.html#čo-sa-z-nich-dalo-zistiť",
+    "href": "posts/orava/index.html#čo-sa-z-nich-dalo-zistiť",
+    "title": "Oravský odlev",
+    "section": "Čo sa z nich dalo zistiť",
+    "text": "Čo sa z nich dalo zistiť\nSamotný príbeh: grafy/mapy + slovný výklad, vrátane slepých uličiek.\n(Sem príde mapa Oravy — Leaflet, časový trend, porovnanie okresov. Uhol nie je kvalita škôl, ale štruktúra ponuky: málo rôznorodé odbory + kontrast megaškoly vs. malotriedky.)"
+  },
+  {
+    "objectID": "posts/orava/index.html#kde-sa-tento-postup-dá-použiť",
+    "href": "posts/orava/index.html#kde-sa-tento-postup-dá-použiť",
+    "title": "Oravský odlev",
+    "section": "Kde sa tento postup dá použiť",
+    "text": "Kde sa tento postup dá použiť\nMost k firemnej praxi. Analýza pokrytia/dostupnosti — „kde sú diery v ponuke” — funguje rovnako na pobočky, sortiment či služby v regióne. Tá istá otázka (máme dieru na mape?) sa pýta na dátach objednávok, prevádzok alebo cenníka."
+  },
+  {
+    "objectID": "posts/orava/index.html#pre-zvedavých",
+    "href": "posts/orava/index.html#pre-zvedavých",
+    "title": "Oravský odlev",
+    "section": "Pre zvedavých",
+    "text": "Pre zvedavých\nKód a metóda: GitHub repo (doplniť konkrétny odkaz)."
+  }
+]

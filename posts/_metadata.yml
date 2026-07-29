@@ -1,0 +1,5 @@
+# Spoločné nastavenia pre všetky príbehy v posts/
+author: "Dana"
+freeze: auto
+title-block-banner: true
+toc: true

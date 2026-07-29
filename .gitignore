@@ -1,0 +1,29 @@
+# Quarto — pracovné/dočasné (docs/ sa NEignoruje, ten sa publikuje!)
+/.quarto/
+_site/
+*_files/
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# R / RStudio
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+
+# Tajomstvá (napr. FRED_API_KEY pre Okunov príbeh)
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Pracovné / plánovacie dokumenty (nemajú byť na verejnom webe)
+datovadana-implementacny-plan.md
+/_pracovne/
+docs/datovadana-implementacny-plan.html

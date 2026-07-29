@@ -1,0 +1,26 @@
+---
+title: "Dátová Dana"
+subtitle: "Čo všetko sa dá vyčítať z dát"
+toc: false
+listing:
+  id: najnovsie
+  contents: posts
+  type: default
+  sort: "date desc"
+  max-items: 3
+  fields: [date, title, description, categories]
+  date-format: "D. M. YYYY"
+---
+
+Volám sa Dana a viac než dvadsať rokov pomáham číslam prehovoriť. Tento web je
+ukážkou toho, **čo sa dá z dát vyčítať** — na verejných dátach, aby ste videli
+postup skôr, než sa spýtate, čo by povedal o tých vašich. Píšem hlavne pre malé
+firmy a podnikateľov, ktorí sedia na dátach bez toho, aby o tom vedeli.
+
+Každý príbeh má rovnakú stavbu: aké dáta boli k dispozícii, čo sa z nich dalo
+zistiť, a kde by rovnaký postup fungoval na firemných dátach. [Viac o mne →](about.qmd)
+
+## Najnovšie príbehy
+
+::: {#najnovsie}
+:::

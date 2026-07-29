@@ -1,0 +1,16 @@
+---
+title: "Príbehy"
+subtitle: "Dátové príbehy — na verejných dátach, aby ste videli postup"
+listing:
+  contents: posts
+  type: default
+  sort: "date desc"
+  categories: true
+  sort-ui: [title, date]
+  filter-ui: true
+  fields: [date, title, description, categories, reading-time]
+  date-format: "D. M. YYYY"
+  feed: true
+page-layout: full
+toc: false
+---

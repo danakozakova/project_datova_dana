@@ -1,0 +1,12 @@
+{
+  "hash": "df136b4a6bd832765b51ffe2c1a0e374",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Oravský odlev\"\ndescription: \"Koľko mladých odchádza z Oravy — a čo to o regióne hovorí. Pilotný príbeh.\"\ndate: 2026-07-29\ncategories: [regióny, verejné dáta, mapy]\nimage: \"\"\ndraft: false\n---\n\n\n\n\n\n::: {.callout-note}\nToto je **pilotný / vzorový článok** — zatiaľ kostra podľa šablóny. Text a grafy\nsa dopĺňajú. Slúži ako šablóna pre všetky ďalšie príbehy.\n:::\n\n## Hook\n\n*(Osobná/prekvapivá veta — koľko mladých odchádza z Oravy a čo to o regióne\nhovorí. Osobný + regionálny uhol.)*\n\n## Aké dáta boli k dispozícii\n\nOdkiaľ dáta sú, ako vyzerajú — a poctivo aj to, čo v nich **nebolo**.\n\n- **Zdroj:** ŠÚSR + INEKO, transformované do vlastnej DB štruktúry\n  (hviezdicový model: `skoly`, `poctyVSkolach`, `poctyVek`, `hodnotenie` + číselníky).\n- **Limit:** len počty, bez smeru odchodu — odliv sa odhaduje nepriamo\n  (kto býva vs. kto chodí do školy).\n\n::: {#nacitanie-dat .cell execution_count=1}\n``` {.python .cell-code}\n# Dôkaz, že Python (Jupyter) engine renderuje. Skutočné dáta pridáme neskôr.\nskoly = [\"megaškola\", \"malotriedka A\", \"malotriedka B\"]\nziaci = [820, 140, 95]\nspolu = sum(ziaci)\nprint(f\"Škôl v ukážke: {len(skoly)} · žiakov spolu: {spolu}\")\n```\n\n::: {.cell-output .cell-output-stdout}\n```\nŠkôl v ukážke: 3 · žiakov spolu: 1055\n```\n:::\n:::\n\n\n## Čo sa z nich dalo zistiť\n\nSamotný príbeh: grafy/mapy + slovný výklad, vrátane slepých uličiek.\n\n*(Sem príde mapa Oravy — Leaflet, časový trend, porovnanie okresov. Uhol nie je\nkvalita škôl, ale **štruktúra ponuky**: málo rôznorodé odbory + kontrast\nmegaškoly vs. malotriedky.)*\n\n## Kde sa tento postup dá použiť\n\nMost k firemnej praxi. Analýza pokrytia/dostupnosti — „kde sú diery v ponuke\" —\nfunguje rovnako na pobočky, sortiment či služby v regióne. Tá istá otázka\n(máme dieru na mape?) sa pýta na dátach objednávok, prevádzok alebo cenníka.\n\n## Pre zvedavých\n\nKód a metóda: [GitHub repo](https://github.com/danakozakova) *(doplniť konkrétny odkaz).*\n\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

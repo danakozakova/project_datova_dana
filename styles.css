@@ -1,0 +1,29 @@
+/* datovadana.sk — vlastný vzhľad (nadstavba nad motívom cosmo) */
+
+/*-- scss:rules --*/
+
+:root {
+  --dd-akcent: #2c6e8f;      /* tlmená modrá — dáta, pokoj, dôvera */
+  --dd-akcent-tmava: #1d4d63;
+  --dd-text: #22303a;
+}
+
+/* Nadpisy a odkazy v značkovej farbe */
+h1, h2, h3 { color: var(--dd-akcent-tmava); }
+a { color: var(--dd-akcent); }
+a:hover { color: var(--dd-akcent-tmava); }
+
+.navbar-brand { font-weight: 700; letter-spacing: .2px; }
+
+/* Podnadpis na domovskej stránke */
+.subtitle { color: #5a6b75; font-weight: 400; }
+
+/* Príjemnejšie riadkovanie textu príbehov */
+main p { line-height: 1.65; }
+
+/* Karty v zozname príbehov */
+.quarto-listing .card { transition: box-shadow .15s ease; }
+.quarto-listing .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.10); }
+
+/* Callout „vzorový článok" jemnejšie */
+.callout { border-left-width: 4px; }

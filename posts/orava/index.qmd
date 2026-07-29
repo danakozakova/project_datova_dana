@@ -1,0 +1,56 @@
+---
+title: "Oravský odlev"
+description: "Koľko mladých odchádza z Oravy — a čo to o regióne hovorí. Pilotný príbeh."
+date: 2026-07-29
+categories: [regióny, verejné dáta, mapy]
+image: ""
+draft: false
+---
+
+::: {.callout-note}
+Toto je **pilotný / vzorový článok** — zatiaľ kostra podľa šablóny. Text a grafy
+sa dopĺňajú. Slúži ako šablóna pre všetky ďalšie príbehy.
+:::
+
+## Hook
+
+*(Osobná/prekvapivá veta — koľko mladých odchádza z Oravy a čo to o regióne
+hovorí. Osobný + regionálny uhol.)*
+
+## Aké dáta boli k dispozícii
+
+Odkiaľ dáta sú, ako vyzerajú — a poctivo aj to, čo v nich **nebolo**.
+
+- **Zdroj:** ŠÚSR + INEKO, transformované do vlastnej DB štruktúry
+  (hviezdicový model: `skoly`, `poctyVSkolach`, `poctyVek`, `hodnotenie` + číselníky).
+- **Limit:** len počty, bez smeru odchodu — odliv sa odhaduje nepriamo
+  (kto býva vs. kto chodí do školy).
+
+```{python}
+#| label: nacitanie-dat
+#| echo: true
+
+# Dôkaz, že Python (Jupyter) engine renderuje. Skutočné dáta pridáme neskôr.
+skoly = ["megaškola", "malotriedka A", "malotriedka B"]
+ziaci = [820, 140, 95]
+spolu = sum(ziaci)
+print(f"Škôl v ukážke: {len(skoly)} · žiakov spolu: {spolu}")
+```
+
+## Čo sa z nich dalo zistiť
+
+Samotný príbeh: grafy/mapy + slovný výklad, vrátane slepých uličiek.
+
+*(Sem príde mapa Oravy — Leaflet, časový trend, porovnanie okresov. Uhol nie je
+kvalita škôl, ale **štruktúra ponuky**: málo rôznorodé odbory + kontrast
+megaškoly vs. malotriedky.)*
+
+## Kde sa tento postup dá použiť
+
+Most k firemnej praxi. Analýza pokrytia/dostupnosti — „kde sú diery v ponuke" —
+funguje rovnako na pobočky, sortiment či služby v regióne. Tá istá otázka
+(máme dieru na mape?) sa pýta na dátach objednávok, prevádzok alebo cenníka.
+
+## Pre zvedavých
+
+Kód a metóda: [GitHub repo](https://github.com/danakozakova) *(doplniť konkrétny odkaz).*

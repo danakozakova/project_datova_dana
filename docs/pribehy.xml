@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Dátová Dana</title>
+<link>https://datovadana.sk/pribehy.html</link>
+<atom:link href="https://datovadana.sk/pribehy.xml" rel="self" type="application/rss+xml"/>
+<description>Čo všetko sa dá vyčítať z dát</description>
+<generator>quarto-1.5.57</generator>
+<lastBuildDate>Tue, 28 Jul 2026 22:00:00 GMT</lastBuildDate>
+<item>
+  <title>Oravský odlev</title>
+  <dc:creator>Dana </dc:creator>
+  <link>https://datovadana.sk/posts/orava/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Poznámka
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Toto je <strong>pilotný / vzorový článok</strong> — zatiaľ kostra podľa šablóny. Text a grafy sa dopĺňajú. Slúži ako šablóna pre všetky ďalšie príbehy.</p>
+</div>
+</div>
+<section id="hook" class="level2">
+<h2 class="anchored" data-anchor-id="hook">Hook</h2>
+<p><em>(Osobná/prekvapivá veta — koľko mladých odchádza z Oravy a čo to o regióne hovorí. Osobný + regionálny uhol.)</em></p>
+</section>
+<section id="aké-dáta-boli-k-dispozícii" class="level2">
+<h2 class="anchored" data-anchor-id="aké-dáta-boli-k-dispozícii">Aké dáta boli k dispozícii</h2>
+<p>Odkiaľ dáta sú, ako vyzerajú — a poctivo aj to, čo v nich <strong>nebolo</strong>.</p>
+<ul>
+<li><strong>Zdroj:</strong> ŠÚSR + INEKO, transformované do vlastnej DB štruktúry (hviezdicový model: <code>skoly</code>, <code>poctyVSkolach</code>, <code>poctyVek</code>, <code>hodnotenie</code> + číselníky).</li>
+<li><strong>Limit:</strong> len počty, bez smeru odchodu — odliv sa odhaduje nepriamo (kto býva vs.&nbsp;kto chodí do školy).</li>
+</ul>
+<div id="nacitanie-dat" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Dôkaz, že Python (Jupyter) engine renderuje. Skutočné dáta pridáme neskôr.</span></span>
+<span id="cb1-2">skoly <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"megaškola"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"malotriedka A"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"malotriedka B"</span>]</span>
+<span id="cb1-3">ziaci <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">820</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">140</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">95</span>]</span>
+<span id="cb1-4">spolu <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">sum</span>(ziaci)</span>
+<span id="cb1-5"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Škôl v ukážke: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">len</span>(skoly)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> · žiakov spolu: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>spolu<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Škôl v ukážke: 3 · žiakov spolu: 1055</code></pre>
+</div>
+</div>
+</section>
+<section id="čo-sa-z-nich-dalo-zistiť" class="level2">
+<h2 class="anchored" data-anchor-id="čo-sa-z-nich-dalo-zistiť">Čo sa z nich dalo zistiť</h2>
+<p>Samotný príbeh: grafy/mapy + slovný výklad, vrátane slepých uličiek.</p>
+<p><em>(Sem príde mapa Oravy — Leaflet, časový trend, porovnanie okresov. Uhol nie je kvalita škôl, ale <strong>štruktúra ponuky</strong>: málo rôznorodé odbory + kontrast megaškoly vs.&nbsp;malotriedky.)</em></p>
+</section>
+<section id="kde-sa-tento-postup-dá-použiť" class="level2">
+<h2 class="anchored" data-anchor-id="kde-sa-tento-postup-dá-použiť">Kde sa tento postup dá použiť</h2>
+<p>Most k firemnej praxi. Analýza pokrytia/dostupnosti — „kde sú diery v ponuke” — funguje rovnako na pobočky, sortiment či služby v regióne. Tá istá otázka (máme dieru na mape?) sa pýta na dátach objednávok, prevádzok alebo cenníka.</p>
+</section>
+<section id="pre-zvedavých" class="level2">
+<h2 class="anchored" data-anchor-id="pre-zvedavých">Pre zvedavých</h2>
+<p>Kód a metóda: <a href="https://github.com/danakozakova">GitHub repo</a> <em>(doplniť konkrétny odkaz).</em></p>
+
+
+</section>
+
+ ]]></description>
+  <category>regióny</category>
+  <category>verejné dáta</category>
+  <category>mapy</category>
+  <guid>https://datovadana.sk/posts/orava/</guid>
+  <pubDate>Tue, 28 Jul 2026 22:00:00 GMT</pubDate>
+  <media:content url="https://datovadana.sk/posts/orava" medium="image"/>
+</item>
+</channel>
+</rss>

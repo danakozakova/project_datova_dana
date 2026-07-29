@@ -1,0 +1,45 @@
+project:
+  type: website
+  output-dir: docs        # web sa renderuje sem → commit + push cez GitHub Desktop
+
+website:
+  title: "Dátová Dana"
+  description: "Čo všetko sa dá vyčítať z dát"
+  site-url: "https://datovadana.sk"
+  favicon: favicon.ico
+  navbar:
+    left:
+      - text: "Domov"
+        href: index.qmd
+      - text: "Príbehy"
+        href: pribehy.qmd
+      - text: "O mne"
+        href: about.qmd
+    right:
+      - icon: github
+        href: https://github.com/danakozakova
+        aria-label: GitHub
+      # - icon: linkedin
+      #   href: "DOPLNIŤ LinkedIn URL"
+      #   aria-label: LinkedIn
+  page-footer:
+    center: "© 2026 datovadana.sk · postavené v [Quarto](https://quarto.org)"
+
+format:
+  html:
+    theme:
+      - cosmo
+      - styles.css
+    toc: true
+    toc-title: "Na tejto stránke"
+    code-tools: false
+    lang: sk
+
+lang: sk
+
+# Zdrojové projekty používajú Python (ML, ekonometria, CodersLab).
+# Jupyter engine je predvolený; R/knitr funguje tiež per-článok.
+jupyter: python3
+
+execute:
+  freeze: auto            # zamrazí výstupy → rýchlejší build, reprodukovateľné
