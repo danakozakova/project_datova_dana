@@ -14,11 +14,14 @@ listing:
 
 Volám sa Dana a viac než dvadsať rokov pomáham číslam prehovoriť. Tento web je
 ukážkou toho, **čo sa dá z dát vyčítať** — na verejných dátach, aby ste videli
-postup skôr, než sa spýtate, čo by povedal o tých vašich. Píšem hlavne pre malé
-firmy a podnikateľov, ktorí sedia na dátach bez toho, aby o tom vedeli.
+postup skôr, než sa spýtate, čo by povedal o tých vašich. Píšem hlavne pre ľudí, ktorí majú dáta a otázky. Chcem im ukázať, čo dokáže jednoduchá, ale aj zložitejšia analýza rôznych typov dát.
 
-Každý príbeh má rovnakú stavbu: aké dáta boli k dispozícii, čo sa z nich dalo
-zistiť, a kde by rovnaký postup fungoval na firemných dátach. [Viac o mne →](about.qmd)
+Každý príbeh má podobnú štruktúru: 
+
+- aké dáta boli k dispozícii, 
+- ako som ich analyzovala, 
+- čo som z nich zistila, 
+- ako sa ten postup dá využiť na firemných, či iných dátach. [Viac o mne →](about.qmd)
 
 ## Najnovšie príbehy
 

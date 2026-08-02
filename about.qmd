@@ -5,15 +5,28 @@ title: "O mne"
 Volám sa Dana. Vyše dvadsať rokov pomáham číslam prehovoriť — a tento web je
 ukážkou toho, **čo všetko sa dá z dát vyčítať**, keď sa na ne pozrie štatistik.
 
+Som **štatistička a učiteľka**. Moje analytické ja pripraví a vymyslí model. Ale nezostane to len komplikované niečo. Moje učiteľské ja vysvetlí polopate, čo tie dáta hovoria, čo nám ukazujú. Viem Vám výstupy vysvetliť ta, že sa na základe týchto výstupov viete rozhodnúť.
+
+- **20+ rokov praxe so štatistikou a dátami** — Excel, SPSS, R, Python, SQL.
+- **Učím, vysvetľujem, doučujem** doučujem matematiku, operačnú analýzu, štatistiku a ďalšie predmety
+  na [hodinovaucitelka.sk](https://hodinovaucitelka.sk), viedla som kurz
+  dátovej analýzy v Pythone
+- **študujem na MUNI:** dokončujem si magisterské štúdium matematicko-štatistických
+  metód v ekonómii na Masarykovej univerzite v Brne
+
 ## Pre koho je tento web
 
-Hlavne pre **malé firmy a podnikateľov**. Väčšina z nich sedí na dátach bez toho,
+Hlavne pre ľudí, ktorí sa venujú dátam, analýzam, ale aj pre **malé firmy a podnikateľov**. Väčšina z nich sedí na dátach bez toho,
 aby o tom vedela: faktúry, objednávky, dochádzka, e-shopové štatistiky, pokladňa.
 Nie sú to „big data" — a nemusia byť. Aj obyčajná tabuľka objednávok za dva roky
-vie odpovedať na otázky ako: ktorí zákazníci sa vracajú, kedy má zmysel akcia,
-či sa nová prevádzka správa inak než stará, alebo čo príde budúcu sezónu.
+vie odpovedať na otázky ako: 
 
-Články na tomto webe fungujú ako ukážky. Každý má rovnakú stavbu:
+- ktorí zákazníci sa vracajú, 
+- kedy má zmysel akcia,
+- či sa nová prevádzka správa inak než stará, 
+- alebo akú prognózu možno očakávať budúcu sezónu.
+
+Články na tomto webe fungujú ako ukážky. Väčšinou sa snažim zodpovedať otázky:
 
 1. **Aké dáta boli k dispozícii** — vždy poctivo poviem, s čím sa pracovalo
    a čo v dátach naopak nebolo.
@@ -22,27 +35,9 @@ vie odpovedať na otázky ako: ktorí zákazníci sa vracajú, kedy má zmysel a
 3. **Kde sa ten postup dá použiť** — na akých firemných dátach by rovnaký
    prístup fungoval a akú otázku by vedel zodpovedať.
 
-Nie sú to teda články o štatistike. Sú to ukážky práce — na verejných dátach,
-aby ste videli postup skôr, než sa spýtate, čo by povedal o tých vašich.
+Ja milujem matematiku, štatistiku a dáta, rozumiem im do hĺbky. Na tomto webe však chcem tieto "vedy" demokratizovať, písať o zložitých veciach jednoducho. 
+Ukázať, čo sa dá, ak sa dáta rozumne spoja. Sú tu analýzy spravidla na verejných dátach. Ukážky, ako sa dá na dáta pozerať, čo v nich možno vidieť, ako k nim pristupovať.
 
-## Prečo ja
-
-Som **štatistička a učiteľka** — a to spojenie je presne to, čo pri práci
-s firmami treba. Analytikov, ktorí spravia model, je veľa. Menej je tých,
-ktorí vám výsledok vysvetlia tak, že na jeho základe viete rozhodnúť.
-
-- **20+ rokov praxe so štatistikou a dátami** — R, Python, SQL.
-- **Učím a vysvetľujem profesionálne:** doučujem matematiku a štatistiku
-  na [hodinovaucitelka.sk](https://hodinovaucitelka.sk) a viedla som kurz
-  dátovej analýzy v Pythone v Coders Lab.
-- **Držím krok:** dokončujem magisterské štúdium matematicko-štatistických
-  metód v ekonómii na Masarykovej univerzite v Brne — časové rady, strojové
-  učenie, ekonomické dáta.
-
-A jedna vec, ktorú sa dozviete už z článkov: nebudem vám predávať zázraky.
-Jeden z prvých príbehov je práve o tom, ako model s „94 % presnosťou" môže byť
-v skutočnosti nanič — a ako sa nenechať oklamať peknými číslami. Presne takto
-pristupujem aj k firemným dátam: poviem vám, čo v nich je, aj čo v nich nie je.
 
 ## Pod kapotou
 
@@ -60,8 +55,5 @@ Spojme sa a uvidíme, či vám viem pomôcť. Niekedy je to analýza, niekedy le
 hodinový rozhovor o tom, čo vaše dáta vedia a nevedia — a niekedy vám poviem,
 že to, čo hľadáte, sa z vašich dát vyčítať nedá. Aj to je odpoveď.
 
-- **E-mail:** [DOPLNIŤ]
-- **LinkedIn:** [DOPLNIŤ odkaz]
-
-*A mimochodom — popri dátach aj učím: matematiku a štatistiku doučujem
-na [hodinovaucitelka.sk](https://hodinovaucitelka.sk).*
+- **E-mail:** [hodinovaucitelka@gmail.com](mailto:hodinovaucitelka@gmail.com)
+- **LinkedIn:** [Dana Kozáková](https://www.linkedin.com/in/dana-koz%C3%A1kov%C3%A1-8a766759/)

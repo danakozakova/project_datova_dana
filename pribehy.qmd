@@ -1,6 +1,6 @@
 ---
 title: "Príbehy"
-subtitle: "Dátové príbehy — na verejných dátach, aby ste videli postup"
+subtitle: "Dátové príbehy"
 listing:
   contents: posts
   type: default

@@ -1,0 +1,11 @@
+IdPodtypSkoly,TypSkolyDesc,TypSkolyDescLong,FkIdTypSkoly
+11,ZŠ 1-4,základná škola (1. - 5. ročník),1
+12,ZŠ 1-9,základná škola (1. - 9. ročník),1
+13,ZŠ s MŠ 1-4,základná škola s materskou školou (1. - 5. ročník),1
+14,ZŠ s MŠ 1-9,základná škola s materskou školou (1. - 9. ročník),1
+21,gymnázium,gymnázium,2
+22,SOŠ,stredná odborná škola,2
+23,SOU,stredné odborné učilište,2
+31,ZŠŠ,špeciálna základná škola,3
+32,ŠSOU,špeciálne odborné učilište,3
+33,ŠSOŠ,špeciálna stredná odborná škola,3

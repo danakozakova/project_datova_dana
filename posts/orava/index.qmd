@@ -1,56 +1,222 @@
 ---
-title: "Oravský odlev"
-description: "Koľko mladých odchádza z Oravy — a čo to o regióne hovorí. Pilotný príbeh."
+title: "Quo vadis, oravské školstvo?"
+description: "Polovica hornooravských tínedžerov študuje strednú mimo svojho okresu, hovoria verejné dáta."
 date: 2026-07-29
-categories: [regióny, verejné dáta, mapy]
+categories: [regióny, verejné dáta, školstvo]
 image: ""
 draft: false
+engine: knitr
+code-fold: true
+code-summary: "Zobraziť kód"
+execute:
+  warning: false
+  message: false
 ---
 
-::: {.callout-note}
-Toto je **pilotný / vzorový článok** — zatiaľ kostra podľa šablóny. Text a grafy
-sa dopĺňajú. Slúži ako šablóna pre všetky ďalšie príbehy.
-:::
+```{r}
+#| label: setup
+#| include: false
+library(dplyr)
+library(ggplot2)
+library(plotly)
+library(readr)
 
-## Hook
+d <- "data/"
+obce  <- read_csv(paste0(d, "cisObceOkresy.csv"), show_col_types = FALSE)
+rok   <- read_csv(paste0(d, "cisSkRok.csv"),      show_col_types = FALSE) |> arrange(IdSkRok)
+podt  <- read_csv(paste0(d, "cisPodtypSkoly.csv"),show_col_types = FALSE)
+typ   <- read_csv(paste0(d, "cisTypSkoly.csv"),   show_col_types = FALSE)
+pvs   <- read_csv(paste0(d, "poctyVSkolach.csv"), show_col_types = FALSE)
+pvek  <- read_csv(paste0(d, "poctyVek.csv"),      show_col_types = FALSE)
+skoly <- read_csv(paste0(d, "skoly.csv"),         show_col_types = FALSE)
+hod   <- read_csv(paste0(d, "hodnotenie.csv"),    show_col_types = FALSE)
 
-*(Osobná/prekvapivá veta — koľko mladých odchádza z Oravy a čo to o regióne
-hovorí. Osobný + regionálny uhol.)*
+poradie_rokov <- rok$SkolskyRok
+podt_typ <- podt |> select(IdPodtypSkoly, FkIdTypSkoly)
+
+data_poc <- pvs |>
+  inner_join(podt_typ, by = c("FkIdPodtypSkoly" = "IdPodtypSkoly")) |>
+  inner_join(typ, by = c("FkIdTypSkoly" = "IdTypSkoly")) |>
+  inner_join(rok, by = c("FkIdSkRok" = "IdSkRok"))
+```
+
+Bývam na Orave vyše dvadsať rokov, tunajšie školstvo poznám cez svoju učiteľskú kariéru, cez manžela učiteľa, ako aj cez školopovinné a už aj nepovinné deti – stredoškolákov aj vysokoškolákov. Riešili sme, kam na strednú, na vysokú, radím občas študentom, či rodičom, kam ísť študovať.
+Pocit, že mladí odchádzajú, tu má asi každý rodič. Lenže pocit je jedna vec —
+dá sa to vidieť aj v dátach? Postavila som si databázu oravských škôl z
+verejných zdrojov a pozrela sa na fakty. Ukázalo sa, že odchod za strednou školou nie je
+výnimka, ale pravidlo: **z okresu Námestovo odchádza študovať zhruba polovica ročníka — a
+je to tak stabilne už takmer tridsať rokov.**
 
 ## Aké dáta boli k dispozícii
 
-Odkiaľ dáta sú, ako vyzerajú — a poctivo aj to, čo v nich **nebolo**.
+Všetky použité dáta sú verejné. Počty žiakov, tried a učiteľov podľa obcí a rokov
+som vytiahla z **[DataCube Štatistického úradu SR](https://datacube.statistics.sk/)**, hodnotenia škôl z
+**[rebríčkov INEKO](https://skoly.ineko.sk/rebricky/)**, a identifikáciu škôl som dolaďovala z ich webov. Dáta som
+poskladala do vlastnej databázy (roky 1996/97 až 2023/24, tri okresy — Dolný
+Kubín, Námestovo, Tvrdošín).
 
-- **Zdroj:** ŠÚSR + INEKO, transformované do vlastnej DB štruktúry
-  (hviezdicový model: `skoly`, `poctyVSkolach`, `poctyVek`, `hodnotenie` + číselníky).
-- **Limit:** len počty, bez smeru odchodu — odliv sa odhaduje nepriamo
-  (kto býva vs. kto chodí do školy).
-
-```{python}
-#| label: nacitanie-dat
-#| echo: true
-
-# Dôkaz, že Python (Jupyter) engine renderuje. Skutočné dáta pridáme neskôr.
-skoly = ["megaškola", "malotriedka A", "malotriedka B"]
-ziaci = [820, 140, 95]
-spolu = sum(ziaci)
-print(f"Škôl v ukážke: {len(skoly)} · žiakov spolu: {spolu}")
-```
+V dátach **nie je**, resp. nevidno v nich, *kam* a *prečo* mladí
+odchádzajú. Odliv sa dá len odhadnúť nepriamo  porovnaním, koľko tínedžerov v
+okrese žije oproti tomu, koľko ich študuje na stredných školách v okresnom
+meste. Keď je stredoškolákov v meste výrazne menej než mladých v okrese, rozdiel
+odišiel inam. Kvalitu škôl ani dôvody odchodu z týchto čísel nevyčítam — na to
+by bol iný výskum.
 
 ## Čo sa z nich dalo zistiť
 
-Samotný príbeh: grafy/mapy + slovný výklad, vrátane slepých uličiek.
+**Odliv, ktorý sa nemení.** Ukazovateľ migrácie sa v okresoch hornej Oravy
+drží roky konštatný, v Dolnom Kubíne sú viditeľné zmeny. Hornooravské stredné školy pokryjú zhruba polovicu toho,
+čo by zodpovedalo počtu mladých v okrese. Druhá polovica študuje inde. Za takmer 30 rokov sa to výrazne nezmenilo. Nie je to nový trend, je to
+štruktúra.
 
-*(Sem príde mapa Oravy — Leaflet, časový trend, porovnanie okresov. Uhol nie je
-kvalita škôl, ale **štruktúra ponuky**: málo rôznorodé odbory + kontrast
-megaškoly vs. malotriedky.)*
+```{r}
+#| label: fig-migracia
+#| fig-cap: "Školská migrácia stredoškolákov po okresoch (čistý podiel, záporný = odlev)."
+migracia <- function(idOkres, nazov) {
+  stud <- pvs |>
+    inner_join(podt_typ, by = c("FkIdPodtypSkoly" = "IdPodtypSkoly")) |>
+    filter(FkIdTypSkoly == 2, FkIdObec == idOkres) |>
+    group_by(FkIdSkRok) |>
+    summarise(stud = sum(PocetZiakov), .groups = "drop")
+  obce_ok <- obce |> filter(FkIdOkres == idOkres) |> pull(IdObec)
+  ml <- pvek |>
+    filter(FkIdVekKat == 2, FkIdObec %in% obce_ok) |>
+    group_by(FkIdSkRok) |>
+    summarise(ml = sum(PocetOsob), .groups = "drop")
+  stud |>
+    inner_join(ml, by = "FkIdSkRok") |>
+    inner_join(rok, by = c("FkIdSkRok" = "IdSkRok")) |>
+    mutate(Okres = nazov, Migracia = (stud - ml) / ml)
+}
 
-## Kde sa tento postup dá použiť
+mig <- bind_rows(
+  migracia(1,  "Dolný Kubín"),
+  migracia(35, "Námestovo"),
+  migracia(60, "Tvrdošín")
+) |>
+  mutate(SkolskyRok = factor(SkolskyRok, levels = poradie_rokov))
 
-Most k firemnej praxi. Analýza pokrytia/dostupnosti — „kde sú diery v ponuke" —
-funguje rovnako na pobočky, sortiment či služby v regióne. Tá istá otázka
-(máme dieru na mape?) sa pýta na dátach objednávok, prevádzok alebo cenníka.
+g1 <- ggplot(mig, aes(SkolskyRok, Migracia, colour = Okres, group = Okres)) +
+  geom_hline(yintercept = 0, linetype = "dashed", colour = "grey60") +
+  geom_line(linewidth = 1) +
+  geom_point(size = 1.6) +
+  scale_y_continuous(limits = c(-1, 0.1)) +
+  labs(x = NULL, y = "čistý podiel (– = odlev)", colour = "Okres") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+ggplotly(g1) |> layout(font = list(family = "sans-serif"))
+```
 
-## Pre zvedavých
+**Školy sa vyprázdňujú.** Priemerný počet žiakov v triede na Orave dlhodobo
+klesá — na základných školách z približne 23 na 19–20, na stredných z takmer 29
+na 22. Menej detí znamená menšie triedy a tlak na verejné financie.
 
-Kód a metóda: [GitHub repo](https://github.com/danakozakova) *(doplniť konkrétny odkaz).*
+```{r}
+#| label: fig-velkost-tried
+#| fig-cap: "Priemerný počet žiakov v triede na Orave podľa typu školy."
+avg_poc <- data_poc |>
+  filter(PocetTried > 0) |>
+  group_by(SkolskyRok, TypSkolyDesc) |>
+  summarise(Priemer = sum(PocetZiakov) / sum(PocetTried), .groups = "drop") |>
+  mutate(SkolskyRok = factor(SkolskyRok, levels = poradie_rokov))
+
+g2 <- ggplot(avg_poc, aes(SkolskyRok, Priemer, colour = TypSkolyDesc, group = TypSkolyDesc)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 1.6) +
+  labs(x = NULL, y = "priemerný počet žiakov v triede", colour = "Typ školy") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+ggplotly(g2) |> layout(font = list(family = "sans-serif"))
+```
+
+**Rozdiely v jednom regióne.** Keď som obce rozdelila podľa veľkosti škôl,
+vyšli výrazné rozdiely medzi obecnými školami: na jednej strane sú najmä na hornej Orave veľké školy (Rabča, Zákamenné, Novot), na
+druhej zopár malotriedok s nízkym počtom tried aj žiakov. Pomocou zhlukovania možno školy rozdeliť do približne homogénnych skupín.
+
+```{r}
+#| label: fig-klaster
+#| fig-cap: "Obce podľa veľkosti základných škôl (2023/24), automaticky rozdelené do 4 skupín."
+set.seed(1)
+normalizuj <- function(x) (x - min(x)) / (max(x) - min(x))
+
+sum_poc <- data_poc |>
+  filter(FkIdSkRok == 28, FkIdTypSkoly == 1, PocetTried > 0) |>
+  inner_join(obce, by = c("FkIdObec" = "IdObec")) |>
+  group_by(FkIdObec, ObecNazov) |>
+  summarise(TriedNaSkolu   = sum(PocetTried) / sum(PocetSkol),
+            ZiakovNaTriedu = sum(PocetZiakov) / sum(PocetTried),
+            .groups = "drop")
+
+km <- kmeans(data.frame(a = normalizuj(sum_poc$TriedNaSkolu),
+                        b = normalizuj(sum_poc$ZiakovNaTriedu)),
+             centers = 4, nstart = 25)
+sum_poc$Skupina <- factor(km$cluster)
+
+g3 <- ggplot(sum_poc, aes(TriedNaSkolu, ZiakovNaTriedu,
+                          colour = Skupina, label = ObecNazov)) +
+  geom_text(size = 3) +
+  labs(x = "priemerný počet tried v škole",
+       y = "priemerný počet žiakov v triede") +
+  theme_minimal()
+ggplotly(g3, tooltip = c("label", "x", "y")) |> layout(font = list(family = "sans-serif"))
+```
+
+**Viac peňazí ≠ lepšia škola.** Skúsila som aj otázku:
+súvisí rozpočet na žiaka s hodnotením školy? Súvislosť existuje, ale je slabá
+(korelácia r = 0,36). Peniaze pomáhajú, ale ani zďaleka nevysvetľujú, prečo je
+jedna škola lepšia než druhá.
+
+```{r}
+#| label: fig-rozpocet-skore
+#| fig-cap: "Vzťah rozpočtu na žiaka a hodnotenia INEKO (ZŠ 1–9, 2020/21–2023/24)."
+zs <- skoly |> filter(FkIdPodtypSkoly == 12) |> select(IdSkola)
+data_kor <- hod |>
+  filter(FkIdSkRok %in% 25:28) |>
+  inner_join(zs, by = c("FkIdSkola" = "IdSkola")) |>
+  filter(!is.na(Skore), !is.na(Rozpocet))
+r <- cor(data_kor$Skore, data_kor$Rozpocet)
+
+g4 <- ggplot(data_kor, aes(Skore, Rozpocet)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", se = FALSE, colour = "steelblue") +
+  labs(x = "skóre INEKO", y = "rozpočet na žiaka",
+       subtitle = sprintf("korelácia r = %.2f", r)) +
+  theme_minimal()
+ggplotly(g4) |> layout(font = list(family = "sans-serif"))
+```
+
+## Analýzu a prístupy možno použiť aj na biznis dátach
+
+Na tomto príbehu nie je cenný ani tak jeden graf, ako **postup**. Vzala som jeden
+verejný zdroj (Štatistický úrad), prepojila s druhým verejným zdrojom (INEKO), doplnila dáta
+z webov škôl — a až týmto **prepojením** sa dali zodpovedať otázky, na ktoré ani
+jeden zdroj sám o sebe neodpovie. Podobné to býva u firiem: faktúry v jednom
+systéme, objednávky v druhom, dochádzka či e-shop v treťom, v ďalšom CRM, niekde verejné dáta, či dáta konkurencie. Hodnota nie je v
+jednej tabuľke, ale v ich prepojení. Až keď sú dáta prepojené, možno analyzovať a klásť otázky:
+
+**Zmerať skutočný podiel, nie zdanlivý.** Odliv študentov nevidno v žiadnej
+jednej tabuľke — vznikne až porovnaním „koľko ich tu žije" oproti „koľko ich tu
+študuje". Rovnako firma zväčša nevidí *skutočný* podiel: koľko zákazníkov sa
+naozaj vráti (nie koľko nakúpi), aký podiel dopytu reálne pokryje, koľko z
+regiónu jej ozaj ostane.
+
+**Nechať dáta, aby si samy našli skupiny.** Školy som nerozdeľovala ručne —
+zhlukovanie (k-means) ich podľa dvoch parametrov automaticky roztriedilo do
+štyroch skupín a odkrylo „dva svety" v jednom regióne. Klastrovanie môže roztriediť
+zákazníkov podľa správania, produkty podľa obrátkovosti a marže, pobočky podľa
+profilu — bez toho, aby ste dopredu vedeli, aké skupiny hľadáte. Až keď človek vidí zhluky, vie si pomenovať ich charakteristiky.
+
+**Skúmať vzťahy medzi vecami, ktoré spolu „nemajú ako" súvisieť.** Až prepojené
+dáta dovolia opýtať sa: súvisí rozpočet s hodnotením? Firma
+sa rovnako pýta: súvisí výška zľavy s vernosťou zákazníka, cena s reklamáciami,
+investícia do marketingu s tržbou? Odpoveď — a najmä *aká silná* tá súvislosť
+je — môže byť prekvapivá.
+
+## Pre zvedavých a technicky zdatných
+
+Celá databáza, SQL vrstva aj analýza v R sú na GitHube:
+[SQL-R-quo-vadis-orava-schools](https://github.com/danakozakova/SQL-R-quo-vadis-orava-schools).
+Dáta pochádzajú zo ŠÚSR (DataCube) a INEKO.
+
+## Ak máte dáta a otázky
+- neváhajte ma kontaktovať, opýtať sa. Rada sa na Vaše dáta a otázky pozriem, čo sa z nich dá zistiť.
