@@ -2,12 +2,14 @@
   {
     "listing": "/pribehy.html",
     "items": [
+      "/posts/glykemia/index.html",
       "/posts/orava/index.html"
     ]
   },
   {
     "listing": "/index.html",
     "items": [
+      "/posts/glykemia/index.html",
       "/posts/orava/index.html"
     ]
   }
