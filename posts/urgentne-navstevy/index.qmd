@@ -1,0 +1,128 @@
+---
+title: "Model s 94 % presnosťou, ktorý nepredikuje nič rozumné"
+description: "Prečo vysoká presnosť občas zavádza a čo model napriek tomu prezradí."
+date: 2026-08-04
+categories: [zdravie, regresia, logit, diabetes]
+image: ""
+draft: false
+engine: knitr
+code-fold: true
+code-summary: "Zobraziť kód"
+execute:
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(dplyr)
+library(ggplot2)
+library(plotly)
+library(tibble)
+
+# V tomto príbehu sa nepracuje s pacientskymi dátami (nie sú redistribuovateľné).
+# Grafy sa počítajú z výstupov modelu — klasifikačnej tabuľky a smeru koeficientov.
+```
+
+Diabetu 1. typu sa „bohužiaľ" venujem v rodine už vyše pätnásť rokov. Preto aj ďalšia analýza je na túto tému. V USA zbierajú pomerne rozsiahle dáta o diabetikoch. Vybrala som si dataset s urgentnými návštevami nemocnice. Urgentná návšteva z dôvodu diabetu 1. typu je takmer vždy spojená 
+, chcela som vedieť, čo urgentnú návštevu nemocnice kvôli ťažkej hypoglykémii alebo ketoacidóze vlastne poháňa. Postavila som logistický model, ktorý „správne predpovedal" **94 % prípadov** — a napriek tomu bol na predpovedanie takmer neužitočný. Ten rozpor je celý dnešný príbeh: **vysoká presnosť môže byť ilúzia** a poctivé číslo je úplne inde.
+
+## Aké dáta boli k dispozícii
+
+Dáta pochádzajú z amerického registra **T1D Exchange** (dostupný cez Jaeb Center for Health Research) a opisujú **2 454 diabetikov 1. typu v USA v roku 2016**. Získané boli **dotazníkom** — u neplnoletých ho vypĺňali rodičia — takže sú to prevažne nemedicínske údaje o bežnom živote diabetika: demografia, spôsob podávania inzulínu, náklady na starostlivosť, dostupnosť pomoci v škole, pridružené komplikácie, vzdelanie a zamestnanie. Z vyše 200 premenných som vybrala tie relevantné pre jednu otázku.
+
+Vysvetľovaná premenná je binárna: **bol/nebol pacient za posledné 3 mesiace na urgentnej návšteve** kvôli hypoglykémii alebo DKA. A hneď na začiatku dôležitý detail, ktorý je extrémne dôležitý pre hodnotenie presnosti — **takých prípadov je len asi 6 %.**
+
+Čo v dátach **nie je**: sú to dotazníkové odpovede, nie zdravotná dokumentácia, takže majú prirodzenú mieru nepresnosti (v jednom poli sa ako „najvyššie vzdelanie" objavovalo aj predškolské). Nevidno v nich *príčiny* — model ukáže, čo s urgentnou návštevou súvisí, nie čo ju spôsobuje. Toto je extrémne dôležité pochopiť: **korelácia nie je kauzalita**. A dáta **nie sú verejné**: podliehajú podmienkam T1D Exchange a redistribúcia nie je povolená, takže na tejto stránke nie je žiadny pacientský záznam, len výstupy modelu.
+
+## Čo sa z nich dalo zistiť
+
+**94 %, ktoré neznamená skoro nič.** Model označí správne 94 % pacientov. Znie to skvelo — kým si nespomeniete, že urgentných návštev je len 6 %. Model, ktorý by *bez rozmýšľania* každému povedal „nepôjdeš na urgent", má tiež okolo 94 % presnosť. Vysoká „správnosť" je teda z veľkej časti zásluha nevyváženosti tried, nie kvality modelu. Poctivý pohľad ukazuje klasifikačná tabuľka nižšie: zo **148 pacientov, ktorí naozaj skončili na urgente, model zachytil 12.** Zvyšných 136 prehliadol.
+
+```{r}
+#| label: fig-confusion
+#| fig-cap: "Klasifikačná tabuľka modelu. Presnosť ťahá veľké políčko 2299 (správne „bez návštevy\"); skutočné urgentné návštevy (136) model takmer nezachytáva."
+cm <- tibble(
+  skutocnost = c("Bez návštevy", "Bez návštevy", "Urgentná návšteva", "Urgentná návšteva"),
+  predikcia  = c("Bez návštevy", "Urgentná návšteva", "Bez návštevy", "Urgentná návšteva"),
+  n = c(2299, 7, 136, 12)
+) |>
+  mutate(
+    skutocnost = factor(skutocnost, levels = c("Urgentná návšteva", "Bez návštevy")),
+    predikcia  = factor(predikcia,  levels = c("Bez návštevy", "Urgentná návšteva")),
+    spravne    = (as.character(skutocnost) == as.character(predikcia))
+  )
+
+g_cm <- ggplot(cm, aes(predikcia, skutocnost, fill = spravne)) +
+  geom_tile(colour = "white", linewidth = 1.5) +
+  geom_text(aes(label = n), size = 6, fontface = "bold", colour = "grey20") +
+  scale_fill_manual(values = c(`TRUE` = "#a6cee3", `FALSE` = "#fbb4ae"), guide = "none") +
+  labs(x = "čo predpovedal model", y = "aká bola skutočnosť") +
+  theme_minimal() +
+  theme(panel.grid = element_blank())
+ggplotly(g_cm, tooltip = c("x", "y", "label")) |>
+  layout(font = list(family = "sans-serif"))
+```
+
+Zmysluplnejšie číslo než presnosť je tu **záchyt (recall): 12 zo 148, teda len ~8 %.** Model teda ako **predikčný nástroj** — „ktorý pacient pôjde na urgent" — zlyháva presne tam, kde by mal byť najužitočnejší. To nie je chyba v kóde; je to prirodzený dôsledok toho, že zriedkavé javy sa predpovedajú ťažko a jedno súhrnné číslo (presnosť) to zamaskuje.
+
+**Model, ktorý neveští, ale ukazuje smer.** Užitočnosť tohto modelu nie je v predikcii, ale v tom, že spomedzi vyše sedemdesiatich vyskúšaných špecifikácií ostala úsporná sada faktorov, ktoré **štatisticky významne** posúvajú pravdepodobnosť urgentnej návštevy — a hlavne vieme *ktorým smerom*.
+
+```{r}
+#| label: fig-smer
+#| fig-cap: "Vplyv významných prediktorov na pravdepodobnosť urgentnej návštevy (percentuálne body)."
+det <- tibble(
+  faktor = c("Africko-americký pôvod", "Nezamestnanosť", "Návšteva aj z iného dôvodu",
+             "Počet pádov (na 1 pád)", "Postihnutie končatín", "Ťažká hypoglykémia",
+             "Mužské pohlavie", "Inzulínová pumpa", "Vyššie vzdelanie (na stupeň)",
+             "Vyššie náklady (na ~250 $)"),
+  vplyv = c(5.0, 4.1, 2.2, 1.8, 1.4, 0.3, -1.8, -1.6, -0.5, -0.5)
+) |>
+  mutate(
+    smer = ifelse(vplyv > 0, "zvyšuje riziko", "znižuje riziko"),
+    faktor = factor(faktor, levels = faktor[order(vplyv)])
+  )
+
+g_det <- ggplot(det, aes(vplyv, faktor, fill = smer,
+                         text = paste0(faktor, ": ", sprintf("%+.1f", vplyv), " p. b."))) +
+  geom_col(width = 0.7) +
+  geom_vline(xintercept = 0, colour = "grey50") +
+  scale_fill_manual(values = c(`zvyšuje riziko` = "#e8998d",
+                               `znižuje riziko` = "#7ba7c9"), name = NULL) +
+  labs(x = "pravdepodobnosť urgentnej návštevy (percentuálne body)", y = NULL) +
+  theme_minimal() +
+  theme(panel.grid.major.y = element_blank())
+ggplotly(g_det, tooltip = "text") |>
+  layout(font = list(family = "sans-serif"))
+```
+
+Najväčšie zvýšenie rizika urgentnej návštevy nesú **africko-americký pôvod (+5 p. b.)** a **nezamestnanosť (+4,1 p. b.)** — teda skôr socioekonomické signály než priamo klinické príčiny (samotná etnicita zdravie nezhoršuje, zrejme v sebe nesie iný nepozorovaný faktor). Menšie, no intuitívne zvýšenie prinášajú premenné opisujúce aktuálne horší zdravotný stav: **návšteva aj z iného dôvodu, počet pádov, postihnutie končatín, ťažká hypoglykémia**. Na druhej strane **inzulínová pumpa a vyššie vzdelanie** riziko znižujú — čo sedí s tým, že za lepšou kompenzáciou býva lepší manažment a nižšie riziko. Pri **nákladoch na starostlivosť** je vzťah slabý (zhruba každých 250 dolárov navyše zníži pravdepodobnosť len o pol percentuálneho bodu).
+
+**Slepé uličky a prekvapenia.** Nie všetko dopadlo podľa očakávania. **Kontinuálny monitoring glykémie (CGM)**, o ktorom sa v diskusiách o kompenzácii hovorí ako o samozrejmosti, sa po pridaní vyšších nákladov stal nevýznamným a z modelu vypadol. A dva faktory ma úprimne prekvapili svojím znamienkom: **určená pomocná osoba v škole** a **vždy dostupná pomoc** pri hypoglykémii. Sú to premenné, ktoré samy o sebe zdravotný stav nezlepšujú ani nezhoršujú — skôr **signalizujú** niečo iné: dieťa, ktoré je dlhodobo horšie kompenzované, má s väčšou pravdepodobnosťou pridelenú oficiálnu pomoc *aj* častejšie končí na urgente. Model tu nemeria účinok pomoci, ale zachytáva súvislosti v pozadí. Presne preto sa smer takéhoto koeficientu nesmie čítať ako „asistent škodí".
+
+Diagnostika napokon potvrdila, že model je vnútorne v poriadku: **žiadna multikolinearita** (VIF hlboko pod prahom), takže prediktory si navzájom „nekradnú" vysvetľovaciu silu. Slabé miesto je inde — v samotnej nevyváženosti dát, a tú žiadna diagnostika koeficientov nevylieči.
+
+## Kde sa tento postup dá použiť
+
+Podobné pasce číhajú všade, kde sa predpovedá **zriedkavý jav**: odchod zákazníka, nesplatená faktúra, reklamácia, podvod, porucha stroja.
+
+**Presnosť je najklamlivejšie číslo, aké si môžete vybrať.** Ak sledovaná udalosť tvorí nízke % prípadov, model, ktorý ju *nikdy* nepredpovie, má vysokú presnosť a je bezcenný. Presne to sa deje pri churne či fraude: pochválite sa vysokou „úspešnosťou" a pritom vám unikne väčšina skutočných prípadov. Pýtať sa treba na **záchyt (recall) a cenu chýb** — koľko skutočných odchodov/podvodov model naozaj zachytí a koľko vás stojí každý prehliadnutý.
+
+**Model nemusí veštiť, aby bol užitočný.** Ak sa nedá spoľahlivo predpovedať *kto*, stále má cenu vedieť, *ktoré* faktory riziko dvíhajú a ktorým smerom. Logistická regresia je čitateľná presne v tomto — nevyhodí len skóre, ale povie „tento faktor zvyšuje šancu, tamten znižuje". Pre rozhodovanie o tom, kam zamerať pozornosť, je to často cennejšie než čierna skrinka s vyšším skóre.
+
+**Pozor na premenné, ktoré sú signál, nie príčina.** *Asistent v škole* tu nezvyšoval riziko preto, že by vyslovene spôsoboval návštevu — len sprevádzal ťažších pacientov. Vo firemných dátach je to na nerozoznanie: zákazníci s najväčšou zľavou najviac reklamujú (lebo zľavu dostávajú problémoví?), pobočky s najviac kontrolami majú najviac nezhôd. Kým nerozlíšite **súvislosť od príčiny**, ľahko „vypnete" práve to, čo problém iba odhaľuje.
+
+**Menej je viac.** Zo sedemdesiatich vyskúšaných kombinácií ostala hŕstka významných premenných. Naukladať do modelu všetko, čo máte, nie je cnosť — úsporný model, ktorému rozumiete, poslúži lepšie než preplnený, ktorému neveríte.
+
+## Pre zvedavých a technicky zdatných
+
+Celá analýza — príprava premenných, finálny LOGIT model, diagnostika multikolinearity (VIF, Belsley-Kuh-Welsch) aj porovnanie s probit modelom — je napísaná v [gretli](https://gretl.sourceforge.net/) (voľne dostupný ekonometrický softvér) a aj s podrobným komentovaným reportom je na GitHube:
+[danakozakova/econometrics — t1d-urgent-care-logit](https://github.com/danakozakova/econometrics/tree/main/t1d-urgent-care-logit).
+
+Dáta pochádzajú z registra **T1D Exchange** (via Jaeb Center for Health Research); prístup je individuálny a **redistribúcia nie je povolená**, preto tu nie sú žiadne pacientske záznamy, len výstupy modelu. Obsah a závery sú výhradne moje a neboli registrom revidované ani schválené.
+
+Toto je jeden z mojich dvoch projektov nad diabetologickými dátami — ten druhý, [analýza CGM glykémie metódami časových radov](../glykemia/), rozoberá glykemickú krivku jedného pacienta cez SARIMA, GARCH a Grangerovu kauzalitu.
+
+## Ak máte dáta a otázky
+- neváhajte ma kontaktovať. Rada sa na vaše dáta pozriem a poviem, čo sa z nich dá zistiť.
