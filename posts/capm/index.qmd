@@ -1,0 +1,114 @@
+---
+title: "Keď vyššie riziko neprináša vyšší výnos"
+description: "Učebnicové pravidlo „vyššie riziko, vyšší výnos\" sa na 476 akciách S&P 500 obrátilo naopak — a nešlo o výkyv jedného roka."
+date: 2026-08-05
+categories: [financie, akcie, CAPM, regresia]
+image: ""
+draft: false
+engine: knitr
+code-fold: true
+code-summary: "Zobraziť kód"
+execute:
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(dplyr)
+library(ggplot2)
+library(plotly)
+library(readr)
+
+d <- "data/"
+betas <- read_csv(paste0(d, "capm_betas.csv"),        show_col_types = FALSE)
+sml   <- read_csv(paste0(d, "capm_sml.csv"),          show_col_types = FALSE)
+obd   <- read_csv(paste0(d, "capm_sml_obdobia.csv"),  show_col_types = FALSE)
+```
+
+Kto sa zaoberá finančnými trhmi a investíciami, pozná dobre pravidlo: **vyššie riziko, vyšší výnos.** Kto chce zarobiť viac, musí zniesť väčšie výkyvy. Model, ktorý toto pravidlo zjednodušuje do jedného čísla, sa volá **CAPM** a jeho autori zaň dostali Nobelovu cenu — riziko akcie sa v ňom meria parametrom *beta* a odmenou zaň má byť vyšší výnos. Túto analýzu som nerobila sama, ale so spolužiakmi ako projekt z ekonometrie. Mojou úlohou bolo pripraviť dáta, spočítať výnosy a odhadnúť parameter *beta*. Keď som pravidlo overila na piatich rokoch reálnych dát, vzťah medzi rizikom a výnosom smeroval presne **opačným smerom** — najrizikovejšie akcie zarobili najmenej.
+
+## Aké dáta boli k dispozícii
+
+Použila som verejný dataset **denných cien 505 akcií indexu S&P 500** za obdobie február 2013 – február 2018, dostupný na [Kaggle](https://www.kaggle.com/datasets/rohitjain454/all-stocks-5yr). Denné ceny som premenila na mesačné výnosy (logaritmické, z ceny na konci každého mesiaca), takže na každý titul pripadá zhruba 60 mesačných pozorovaní — spolu **476 titulov** (29 titulov s neúplnou históriou bolo vyradených). „Trh" bol zostavený ako vážený priemer výnosov všetkých titulov.
+
+Poctivo aj to, čo v dátach **nie je**. Dataset neobsahuje bezrizikovú úrokovú sadzbu, preto som ju položila na nulu — v prostredí nízkych sadzieb po roku 2008 je to prijateľné zjednodušenie, ale je to zjednodušenie. Päťročné okno bolo **prevažne rastúcim trhom** (40 mesiacov trh rástol, len 20 klesal), takže o správaní akcií v poklese hovoria dáta oveľa tichšie než o raste. A „trh" tu nie je oficiálny index vážený veľkosťou firiem, ale môj rovnako vážený zástupca. Každý z týchto predpokladov trochu pohne výsledkami — na smer príbehu však, ako uvidíme, nemajú vplyv.
+
+## Čo sa z nich dalo zistiť
+
+**Beta: jedno číslo pre citlivosť na trh.** Pre každú akciu som regresiou odhadla betu — o koľko sa v priemere pohne akcia, keď sa trh pohne o percento. Beta okolo 1 znamená „hýbe sa ako trh", pod 1 „pokojnejšie než trh" (defenzívne tituly), nad 1 „divokejšie než trh" (agresívne). Bety vyšli v rozpätí od takmer nuly (**0,01**) po **2,66** a rozdelili súbor takmer presne na polovice: 238 defenzívnych a 238 agresívnych titulov.
+
+```{r}
+#| label: fig-beta
+#| fig-cap: "Rozdelenie odhadnutých parametrov beta pre 476 akcií. Zvislá čiara: beta = 1 (akcia kopírujúca trh)."
+g1 <- ggplot(betas, aes(beta, fill = typ)) +
+  geom_histogram(bins = 40, colour = "white", alpha = 0.85) +
+  geom_vline(xintercept = 1, linetype = "dashed", colour = "grey40") +
+  scale_fill_manual(values = c("Defenzívny (β<1)" = "#7ba7c9",
+                               "Agresívny (β>1)"  = "#e8998d")) +
+  labs(x = "beta (citlivosť na pohyb trhu)", y = "počet akcií", fill = NULL) +
+  theme_minimal()
+ggplotly(g1) |> layout(font = list(family = "sans-serif"))
+```
+
+**Priamka, ktorá klesá.** Podľa CAPM by mala platiť jednoduchá vec: čím vyššia beta, tým vyšší nadvýnos. Zoradila som akcie podľa bety do desiatich rovnakých košov (decilov) a pre každý spočítala priemernú betu a priemerný nadvýnos. Keby model platil, body by stúpali zľava doprava. Namiesto toho **klesajú** — najpokojnejšie decily majú kladný nadvýnos okolo 0,2–0,4 % mesačne, kým najagresívnejší desiaty decil (priemerná beta 1,8) stráca takmer 0,8 % mesačne. Sklon priamky je záporný a štatisticky významný. Vo financiách má tento jav meno: **Low-Beta anomália** — pokojné akcie zarábajú viac, než by „mali", a rizikové menej.
+
+```{r}
+#| label: fig-sml
+#| fig-cap: "Security Market Line: priemerná beta vs. priemerný nadvýnos pre 10 decilov."
+g2 <- ggplot(sml, aes(Mean_Beta, Mean_Alpha)) +
+  geom_hline(yintercept = 0, linetype = "dashed", colour = "grey50") +
+  geom_smooth(method = "lm", se = TRUE,
+              colour = "firebrick", fill = "firebrick", alpha = 0.12) +
+  geom_point(size = 7, colour = "darkblue") +
+  geom_text(aes(label = portfolio), colour = "white", fontface = "bold", size = 3) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 0.1)) +
+  labs(x = "priemerná beta decilu (riziko)",
+       y = "priemerný mesačný nadvýnos decilu") +
+  theme_minimal()
+ggplotly(g2, tooltip = c("x", "y")) |> layout(font = list(family = "sans-serif"))
+```
+
+**Nešlo o jeden zlý rok.** Prvá obrana takéhoto výsledku znie: možno len jedno turbulentné obdobie pokrivilo celý obraz. Preto som vzorku rozdelila na dve časové polovice — prvé tri roky (02.2013–02.2016) a posledné dva (03.2016–02.2018) — a v každej som bety aj priamku odhadla nanovo. Priamka klesá **v oboch obdobiach** rovnako: najagresívnejší decil končí hlboko v mínuse v prvej aj v druhej polovici. Anomália teda nie je náhoda jedného momentu, ale stabilná vlastnosť celého sledovaného obdobia.
+
+```{r}
+#| label: fig-obdobia
+#| fig-cap: "Security Market Line zvlášť pre prvú a druhú polovicu obdobia. Sklon je záporný v oboch."
+obd <- obd |>
+  mutate(obdobie = factor(obdobie,
+         levels = c("1. polovica (02.2013–02.2016)", "2. polovica (03.2016–02.2018)")))
+g3 <- ggplot(obd, aes(Mean_Beta, Mean_Alpha)) +
+  geom_hline(yintercept = 0, linetype = "dashed", colour = "grey50") +
+  geom_smooth(method = "lm", se = TRUE,
+              colour = "firebrick", fill = "salmon", alpha = 0.15) +
+  geom_point(size = 6, colour = "darkblue") +
+  geom_text(aes(label = portfolio), colour = "white", fontface = "bold", size = 3) +
+  facet_wrap(~ obdobie, scales = "free") +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 0.1)) +
+  labs(x = "priemerná beta decilu", y = "priemerný nadvýnos decilu") +
+  theme_minimal()
+ggplotly(g3, tooltip = c("x", "y")) |> layout(font = list(family = "sans-serif"))
+```
+
+**Slepé uličky a poctivé „ale".** Tituly sme testovali aj samostatne. Konštanta v modeli (tzv. *Jensenova alfa*) mala byť podľa CAPM nulová a pri **441 z 476 titulov** (93 %) skutočne nulová bola; len 35 akcií, prevažne technologických ťahúňov, prekonávalo trh systematicky. Otestovala som aj to, či sa *beta* v čase láme (Chowov test): pri drvivej väčšine titulov je beta stabilná, zlom sa preukázal len u **36 akcií** (necelých 8 %). 
+Parametre *beta* sú teda zmyslupné a stabilné, ale hlavné tvrdenie **vyššie riziko prináša vyšší prínos** tu na tomto trhu a zvolenom období zlyháva.
+
+## Rovnaké myslenie sa hodí aj na firemné dáta
+
+Na tomto príbehu nie je cenný samotný CAPM, ale **spôsob uvažovania**.
+
+**Prevzaté pomery neplatia všade a navždy.** „Vyššie riziko, vyšší výnos" je vlastne benchmark — pravidlo prevzaté z učebnice. Podobne to môže byť s číslami ako *„marža v našom obore býva 30 %"*, *„bežná konverzia e-shopu sú 2 %"* alebo *„jeden získaný zákazník stojí toľko"*. Sú to užitočné orientačné body, ale platia aj na konkrétnych firemných dátach? Kým si vzťah neodhadnete na **vlastných** dátach, neviete, či pre vás platí, alebo pracujete s cudzou legendou.
+
+**Vzťahy sa menia v čase — treba to overiť, nie predpokladať.** Druhá lekcia je, že jedno číslo nemusí platiť rovnako stále. Tu sa dá použiť postup, že rozdelíte celé obdobie na dve Chowovým testom hľadáte moment, či sa kľúčový parameter láme. V tejto analýze vyšla anomália stabilná. Vo firme môže byť otázka, či je konverzný pomer stabilný. Konverzia cez Vianoce nie je konverzia v lete, marža pri veľkoodbere nie je marža v malom, vzťah medzi zľavou a objemom predaja z minulého roka nemusí platiť tento rok. Oplatí sa pýtať nielen *„aké je to číslo"*, ale aj *„platí stále cca rovnaké, alebo sa niekedy skokovo zmenilo"*.
+
+**A ešte jedno:** to, že model niekde zlyhá, neznamená, že je na vyhodenie. CAPM správne odhadol bety aj ich stabilitu; „pomýlil sa" len v jednom tvrdení — a práve toto jedno odhalené zlyhanie je užitočnejšie než slepá dôvera. Rovnako aj firemný model či pravidlo má cenu vtedy, keď viete, kde presne prestáva platiť.
+
+## Pre zvedavých a technicky zdatných
+
+Celá analýza — odhad parametrov *beta* a charakteristických kriviek, test Jensenovej alfy, security market line a Waldov test, Fama–MacBethova špecifikácia, Chowove testy štrukturálneho zlomu aj dual-beta model asymetrie — napísaná v R (tidyverse) a s podrobným reportom je na GitHube: [danakozakova/econometrics — 01-capm-analysis](https://github.com/danakozakova/econometrics/tree/main/01-capm-analysis).
+
+Dáta sú verejný dataset **S&P 500 stock data** (denné ceny 505 titulov, 2013–2018) z [Kaggle](https://www.kaggle.com/datasets/rohitjain454/all-stocks-5yr). Bezriziková sadzba je predpokladaná nulová a trhový index je zostavený ako rovnako vážený priemer mesačných výnosov všetkých titulov. Grafy na tejto stránke počítajú z odvodených súhrnov (bety a decilové priemery), nie z celého cenového súboru.
+
+## Ak máte dáta a otázky
+- neváhajte ma kontaktovať. Rada sa na vaše čísla pozriem a poviem, ktoré pravidlá vám na nich platia a ktoré sú len prevzatá legenda.
