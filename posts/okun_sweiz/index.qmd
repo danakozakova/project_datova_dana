@@ -1,0 +1,198 @@
+---
+title: "Platí Okunov koeficient vo Švajčiarsku?"
+description: "Učebnica sľubuje jedno číslo. Švajčiarske dáta ukazujú, že sa mení podľa obdobia, fázy cyklu aj metódy výpočtu."
+date: 2026-08-05
+categories: [makroekonómia, Okunov zákon, HDP, nezamestnanosť, ekonometria]
+image: ""
+draft: false
+engine: knitr
+code-fold: true
+code-summary: "Zobraziť kód"
+execute:
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(dplyr)
+library(ggplot2)
+library(plotly)
+library(readr)
+
+d <- "data/"
+gdp_raw   <- read_csv(paste0(d, "data1.csv"), show_col_types = FALSE)
+unemp_raw <- read_csv(paste0(d, "data2.csv"), show_col_types = FALSE)
+
+# Švajčiarsko (CHE), štvrťročne, od 2010Q1
+gdp <- gdp_raw |>
+  filter(REF_AREA == "CHE", TIME_PERIOD >= "2010-Q1") |>
+  select(TIME_PERIOD, gdp = OBS_VALUE)
+
+unemp <- unemp_raw |>
+  filter(REF_AREA == "CHE", TIME_PERIOD >= "2010-Q1") |>
+  select(TIME_PERIOD, u = OBS_VALUE)
+
+dat <- inner_join(gdp, unemp, by = "TIME_PERIOD") |>
+  arrange(TIME_PERIOD) |>
+  mutate(t = row_number(),
+         D = as.integer(TIME_PERIOD >= "2020-Q1"),
+         Obdobie = ifelse(D == 1, "od 2020", "do 2019"))
+
+# Cyklické premenné (detrendovanie):
+#  - produkčná medzera = reziduá log HDP na lineárnom trende (× 100 = %)
+#  - cyklická nezamestnanosť = odchýlka od dlhodobého priemeru
+dat$yc <- residuals(lm(log(gdp) ~ t, data = dat)) * 100
+dat$uc <- dat$u - mean(dat$u)
+
+# 1) Statický Okunov vzťah na celej vzorke (bez interceptu)
+okun_full <- lm(uc ~ yc - 1, data = dat)
+a_full  <- coef(okun_full)[1]
+se_full <- summary(okun_full)$coefficients[1, 2]
+
+# 2) Zlom 2020: model s interakčným členom -> koeficient pred a po
+okun_br <- lm(uc ~ yc + I(D * yc) - 1, data = dat)
+cf <- coef(okun_br); V <- vcov(okun_br)
+a_pre  <- cf[1];        se_pre  <- sqrt(V[1, 1])
+a_post <- cf[1] + cf[2]; se_post <- sqrt(V[1, 1] + V[2, 2] + 2 * V[1, 2])
+
+# 3) Asymetria: iný koeficient v recesii (yc<=0) a v expanzii (yc>0)
+dat <- dat |> mutate(Dp = as.integer(yc > 0))
+okun_as <- lm(uc ~ I((1 - Dp) * yc) + I(Dp * yc) - 1, data = dat)
+a_rec <- coef(okun_as)[1]; se_rec <- summary(okun_as)$coefficients[1, 2]
+a_exp <- coef(okun_as)[2]; se_exp <- summary(okun_as)$coefficients[2, 2]
+
+# 4) Dynamický model (k = 1): dlhodobý koeficient a^LR = d2 / (1 - d1)
+dyn <- lm(uc ~ lag(uc) + lag(yc) - 1, data = dat)
+d1 <- coef(dyn)[1]; d2 <- coef(dyn)[2]
+aLR <- d2 / (1 - d1)
+
+sk <- function(x, k = 2) gsub("\\.", ",", sprintf(paste0("%.", k, "f"), x))
+```
+
+Na ekonómii učia pomerne priamočiare pravidlo: keď ekonomika spomalí, nezamestnanosť stúpne približne o **Okunov koeficient**. Znie to skoro ako fyzikálna konštanta. Skúšala som to číslo odhadnúť na reálnych dátach Švajčiarska za roky 2010 až 2025. Trošku tricky je však to, aké dáta do toho vstupujú. Teoreticky je to jasné, prakticky tie vstupy do vzorca odhadujeme. A nástrojov na odhad je niekoľko. A tu je vlastne pointa: **Okunov koeficient nie je konštanta, je to odpoveď, ktorá závisí od otázky.**
+
+## Aké dáta boli k dispozícii
+
+Použila som dva verejného radu z **[OECD Data Explorer](https://data-explorer.oecd.org)**: štvrťročný reálny HDP (objemový index, sezónne očistený) a štvrťročnú mieru nezamestnanosti, oboje za Švajčiarsko, obdobie 2010Q1 – 2025Q4.
+
+Okunov zákon pracuje s **cyklickou zložkou** a s odchýlkami od dlhodobého trendu. Tá cyklická zložka je práve ten teoretický základný stav. Jeden časový rad je teda rozdelený na dve časti:
+
+- HDP: na základnú trajektóriu a odchýlku od nej (tzv. **produkčnú medzeru**), 
+- nezamestnanosť na dlhodobý priemer a odchýlku od neho (**cyklická nezamestnanosť**). 
+
+Pri výpočte Okunovho koeficientu sú dôležité tieto dve odchýlky. Tie samozrejme záležia od odhadu tej základnej trajektórie.
+
+Čo je tu na dátach trochu netypické - je covidový **rok 2020**. Je to extrémny výkyv, HDP vtedy spadlo takmer 9 % pod svoj trend. A práve tento jeden bod ťahá takmer celý výsledok.
+
+## Čo sa z nich dalo zistiť
+
+**Vzťah, ktorý naplno vidno až v kríze.** Keď proti sebe vynesiem produkčnú medzeru a cyklickú nezamestnanosť, očakávaný záporný vzťah tam je — ale drží ho hlavne rok 2020. V pokojných rokoch je produkčná medzera príliš blízko nuly; až covidový prepad (medzera −8,6 %, skok nezamestnanosti) dodá väčšinu „signálu". Odhad na celej vzorke dá koeficient **α ≈ −0,09** a je štatisticky významný (p ≈ 0,002): zhruba, jednopercentný prepad HDP pod trend sprevádza nárast cyklickej nezamestnanosti o ~0,09 bodu.
+
+```{r}
+#| label: fig-scatter
+#| fig-cap: "Produkčná medzera vs. cyklická nezamestnanosť (Švajčiarsko, 2010–2025). Priamka = statický odhad na celej vzorke."
+g1 <- ggplot(dat, aes(yc, uc, colour = Obdobie)) +
+  geom_hline(yintercept = 0, linetype = "dashed", colour = "grey75") +
+  geom_vline(xintercept = 0, linetype = "dashed", colour = "grey75") +
+  geom_smooth(aes(group = 1), method = "lm", formula = y ~ x - 1,
+              se = FALSE, colour = "grey30", linewidth = 0.8) +
+  geom_point(size = 1.9, alpha = 0.85) +
+  scale_colour_manual(values = c("do 2019" = "salmon", "od 2020" = "salmon4")) +
+  labs(x = "produkčná medzera (odchýlka HDP od trendu, %)",
+       y = "cyklická nezamestnanosť (p.b.)", colour = NULL) +
+  theme_minimal()
+ggplotly(g1) |> layout(font = list(family = "sans-serif"))
+```
+
+**Jeden koeficient, tri rôzne odpovede.** Stačí rozdeliť vzorku na obdobie pred a po roku 2020 a „jeden koeficient" sa rozpadne. Pred covidom (2010–2019) je odhad prakticky **nulový (≈ −0,02)** — v pokojnej švajčiarskej dekáde bol vzťah medzi výstupnou medzerou a nezamestnanosťou štatisticky nulový. Po roku 2020 je odhad **silnejší a presný (≈ −0,10)**. Tie isté premenné, tá istá krajina — číslo závisí len od toho, ktoré roky si vyberiete. (Časť rozdielu je technická: pred covidom sa HDP takmer nehýbalo, nízka variabilita nafúkne neistotu.)
+
+```{r}
+#| label: fig-obdobia
+#| fig-cap: "Okunov koeficient odhadnutý na rôznych obdobiach; bodový odhad ± 2·SE (≈ 95 % interval)."
+por <- data.frame(
+  obdobie = factor(c("Celá vzorka\n2010–2025", "Pred 2020\n2010–2019", "Po 2020\n2020–2025"),
+                   levels = c("Celá vzorka\n2010–2025", "Pred 2020\n2010–2019", "Po 2020\n2020–2025")),
+  odhad = c(a_full, a_pre, a_post),
+  se    = c(se_full, se_pre, se_post))
+
+g2 <- ggplot(por, aes(obdobie, odhad, colour = obdobie)) +
+  geom_hline(yintercept = 0, linetype = "dashed", colour = "grey60") +
+  geom_errorbar(aes(ymin = odhad - 2 * se, ymax = odhad + 2 * se),
+                width = 0.12, linewidth = 0.8) +
+  geom_point(size = 3.5) +
+  scale_colour_manual(values = c("grey40", "salmon", "salmon4")) +
+  labs(x = NULL, y = "Okunov koeficient (α)") +
+  theme_minimal() +
+  theme(legend.position = "none")
+ggplotly(g2) |> layout(font = list(family = "sans-serif"))
+```
+
+**Iná hodnota počas rastu, iná počas pádu.** Záleží aj na tom, či je ekonomika nad alebo pod svojím potenciálom. Keď vypočítame samostatne koeficient počas rastu a samostatne počas poklesu, reakcia počas **expanzie (≈ −0,18)** vyjde silnejšia než počas **recesie (≈ −0,06)**. Firmy počas recesie skôr vyčkávajú a pri raste naberajú rýchlo.
+
+```{r}
+#| label: fig-asymetria
+#| fig-cap: "Okunov koeficient zvlášť v recesii (yc ≤ 0) a v expanzii (yc > 0); úsečky = odhad ± 2·SE."
+asy <- data.frame(
+  faza  = factor(c("Recesia\n(yc ≤ 0)", "Expanzia\n(yc > 0)"),
+                 levels = c("Recesia\n(yc ≤ 0)", "Expanzia\n(yc > 0)")),
+  odhad = c(a_rec, a_exp),
+  se    = c(se_rec, se_exp))
+
+g3 <- ggplot(asy, aes(faza, odhad, colour = faza)) +
+  geom_hline(yintercept = 0, linetype = "dashed", colour = "grey60") +
+  geom_errorbar(aes(ymin = odhad - 2 * se, ymax = odhad + 2 * se),
+                width = 0.12, linewidth = 0.8) +
+  geom_point(size = 3.5) +
+  scale_colour_manual(values = c("salmon4", "salmon")) +
+  labs(x = NULL, y = "Okunov koeficient (α)") +
+  theme_minimal() +
+  theme(legend.position = "none")
+ggplotly(g3) |> layout(font = list(family = "sans-serif"))
+```
+
+**Keď pripustíme zotrvačnosť.** Trh práce nereaguje okamžite — dnešná nezamestnanosť závisí aj od tej včerajšej. Dynamický model, ktorý necháva vplyv výstupu **kumulovať v čase**, dá dlhodobý koeficient okolo **−0,24** - takmer trojnásobok statického čísla z celej vzorky. Nie preto, že by sa ekonomika zmenila, ale preto, že *„o koľko celkovo, keď sa všetko ustáli"* je iná otázka než *„o koľko tento štvrťrok"*.
+
+**Suma sumárum:** šesť rôznych prístupov dá šesť rôznych čísel pre hodnotu parametra — zhruba od nuly po −0,24. Ani jedno nie je „nesprávne"; každé vlastne má trochu iné predpoklady.
+
+```{r}
+#| label: fig-suhrn
+#| fig-cap: "Šesť odhadov Okunovho koeficientu z tých istých dát."
+suhrn <- data.frame(
+  sposob = c("Celá vzorka (statický)", "Pred 2020", "Po 2020",
+             "V recesii (yc ≤ 0)", "V expanzii (yc > 0)", "Dynamický (dlhodobý)"),
+  odhad  = c(a_full, a_pre, a_post, a_rec, a_exp, aLR))
+suhrn$sposob <- factor(suhrn$sposob, levels = rev(suhrn$sposob))
+
+g4 <- ggplot(suhrn, aes(odhad, sposob)) +
+  geom_vline(xintercept = 0, linetype = "dashed", colour = "grey60") +
+  geom_segment(aes(x = 0, xend = odhad, yend = sposob),
+               colour = "grey85", linewidth = 0.5) +
+  geom_point(size = 3, colour = "salmon4") +
+  geom_text(aes(label = sk(odhad)), hjust = 1, nudge_x = -0.018,
+            size = 3, colour = "grey30") +
+  scale_x_continuous(limits = c(-0.34, 0.10)) +
+  labs(x = "Okunov koeficient (α)", y = NULL) +
+  theme_minimal()
+ggplotly(g4) |> layout(font = list(family = "sans-serif"))
+```
+
+## Pozor na *„univerzálne hodnoty"*
+
+Firmy sa niekedy opierajú o jedno číslo úplne rovnako: konverzný pomer, marža, sezónny koeficient, náklad na získanie zákazníka, „zákazník minie o X % viac, keď…". Tak ako Okunov koeficient, ani tieto nie sú konštanty. Menia sa v čase, podľa fázy, podľa segmentu aj podľa toho, ako ich zmeráte. Alebo ako započítate vstupné hodnoty. Každý model má svoje predpoklady. Ak ich netušíte, nerozumiete validite výpočtu. Tri praktické varovania priamo z tejto analýzy:
+
+**Číslo odhadnuté hlavne z výnimočného obdobia opisuje to obdobie, nie bežnú prevádzku.** Koeficient z celej vzorky ťahali covidové roky. Konverzný pomer odmeraný počas kampane, či podiel odchodov z jedného krízového mesiaca nie sú základnou líniou — sú to čísla tej výnimočnej chvíle.
+
+**Než uveríte priemeru, rozdeľte podľa segmentu a fázy.** Pred/po roku 2020 aj recesia/expanzia dali výrazne odlišné odpovede. Presne tak sa budú líšiť vaši zákazníci, kanály či sezóny — priemer cez všetko môže zakryť úplne odlišné svety.
+
+**Odhadujte na vlastných dátach, nepreberajte benchmark.** „Učebnicový" Okun (pre USA sa uvádza rádovo −0,3 až −0,5) jednoducho nie je švajčiarske číslo. Marža alebo konverzia z odvetvového benchmarku je cudzí koeficient, z iného obdobia a inej štruktúry, než je tá vaša.
+
+## Pre zvedavých a technicky zdatných
+
+Celá ekonometrická analýza — testy štrukturálneho zlomu (Chowov breakpoint aj predpovedný test), dynamická špecifikácia s výberom oneskorení a intervaly spoľahlivosti cez delta metódu aj Monte Carlo — je ako tímová úloha z predmetu Ekonometria (Masarykova univerzita) na GitHube:
+[econometrics/02-okun-law](https://github.com/danakozakova/econometrics/tree/main/02-okun-law).
+Dáta pochádzajú z [OECD Data Explorer](https://data-explorer.oecd.org) (reálny HDP a miera nezamestnanosti, Švajčiarsko).
+
+## Ak máte dáta a otázky
+- neváhajte ma kontaktovať. Rada sa pozriem na vaše čísla a na to, ktoré „univerzálne hodnoty" u vás v skutočnosti nie akosi "univerzálne" neplatia.

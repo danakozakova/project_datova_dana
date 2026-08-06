@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="sk" xml:lang="sk"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dátová Dana">
+<meta name="description" content="Učebnica sľubuje jedno číslo. Švajčiarske dáta ukazujú, že sa mení podľa obdobia, fázy cyklu aj metódy výpočtu.">
+
+<title>Platí Okunov koeficient vo Švajčiarsku? – Dátová Dana</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../favicon.ico" rel="icon">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Žiadne výsledky",
+    "search-matching-documents-text": "zhodné dokumenty",
+    "search-copy-link-title": "Skopírovať odkaz pre vyhľadávanie",
+    "search-hide-matches-text": "Skryť ďalšie výsledky",
+    "search-more-match-text": "ďalší výsledok v tomto dokumente",
+    "search-more-matches-text": "ďalších výsledkov v tomto dokumente",
+    "search-clear-button-title": "Vymazať",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Zrušiť",
+    "search-submit-button-title": "Odoslať",
+    "search-label": "Hľadať"
+  }
+}</script>
+<link href="../../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+
+<script src="../../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<script src="../../site_libs/plotly-binding-4.12.1/plotly.js"></script>
+
+<script src="../../site_libs/typedarray-0.1/typedarray.min.js"></script>
+
+<script src="../../site_libs/jquery-3.5.1/jquery.min.js"></script>
+
+<link href="../../site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+
+<script src="../../site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+
+<link href="../../site_libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet">
+
+<script src="../../site_libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
+
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Dátová Dana</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Hľadať"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Prepnúť navigáciu" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Domov</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../pribehy.html"> 
+<span class="menu-text">Príbehy</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">O mne</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/danakozakova"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Platí Okunov koeficient vo Švajčiarsku?</h1>
+                  <div>
+        <div class="description">
+          Učebnica sľubuje jedno číslo. Švajčiarske dáta ukazujú, že sa mení podľa obdobia, fázy cyklu aj metódy výpočtu.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">makroekonómia</div>
+                <div class="quarto-category">Okunov zákon</div>
+                <div class="quarto-category">HDP</div>
+                <div class="quarto-category">nezamestnanosť</div>
+                <div class="quarto-category">ekonometria</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Autor</div>
+      <div class="quarto-title-meta-contents">
+               <p>Dátová Dana </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Publikované</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">5. augusta 2026</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Na tejto stránke</h2>
+   
+  <ul>
+  <li><a href="#aké-dáta-boli-k-dispozícii" id="toc-aké-dáta-boli-k-dispozícii" class="nav-link active" data-scroll-target="#aké-dáta-boli-k-dispozícii">Aké dáta boli k dispozícii</a></li>
+  <li><a href="#čo-sa-z-nich-dalo-zistiť" id="toc-čo-sa-z-nich-dalo-zistiť" class="nav-link" data-scroll-target="#čo-sa-z-nich-dalo-zistiť">Čo sa z nich dalo zistiť</a></li>
+  <li><a href="#pozor-na-univerzálne-hodnoty" id="toc-pozor-na-univerzálne-hodnoty" class="nav-link" data-scroll-target="#pozor-na-univerzálne-hodnoty">Pozor na <em>„univerzálne hodnoty”</em></a></li>
+  <li><a href="#pre-zvedavých-a-technicky-zdatných" id="toc-pre-zvedavých-a-technicky-zdatných" class="nav-link" data-scroll-target="#pre-zvedavých-a-technicky-zdatných">Pre zvedavých a technicky zdatných</a></li>
+  <li><a href="#ak-máte-dáta-a-otázky" id="toc-ak-máte-dáta-a-otázky" class="nav-link" data-scroll-target="#ak-máte-dáta-a-otázky">Ak máte dáta a otázky</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<p>Na ekonómii učia pomerne priamočiare pravidlo: keď ekonomika spomalí, nezamestnanosť stúpne približne o <strong>Okunov koeficient</strong>. Znie to skoro ako fyzikálna konštanta. Skúšala som to číslo odhadnúť na reálnych dátach Švajčiarska za roky 2010 až 2025. Trošku tricky je však to, aké dáta do toho vstupujú. Teoreticky je to jasné, prakticky tie vstupy do vzorca odhadujeme. A nástrojov na odhad je niekoľko. A tu je vlastne pointa: <strong>Okunov koeficient nie je konštanta, je to odpoveď, ktorá závisí od otázky.</strong></p>
+<section id="aké-dáta-boli-k-dispozícii" class="level2">
+<h2 class="anchored" data-anchor-id="aké-dáta-boli-k-dispozícii">Aké dáta boli k dispozícii</h2>
+<p>Použila som dva verejného radu z <strong><a href="https://data-explorer.oecd.org">OECD Data Explorer</a></strong>: štvrťročný reálny HDP (objemový index, sezónne očistený) a štvrťročnú mieru nezamestnanosti, oboje za Švajčiarsko, obdobie 2010Q1 – 2025Q4.</p>
+<p>Okunov zákon pracuje s <strong>cyklickou zložkou</strong> a s odchýlkami od dlhodobého trendu. Tá cyklická zložka je práve ten teoretický základný stav. Jeden časový rad je teda rozdelený na dve časti:</p>
+<ul>
+<li>HDP: na základnú trajektóriu a odchýlku od nej (tzv. <strong>produkčnú medzeru</strong>),</li>
+<li>nezamestnanosť na dlhodobý priemer a odchýlku od neho (<strong>cyklická nezamestnanosť</strong>).</li>
+</ul>
+<p>Pri výpočte Okunovho koeficientu sú dôležité tieto dve odchýlky. Tie samozrejme záležia od odhadu tej základnej trajektórie.</p>
+<p>Čo je tu na dátach trochu netypické - je covidový <strong>rok 2020</strong>. Je to extrémny výkyv, HDP vtedy spadlo takmer 9 % pod svoj trend. A práve tento jeden bod ťahá takmer celý výsledok.</p>
+</section>
+<section id="čo-sa-z-nich-dalo-zistiť" class="level2">
+<h2 class="anchored" data-anchor-id="čo-sa-z-nich-dalo-zistiť">Čo sa z nich dalo zistiť</h2>
+<p><strong>Vzťah, ktorý naplno vidno až v kríze.</strong> Keď proti sebe vynesiem produkčnú medzeru a cyklickú nezamestnanosť, očakávaný záporný vzťah tam je — ale drží ho hlavne rok 2020. V pokojných rokoch je produkčná medzera príliš blízko nuly; až covidový prepad (medzera −8,6 %, skok nezamestnanosti) dodá väčšinu „signálu”. Odhad na celej vzorke dá koeficient <strong>α ≈ −0,09</strong> a je štatisticky významný (p ≈ 0,002): zhruba, jednopercentný prepad HDP pod trend sprevádza nárast cyklickej nezamestnanosti o ~0,09 bodu.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Zobraziť kód</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(yc, uc, <span class="at">colour =</span> Obdobie)) <span class="sc">+</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">colour =</span> <span class="st">"grey75"</span>) <span class="sc">+</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">colour =</span> <span class="st">"grey75"</span>) <span class="sc">+</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">group =</span> <span class="dv">1</span>), <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> y <span class="sc">~</span> x <span class="sc">-</span> <span class="dv">1</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">colour =</span> <span class="st">"grey30"</span>, <span class="at">linewidth =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.9</span>, <span class="at">alpha =</span> <span class="fl">0.85</span>) <span class="sc">+</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"do 2019"</span> <span class="ot">=</span> <span class="st">"salmon"</span>, <span class="st">"od 2020"</span> <span class="ot">=</span> <span class="st">"salmon4"</span>)) <span class="sc">+</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"produkčná medzera (odchýlka HDP od trendu, %)"</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"cyklická nezamestnanosť (p.b.)"</span>, <span class="at">colour =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(g1) <span class="sc">|&gt;</span> <span class="fu">layout</span>(<span class="at">font =</span> <span class="fu">list</span>(<span class="at">family =</span> <span class="st">"sans-serif"</span>))</span></code><button title="Kopírovať do schránky" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-scatter" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-scatter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-8e9197162db5cea9ea6a" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-8e9197162db5cea9ea6a">{"x":{"data":[{"x":[-9.187866485563843,2.5619138317527335],"y":[0,0],"text":"yintercept: 0","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(191,191,191,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0,0],"y":[-0.74708589375000023,0.94612870624999945],"text":"xintercept: 0","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(191,191,191,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-8.6537855620494533,-8.5185752016660636,-8.383364841282674,-8.2481544808992844,-8.1129441205158948,-7.9777337601325042,-7.8425233997491146,-7.7073130393657241,-7.5721026789823345,-7.4368923185989448,-7.3016819582155552,-7.1664715978321656,-7.031261237448776,-6.8960508770653854,-6.7608405166819958,-6.6256301562986053,-6.4904197959152157,-6.355209435531826,-6.2199990751484364,-6.0847887147650468,-5.9495783543816572,-5.8143679939982675,-5.679157633614877,-5.5439472732314874,-5.4087369128480978,-5.2735265524647073,-5.1383161920813176,-5.003105831697928,-4.8678954713145384,-4.7326851109311487,-4.5974747505477582,-4.4622643901643686,-4.327054029780979,-4.1918436693975893,-4.0566333090141997,-3.9214229486308092,-3.7862125882474196,-3.6510022278640299,-3.5157918674806403,-3.3805815070972498,-3.2453711467138602,-3.1101607863304706,-2.9749504259470809,-2.8397400655636913,-2.7045297051803008,-2.5693193447969112,-2.4341089844135215,-2.2988986240301319,-2.1636882636467423,-2.0284779032633518,-1.8932675428799621,-1.7580571824965725,-1.6228468221131829,-1.4876364617297924,-1.3524261013464027,-1.2172157409630131,-1.0820053805796235,-0.94679502019623385,-0.81158465981284333,-0.67637429942945371,-0.54116393904606319,-0.40595357866267356,-0.27074321827928394,-0.13553285789589431,-0.0003224975125046825,0.13488786287088494,0.27009822325427457,0.4053085836376642,0.54051894402105383,0.67572930440444523,0.81093966478783486,0.94615002517122448,1.0813603855546141,1.2165707459380037,1.3517811063213934,1.486991466704783,1.6222018270881726,1.7574121874715622,1.8926225478549537,2.0278329082383437],"y":[0.76472275555309555,0.75277440778894944,0.74082606002480345,0.72887771226065745,0.71692936449651135,0.70498101673236524,0.69303266896821925,0.68108432120407314,0.66913597343992703,0.65718762567578104,0.64523927791163505,0.63329093014748894,0.62134258238334295,0.60939423461919684,0.59744588685505085,0.58549753909090474,0.57354919132675863,0.56160084356261264,0.54965249579846664,0.53770414803432054,0.52575580027017454,0.51380745250602844,0.50185910474188233,0.48991075697773634,0.47796240921359029,0.46601406144944418,0.45406571368529813,0.44211736592115214,0.43016901815700609,0.41822067039286004,0.40627232262871393,0.39432397486456788,0.38237562710042189,0.37042727933627584,0.35847893157212979,0.34653058380798368,0.33458223604383769,0.32263388827969164,0.31068554051554559,0.29873719275139948,0.28678884498725343,0.27484049722310744,0.26289214945896139,0.25094380169481534,0.23899545393066923,0.22704710616652321,0.21509875840237716,0.20315041063823114,0.19120206287408509,0.17925371510993898,0.16730536734579296,0.15535701958164691,0.14340867181750089,0.13146032405335475,0.11951197628920873,0.1075636285250627,0.09561528076091666,0.083666932996770624,0.071718585232624518,0.059770237468478482,0.04782188970433237,0.035873541940186333,0.023925194176040301,0.011976846411894268,2.84986477482339e-05,-0.011919849116397801,-0.023868196880543834,-0.03581654464468987,-0.047764892408835906,-0.059713240172982095,-0.071661587937128124,-0.08360993570127416,-0.095558283465420196,-0.10750663122956623,-0.11945497899371227,-0.13140332675785829,-0.14335167452200434,-0.15530002228615036,-0.16724837005029655,-0.17919671781444263],"text":["yc: -8.6537855620<br />uc:  7.647228e-01<br />Obdobie: grey30<br />group: 1","yc: -8.5185752017<br />uc:  7.527744e-01<br />Obdobie: grey30<br />group: 1","yc: -8.3833648413<br />uc:  7.408261e-01<br />Obdobie: grey30<br />group: 1","yc: -8.2481544809<br />uc:  7.288777e-01<br />Obdobie: grey30<br />group: 1","yc: -8.1129441205<br />uc:  7.169294e-01<br />Obdobie: grey30<br />group: 1","yc: -7.9777337601<br />uc:  7.049810e-01<br />Obdobie: grey30<br />group: 1","yc: -7.8425233997<br />uc:  6.930327e-01<br />Obdobie: grey30<br />group: 1","yc: -7.7073130394<br />uc:  6.810843e-01<br />Obdobie: grey30<br />group: 1","yc: -7.5721026790<br />uc:  6.691360e-01<br />Obdobie: grey30<br />group: 1","yc: -7.4368923186<br />uc:  6.571876e-01<br />Obdobie: grey30<br />group: 1","yc: -7.3016819582<br />uc:  6.452393e-01<br />Obdobie: grey30<br />group: 1","yc: -7.1664715978<br />uc:  6.332909e-01<br />Obdobie: grey30<br />group: 1","yc: -7.0312612374<br />uc:  6.213426e-01<br />Obdobie: grey30<br />group: 1","yc: -6.8960508771<br />uc:  6.093942e-01<br />Obdobie: grey30<br />group: 1","yc: -6.7608405167<br />uc:  5.974459e-01<br />Obdobie: grey30<br />group: 1","yc: -6.6256301563<br />uc:  5.854975e-01<br />Obdobie: grey30<br />group: 1","yc: -6.4904197959<br />uc:  5.735492e-01<br />Obdobie: grey30<br />group: 1","yc: -6.3552094355<br />uc:  5.616008e-01<br />Obdobie: grey30<br />group: 1","yc: -6.2199990751<br />uc:  5.496525e-01<br />Obdobie: grey30<br />group: 1","yc: -6.0847887148<br />uc:  5.377041e-01<br />Obdobie: grey30<br />group: 1","yc: -5.9495783544<br />uc:  5.257558e-01<br />Obdobie: grey30<br />group: 1","yc: -5.8143679940<br />uc:  5.138075e-01<br />Obdobie: grey30<br />group: 1","yc: -5.6791576336<br />uc:  5.018591e-01<br />Obdobie: grey30<br />group: 1","yc: -5.5439472732<br />uc:  4.899108e-01<br />Obdobie: grey30<br />group: 1","yc: -5.4087369128<br />uc:  4.779624e-01<br />Obdobie: grey30<br />group: 1","yc: -5.2735265525<br />uc:  4.660141e-01<br />Obdobie: grey30<br />group: 1","yc: -5.1383161921<br />uc:  4.540657e-01<br />Obdobie: grey30<br />group: 1","yc: -5.0031058317<br />uc:  4.421174e-01<br />Obdobie: grey30<br />group: 1","yc: -4.8678954713<br />uc:  4.301690e-01<br />Obdobie: grey30<br />group: 1","yc: -4.7326851109<br />uc:  4.182207e-01<br />Obdobie: grey30<br />group: 1","yc: -4.5974747505<br />uc:  4.062723e-01<br />Obdobie: grey30<br />group: 1","yc: -4.4622643902<br />uc:  3.943240e-01<br />Obdobie: grey30<br />group: 1","yc: -4.3270540298<br />uc:  3.823756e-01<br />Obdobie: grey30<br />group: 1","yc: -4.1918436694<br />uc:  3.704273e-01<br />Obdobie: grey30<br />group: 1","yc: -4.0566333090<br />uc:  3.584789e-01<br />Obdobie: grey30<br />group: 1","yc: -3.9214229486<br />uc:  3.465306e-01<br />Obdobie: grey30<br />group: 1","yc: -3.7862125882<br />uc:  3.345822e-01<br />Obdobie: grey30<br />group: 1","yc: -3.6510022279<br />uc:  3.226339e-01<br />Obdobie: grey30<br />group: 1","yc: -3.5157918675<br />uc:  3.106855e-01<br />Obdobie: grey30<br />group: 1","yc: -3.3805815071<br />uc:  2.987372e-01<br />Obdobie: grey30<br />group: 1","yc: -3.2453711467<br />uc:  2.867888e-01<br />Obdobie: grey30<br />group: 1","yc: -3.1101607863<br />uc:  2.748405e-01<br />Obdobie: grey30<br />group: 1","yc: -2.9749504259<br />uc:  2.628921e-01<br />Obdobie: grey30<br />group: 1","yc: -2.8397400656<br />uc:  2.509438e-01<br />Obdobie: grey30<br />group: 1","yc: -2.7045297052<br />uc:  2.389955e-01<br />Obdobie: grey30<br />group: 1","yc: -2.5693193448<br />uc:  2.270471e-01<br />Obdobie: grey30<br />group: 1","yc: -2.4341089844<br />uc:  2.150988e-01<br />Obdobie: grey30<br />group: 1","yc: -2.2988986240<br />uc:  2.031504e-01<br />Obdobie: grey30<br />group: 1","yc: -2.1636882636<br />uc:  1.912021e-01<br />Obdobie: grey30<br />group: 1","yc: -2.0284779033<br />uc:  1.792537e-01<br />Obdobie: grey30<br />group: 1","yc: -1.8932675429<br />uc:  1.673054e-01<br />Obdobie: grey30<br />group: 1","yc: -1.7580571825<br />uc:  1.553570e-01<br />Obdobie: grey30<br />group: 1","yc: -1.6228468221<br />uc:  1.434087e-01<br />Obdobie: grey30<br />group: 1","yc: -1.4876364617<br />uc:  1.314603e-01<br />Obdobie: grey30<br />group: 1","yc: -1.3524261013<br />uc:  1.195120e-01<br />Obdobie: grey30<br />group: 1","yc: -1.2172157410<br />uc:  1.075636e-01<br />Obdobie: grey30<br />group: 1","yc: -1.0820053806<br />uc:  9.561528e-02<br />Obdobie: grey30<br />group: 1","yc: -0.9467950202<br />uc:  8.366693e-02<br />Obdobie: grey30<br />group: 1","yc: -0.8115846598<br />uc:  7.171859e-02<br />Obdobie: grey30<br />group: 1","yc: -0.6763742994<br />uc:  5.977024e-02<br />Obdobie: grey30<br />group: 1","yc: -0.5411639390<br />uc:  4.782189e-02<br />Obdobie: grey30<br />group: 1","yc: -0.4059535787<br />uc:  3.587354e-02<br />Obdobie: grey30<br />group: 1","yc: -0.2707432183<br />uc:  2.392519e-02<br />Obdobie: grey30<br />group: 1","yc: -0.1355328579<br />uc:  1.197685e-02<br />Obdobie: grey30<br />group: 1","yc: -0.0003224975<br />uc:  2.849865e-05<br />Obdobie: grey30<br />group: 1","yc:  0.1348878629<br />uc: -1.191985e-02<br />Obdobie: grey30<br />group: 1","yc:  0.2700982233<br />uc: -2.386820e-02<br />Obdobie: grey30<br />group: 1","yc:  0.4053085836<br />uc: -3.581654e-02<br />Obdobie: grey30<br />group: 1","yc:  0.5405189440<br />uc: -4.776489e-02<br />Obdobie: grey30<br />group: 1","yc:  0.6757293044<br />uc: -5.971324e-02<br />Obdobie: grey30<br />group: 1","yc:  0.8109396648<br />uc: -7.166159e-02<br />Obdobie: grey30<br />group: 1","yc:  0.9461500252<br />uc: -8.360994e-02<br />Obdobie: grey30<br />group: 1","yc:  1.0813603856<br />uc: -9.555828e-02<br />Obdobie: grey30<br />group: 1","yc:  1.2165707459<br />uc: -1.075066e-01<br />Obdobie: grey30<br />group: 1","yc:  1.3517811063<br />uc: -1.194550e-01<br />Obdobie: grey30<br />group: 1","yc:  1.4869914667<br />uc: -1.314033e-01<br />Obdobie: grey30<br />group: 1","yc:  1.6222018271<br />uc: -1.433517e-01<br />Obdobie: grey30<br />group: 1","yc:  1.7574121875<br />uc: -1.553000e-01<br />Obdobie: grey30<br />group: 1","yc:  1.8926225479<br />uc: -1.672484e-01<br />Obdobie: grey30<br />group: 1","yc:  2.0278329082<br />uc: -1.791967e-01<br />Obdobie: grey30<br />group: 1"],"type":"scatter","mode":"lines","name":"fitted values","line":{"width":3.0236220472440949,"color":"rgba(77,77,77,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.40939769759904437,0.72762761626046923,0.7639198484433225,1.0312199797919019,0.63386435861922219,0.9639102219146245,-0.007871749213334011,-0.18811395829691552,-0.22931716733679114,-0.4543840800290872,-0.076871876180936299,-0.46792436405413568,-0.5586495718181782,-0.32201371321682593,-0.091092378397913051,-0.32486222996465886,-0.12791417538987351,0.29740175685677772,0.43563371824217045,0.51268823062291746,-0.1371658751387094,-0.43736502760196339,-0.20349467031416196,0.067669508812875076,0.11122448423880496,0.11048524028811771,0.069861523528448627,-0.64401188269091891,-1.0376260798862991,-0.70289699944374628,-0.37654867039246165,0.16111715445275088,0.96654107137829126,1.569212205121207,0.74619460661639092,0.5917449758174429,0.226560660437991,0.41800668848843714,0.25966212239661951,-0.0023791351945423437],"y":[0.3795404062500003,0.20268040624999983,0.21617340625000026,-0.10109459375000007,-0.17915659375000015,-0.45176159374999969,-0.14048259374999983,-0.13387459374999988,-0.26231159374999979,-0.29716459374999982,-0.10800459375000049,0.090091406250000006,0.19867740624999985,0.13323140625000018,0.081397406249999804,0.061308406250000225,0.33830040625000013,0.24610040625000007,0.24876440625000029,-0.038054593750000087,-0.10518459374999978,0.014835406249999572,0.31463740625000014,0.46078640624999956,0.3871534062499995,0.29088640625000028,0.29817840624999992,0.18187740624999993,0.2978464062499997,0.082694406249999908,0.1891874062500003,0.10384440625000035,0.22362140624999949,0.28345940624999955,-0.36611059375000021,0.19463940625000031,-0.010587593750000401,-0.23922859375000005,-0.28224259375000038,-0.40707759375000041],"text":["yc:  0.409397698<br />uc:  0.37954041<br />Obdobie: do 2019","yc:  0.727627616<br />uc:  0.20268041<br />Obdobie: do 2019","yc:  0.763919848<br />uc:  0.21617341<br />Obdobie: do 2019","yc:  1.031219980<br />uc: -0.10109459<br />Obdobie: do 2019","yc:  0.633864359<br />uc: -0.17915659<br />Obdobie: do 2019","yc:  0.963910222<br />uc: -0.45176159<br />Obdobie: do 2019","yc: -0.007871749<br />uc: -0.14048259<br />Obdobie: do 2019","yc: -0.188113958<br />uc: -0.13387459<br />Obdobie: do 2019","yc: -0.229317167<br />uc: -0.26231159<br />Obdobie: do 2019","yc: -0.454384080<br />uc: -0.29716459<br />Obdobie: do 2019","yc: -0.076871876<br />uc: -0.10800459<br />Obdobie: do 2019","yc: -0.467924364<br />uc:  0.09009141<br />Obdobie: do 2019","yc: -0.558649572<br />uc:  0.19867741<br />Obdobie: do 2019","yc: -0.322013713<br />uc:  0.13323141<br />Obdobie: do 2019","yc: -0.091092378<br />uc:  0.08139741<br />Obdobie: do 2019","yc: -0.324862230<br />uc:  0.06130841<br />Obdobie: do 2019","yc: -0.127914175<br />uc:  0.33830041<br />Obdobie: do 2019","yc:  0.297401757<br />uc:  0.24610041<br />Obdobie: do 2019","yc:  0.435633718<br />uc:  0.24876441<br />Obdobie: do 2019","yc:  0.512688231<br />uc: -0.03805459<br />Obdobie: do 2019","yc: -0.137165875<br />uc: -0.10518459<br />Obdobie: do 2019","yc: -0.437365028<br />uc:  0.01483541<br />Obdobie: do 2019","yc: -0.203494670<br />uc:  0.31463741<br />Obdobie: do 2019","yc:  0.067669509<br />uc:  0.46078641<br />Obdobie: do 2019","yc:  0.111224484<br />uc:  0.38715341<br />Obdobie: do 2019","yc:  0.110485240<br />uc:  0.29088641<br />Obdobie: do 2019","yc:  0.069861524<br />uc:  0.29817841<br />Obdobie: do 2019","yc: -0.644011883<br />uc:  0.18187741<br />Obdobie: do 2019","yc: -1.037626080<br />uc:  0.29784641<br />Obdobie: do 2019","yc: -0.702896999<br />uc:  0.08269441<br />Obdobie: do 2019","yc: -0.376548670<br />uc:  0.18918741<br />Obdobie: do 2019","yc:  0.161117154<br />uc:  0.10384441<br />Obdobie: do 2019","yc:  0.966541071<br />uc:  0.22362141<br />Obdobie: do 2019","yc:  1.569212205<br />uc:  0.28345941<br />Obdobie: do 2019","yc:  0.746194607<br />uc: -0.36611059<br />Obdobie: do 2019","yc:  0.591744976<br />uc:  0.19463941<br />Obdobie: do 2019","yc:  0.226560660<br />uc: -0.01058759<br />Obdobie: do 2019","yc:  0.418006688<br />uc: -0.23922859<br />Obdobie: do 2019","yc:  0.259662122<br />uc: -0.28224259<br />Obdobie: do 2019","yc: -0.002379135<br />uc: -0.40707759<br />Obdobie: do 2019"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(250,128,114,1)","opacity":0.84999999999999998,"size":7.1811023622047241,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(250,128,114,1)"}},"hoveron":"points","name":"do 2019","legendgroup":"do 2019","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-1.598141535051945,-8.6537855620494533,-3.2040905835698643,-2.7552157877294823,-2.4999102130629183,-0.25272434950281042,1.4269884867533655,1.7250466110438882,1.4901646786363054,1.93841978815896,2.0278329082383437,1.7664608655544967,1.4888083905795528,0.6565046566264976,0.64237131074796605,0.53941183824974481,0.049714016608855431,0.54198265949414137,0.53793852008988441,0.3222306278988436,0.57695328872998308,0.23084448034522426,-0.68023947989005928,-1.0010056822658915],"y":[-0.35778459374999994,0.064615406249999729,0.32723540624999981,0.71458340625000005,0.86916440624999947,0.5906484062499997,0.21000840625000006,-0.13275159375000012,-0.30230059375000007,-0.48351259375000044,-0.66146559375000002,-0.58045859375000042,-0.62902559374999978,-0.67012159375000024,-0.53576059375000007,-0.50969059375000025,-0.50969059375000025,-0.41053559374999971,-0.095069593749999903,-0.13761159374999998,-0.039829593750000392,0.13067140625000029,0.29582440624999951,0.45528140625000013],"text":["yc: -1.598141535<br />uc: -0.35778459<br />Obdobie: od 2020","yc: -8.653785562<br />uc:  0.06461541<br />Obdobie: od 2020","yc: -3.204090584<br />uc:  0.32723541<br />Obdobie: od 2020","yc: -2.755215788<br />uc:  0.71458341<br />Obdobie: od 2020","yc: -2.499910213<br />uc:  0.86916441<br />Obdobie: od 2020","yc: -0.252724350<br />uc:  0.59064841<br />Obdobie: od 2020","yc:  1.426988487<br />uc:  0.21000841<br />Obdobie: od 2020","yc:  1.725046611<br />uc: -0.13275159<br />Obdobie: od 2020","yc:  1.490164679<br />uc: -0.30230059<br />Obdobie: od 2020","yc:  1.938419788<br />uc: -0.48351259<br />Obdobie: od 2020","yc:  2.027832908<br />uc: -0.66146559<br />Obdobie: od 2020","yc:  1.766460866<br />uc: -0.58045859<br />Obdobie: od 2020","yc:  1.488808391<br />uc: -0.62902559<br />Obdobie: od 2020","yc:  0.656504657<br />uc: -0.67012159<br />Obdobie: od 2020","yc:  0.642371311<br />uc: -0.53576059<br />Obdobie: od 2020","yc:  0.539411838<br />uc: -0.50969059<br />Obdobie: od 2020","yc:  0.049714017<br />uc: -0.50969059<br />Obdobie: od 2020","yc:  0.541982659<br />uc: -0.41053559<br />Obdobie: od 2020","yc:  0.537938520<br />uc: -0.09506959<br />Obdobie: od 2020","yc:  0.322230628<br />uc: -0.13761159<br />Obdobie: od 2020","yc:  0.576953289<br />uc: -0.03982959<br />Obdobie: od 2020","yc:  0.230844480<br />uc:  0.13067141<br />Obdobie: od 2020","yc: -0.680239480<br />uc:  0.29582441<br />Obdobie: od 2020","yc: -1.001005682<br />uc:  0.45528141<br />Obdobie: od 2020"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(139,76,57,1)","opacity":0.84999999999999998,"size":7.1811023622047241,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(139,76,57,1)"}},"hoveron":"points","name":"od 2020","legendgroup":"od 2020","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":23.305936073059364,"r":7.3059360730593621,"b":37.260273972602747,"l":48.949771689497723},"paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"sans-serif","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-9.187866485563843,2.5619138317527335],"tickmode":"array","ticktext":["-9","-6","-3","0"],"tickvals":[-9,-6,-3,0],"categoryorder":"array","categoryarray":["-9","-6","-3","0"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"produkčná medzera (odchýlka HDP od trendu, %)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.74708589375000023,0.94612870624999945],"tickmode":"array","ticktext":["-0.5","0.0","0.5"],"tickvals":[-0.5,0,0.5],"categoryorder":"array","categoryarray":["-0.5","0.0","0.5"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"cyklická nezamestnanosť (p.b.)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"1e042dbe3796":{"yintercept":{},"type":"scatter"},"1e0412285316":{"xintercept":{}},"1e04339128bf":{"x":{},"y":{},"colour":{}},"1e0444065af":{"x":{},"y":{},"colour":{}}},"cur_data":"1e042dbe3796","visdat":{"1e042dbe3796":["function (y) ","x"],"1e0412285316":["function (y) ","x"],"1e04339128bf":["function (y) ","x"],"1e0444065af":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scatter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Obrázok&nbsp;1: Produkčná medzera vs.&nbsp;cyklická nezamestnanosť (Švajčiarsko, 2010–2025). Priamka = statický odhad na celej vzorke.
+</figcaption>
+</figure>
+</div>
+</div>
+<p><strong>Jeden koeficient, tri rôzne odpovede.</strong> Stačí rozdeliť vzorku na obdobie pred a po roku 2020 a „jeden koeficient” sa rozpadne. Pred covidom (2010–2019) je odhad prakticky <strong>nulový (≈ −0,02)</strong> — v pokojnej švajčiarskej dekáde bol vzťah medzi výstupnou medzerou a nezamestnanosťou štatisticky nulový. Po roku 2020 je odhad <strong>silnejší a presný (≈ −0,10)</strong>. Tie isté premenné, tá istá krajina — číslo závisí len od toho, ktoré roky si vyberiete. (Časť rozdielu je technická: pred covidom sa HDP takmer nehýbalo, nízka variabilita nafúkne neistotu.)</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Zobraziť kód</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>por <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">obdobie =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"Celá vzorka</span><span class="sc">\n</span><span class="st">2010–2025"</span>, <span class="st">"Pred 2020</span><span class="sc">\n</span><span class="st">2010–2019"</span>, <span class="st">"Po 2020</span><span class="sc">\n</span><span class="st">2020–2025"</span>),</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Celá vzorka</span><span class="sc">\n</span><span class="st">2010–2025"</span>, <span class="st">"Pred 2020</span><span class="sc">\n</span><span class="st">2010–2019"</span>, <span class="st">"Po 2020</span><span class="sc">\n</span><span class="st">2020–2025"</span>)),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">odhad =</span> <span class="fu">c</span>(a_full, a_pre, a_post),</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">se    =</span> <span class="fu">c</span>(se_full, se_pre, se_post))</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(por, <span class="fu">aes</span>(obdobie, odhad, <span class="at">colour =</span> obdobie)) <span class="sc">+</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">colour =</span> <span class="st">"grey60"</span>) <span class="sc">+</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> odhad <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> se, <span class="at">ymax =</span> odhad <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> se),</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">width =</span> <span class="fl">0.12</span>, <span class="at">linewidth =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">3.5</span>) <span class="sc">+</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"grey40"</span>, <span class="st">"salmon"</span>, <span class="st">"salmon4"</span>)) <span class="sc">+</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Okunov koeficient (α)"</span>) <span class="sc">+</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(g2) <span class="sc">|&gt;</span> <span class="fu">layout</span>(<span class="at">font =</span> <span class="fu">list</span>(<span class="at">family =</span> <span class="st">"sans-serif"</span>))</span></code><button title="Kopírovať do schránky" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-obdobia" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-obdobia-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-5430ba498565cccfee9f" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-5430ba498565cccfee9f">{"x":{"data":[{"x":[0.40000000000000002,3.6000000000000001],"y":[0,0],"text":"yintercept: 0","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(153,153,153,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1],"y":[-0.08836858159586615],"text":"obdobie: Celá vzorka<br />2010–2025<br />odhad: -0.08836858<br />obdobie: Celá vzorka<br />2010–2025<br />odhad - 2 * se: -0.1431463<br />odhad + 2 * se: -0.03359087","type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_y":{"array":[0.054777710437555673],"arrayminus":[0.054777710437555679],"type":"data","width":16.800000000000015,"symmetric":false,"color":"rgba(102,102,102,1)"},"name":"Celá vzorka<br />2010–2025","legendgroup":"Celá vzorka<br />2010–2025","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2],"y":[-0.016203259359591177],"text":"obdobie: Pred 2020<br />2010–2019<br />odhad: -0.01620326<br />obdobie: Pred 2020<br />2010–2019<br />odhad - 2 * se: -0.2000576<br />odhad + 2 * se:  0.16765112","type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_y":{"array":[0.18385438285428923],"arrayminus":[0.18385438285428923],"type":"data","width":16.800000000000015,"symmetric":false,"color":"rgba(250,128,114,1)"},"name":"Pred 2020<br />2010–2019","legendgroup":"Pred 2020<br />2010–2019","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[3],"y":[-0.09543847475167215],"text":"obdobie: Po 2020<br />2020–2025<br />odhad: -0.09543847<br />obdobie: Po 2020<br />2020–2025<br />odhad - 2 * se: -0.1529846<br />odhad + 2 * se: -0.03789234","type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_y":{"array":[0.05754613166391221],"arrayminus":[0.057546131663912217],"type":"data","width":16.800000000000015,"symmetric":false,"color":"rgba(139,76,57,1)"},"name":"Po 2020<br />2020–2025","legendgroup":"Po 2020<br />2020–2025","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1],"y":[-0.08836858159586615],"text":"obdobie: Celá vzorka<br />2010–2025<br />odhad: -0.08836858<br />obdobie: Celá vzorka<br />2010–2025","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(102,102,102,1)","opacity":1,"size":13.228346456692915,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(102,102,102,1)"}},"hoveron":"points","name":"Celá vzorka<br />2010–2025","legendgroup":"Celá vzorka<br />2010–2025","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2],"y":[-0.016203259359591177],"text":"obdobie: Pred 2020<br />2010–2019<br />odhad: -0.01620326<br />obdobie: Pred 2020<br />2010–2019","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(250,128,114,1)","opacity":1,"size":13.228346456692915,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(250,128,114,1)"}},"hoveron":"points","name":"Pred 2020<br />2010–2019","legendgroup":"Pred 2020<br />2010–2019","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[3],"y":[-0.09543847475167215],"text":"obdobie: Po 2020<br />2020–2025<br />odhad: -0.09543847<br />obdobie: Po 2020<br />2020–2025","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(139,76,57,1)","opacity":1,"size":13.228346456692915,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(139,76,57,1)"}},"hoveron":"points","name":"Po 2020<br />2020–2025","legendgroup":"Po 2020<br />2020–2025","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":23.305936073059364,"r":7.3059360730593621,"b":22.648401826484022,"l":48.949771689497723},"paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"sans-serif","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,3.6000000000000001],"tickmode":"array","ticktext":["Celá vzorka<br />2010–2025","Pred 2020<br />2010–2019","Po 2020<br />2020–2025"],"tickvals":[1,2,3],"categoryorder":"array","categoryarray":["Celá vzorka<br />2010–2025","Pred 2020<br />2010–2019","Po 2020<br />2020–2025"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.21844308049930936,0.18603656178012698],"tickmode":"array","ticktext":["-0.2","-0.1","0.0","0.1"],"tickvals":[-0.20000000000000001,-0.10000000000000001,2.7755575615628914e-17,0.10000000000000001],"categoryorder":"array","categoryarray":["-0.2","-0.1","0.0","0.1"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Okunov koeficient (α)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[],"showlegend":false,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"1e047ddd740e":{"yintercept":{},"type":"scatter"},"1e04195d3e3e":{"x":{},"y":{},"colour":{},"ymin":{},"ymax":{}},"1e044bdd3e26":{"x":{},"y":{},"colour":{}}},"cur_data":"1e047ddd740e","visdat":{"1e047ddd740e":["function (y) ","x"],"1e04195d3e3e":["function (y) ","x"],"1e044bdd3e26":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-obdobia-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Obrázok&nbsp;2: Okunov koeficient odhadnutý na rôznych obdobiach; bodový odhad ± 2·SE (≈ 95 % interval).
+</figcaption>
+</figure>
+</div>
+</div>
+<p><strong>Iná hodnota počas rastu, iná počas pádu.</strong> Záleží aj na tom, či je ekonomika nad alebo pod svojím potenciálom. Keď vypočítame samostatne koeficient počas rastu a samostatne počas poklesu, reakcia počas <strong>expanzie (≈ −0,18)</strong> vyjde silnejšia než počas <strong>recesie (≈ −0,06)</strong>. Firmy počas recesie skôr vyčkávajú a pri raste naberajú rýchlo.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Zobraziť kód</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>asy <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">faza  =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"Recesia</span><span class="sc">\n</span><span class="st">(yc ≤ 0)"</span>, <span class="st">"Expanzia</span><span class="sc">\n</span><span class="st">(yc &gt; 0)"</span>),</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Recesia</span><span class="sc">\n</span><span class="st">(yc ≤ 0)"</span>, <span class="st">"Expanzia</span><span class="sc">\n</span><span class="st">(yc &gt; 0)"</span>)),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">odhad =</span> <span class="fu">c</span>(a_rec, a_exp),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">se    =</span> <span class="fu">c</span>(se_rec, se_exp))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>g3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(asy, <span class="fu">aes</span>(faza, odhad, <span class="at">colour =</span> faza)) <span class="sc">+</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">colour =</span> <span class="st">"grey60"</span>) <span class="sc">+</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> odhad <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> se, <span class="at">ymax =</span> odhad <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> se),</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">width =</span> <span class="fl">0.12</span>, <span class="at">linewidth =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">3.5</span>) <span class="sc">+</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"salmon4"</span>, <span class="st">"salmon"</span>)) <span class="sc">+</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Okunov koeficient (α)"</span>) <span class="sc">+</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(g3) <span class="sc">|&gt;</span> <span class="fu">layout</span>(<span class="at">font =</span> <span class="fu">list</span>(<span class="at">family =</span> <span class="st">"sans-serif"</span>))</span></code><button title="Kopírovať do schránky" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-asymetria" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-asymetria-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-4cb416615c998e747096" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-4cb416615c998e747096">{"x":{"data":[{"x":[0.40000000000000002,2.6000000000000001],"y":[0,0],"text":"yintercept: 0","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(153,153,153,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1],"y":[-0.062253253116224969],"text":"faza: Recesia<br />(yc ≤ 0)<br />odhad: -0.06225325<br />faza: Recesia<br />(yc ≤ 0)<br />odhad - 2 * se: -0.1235605<br />odhad + 2 * se: -0.0009459987","type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_y":{"array":[0.061307254395851066],"arrayminus":[0.061307254395851066],"type":"data","width":24.436363636363648,"symmetric":false,"color":"rgba(139,76,57,1)"},"name":"Recesia<br />(yc ≤ 0)","legendgroup":"Recesia<br />(yc ≤ 0)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2],"y":[-0.17661833906317409],"text":"faza: Expanzia<br />(yc > 0)<br />odhad: -0.17661834<br />faza: Expanzia<br />(yc > 0)<br />odhad - 2 * se: -0.2893176<br />odhad + 2 * se: -0.0639191267","type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_y":{"array":[0.1126992123630365],"arrayminus":[0.11269921236303648],"type":"data","width":24.436363636363648,"symmetric":false,"color":"rgba(250,128,114,1)"},"name":"Expanzia<br />(yc > 0)","legendgroup":"Expanzia<br />(yc > 0)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1],"y":[-0.062253253116224969],"text":"faza: Recesia<br />(yc ≤ 0)<br />odhad: -0.06225325<br />faza: Recesia<br />(yc ≤ 0)","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(139,76,57,1)","opacity":1,"size":13.228346456692915,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(139,76,57,1)"}},"hoveron":"points","name":"Recesia<br />(yc ≤ 0)","legendgroup":"Recesia<br />(yc ≤ 0)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2],"y":[-0.17661833906317409],"text":"faza: Expanzia<br />(yc > 0)<br />odhad: -0.17661834<br />faza: Expanzia<br />(yc > 0)","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(250,128,114,1)","opacity":1,"size":13.228346456692915,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(250,128,114,1)"}},"hoveron":"points","name":"Expanzia<br />(yc > 0)","legendgroup":"Expanzia<br />(yc > 0)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":23.305936073059364,"r":7.3059360730593621,"b":22.648401826484022,"l":48.949771689497723},"paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"sans-serif","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,2.6000000000000001],"tickmode":"array","ticktext":["Recesia<br />(yc ≤ 0)","Expanzia<br />(yc > 0)"],"tickvals":[1,2],"categoryorder":"array","categoryarray":["Recesia<br />(yc ≤ 0)","Expanzia<br />(yc > 0)"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.30378342899752109,0.014465877571310529],"tickmode":"array","ticktext":["-0.3","-0.2","-0.1","0.0"],"tickvals":[-0.30000000000000004,-0.20000000000000001,-0.10000000000000003,0],"categoryorder":"array","categoryarray":["-0.3","-0.2","-0.1","0.0"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Okunov koeficient (α)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[],"showlegend":false,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"1e04566b198f":{"yintercept":{},"type":"scatter"},"1e04505c3b3":{"x":{},"y":{},"colour":{},"ymin":{},"ymax":{}},"1e041926665b":{"x":{},"y":{},"colour":{}}},"cur_data":"1e04566b198f","visdat":{"1e04566b198f":["function (y) ","x"],"1e04505c3b3":["function (y) ","x"],"1e041926665b":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-asymetria-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Obrázok&nbsp;3: Okunov koeficient zvlášť v recesii (yc ≤ 0) a v expanzii (yc &gt; 0); úsečky = odhad ± 2·SE.
+</figcaption>
+</figure>
+</div>
+</div>
+<p><strong>Keď pripustíme zotrvačnosť.</strong> Trh práce nereaguje okamžite — dnešná nezamestnanosť závisí aj od tej včerajšej. Dynamický model, ktorý necháva vplyv výstupu <strong>kumulovať v čase</strong>, dá dlhodobý koeficient okolo <strong>−0,24</strong> - takmer trojnásobok statického čísla z celej vzorky. Nie preto, že by sa ekonomika zmenila, ale preto, že <em>„o koľko celkovo, keď sa všetko ustáli”</em> je iná otázka než <em>„o koľko tento štvrťrok”</em>.</p>
+<p><strong>Suma sumárum:</strong> šesť rôznych prístupov dá šesť rôznych čísel pre hodnotu parametra — zhruba od nuly po −0,24. Ani jedno nie je „nesprávne”; každé vlastne má trochu iné predpoklady.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Zobraziť kód</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>suhrn <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">sposob =</span> <span class="fu">c</span>(<span class="st">"Celá vzorka (statický)"</span>, <span class="st">"Pred 2020"</span>, <span class="st">"Po 2020"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>             <span class="st">"V recesii (yc ≤ 0)"</span>, <span class="st">"V expanzii (yc &gt; 0)"</span>, <span class="st">"Dynamický (dlhodobý)"</span>),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">odhad  =</span> <span class="fu">c</span>(a_full, a_pre, a_post, a_rec, a_exp, aLR))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>suhrn<span class="sc">$</span>sposob <span class="ot">&lt;-</span> <span class="fu">factor</span>(suhrn<span class="sc">$</span>sposob, <span class="at">levels =</span> <span class="fu">rev</span>(suhrn<span class="sc">$</span>sposob))</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>g4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(suhrn, <span class="fu">aes</span>(odhad, sposob)) <span class="sc">+</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">colour =</span> <span class="st">"grey60"</span>) <span class="sc">+</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">xend =</span> odhad, <span class="at">yend =</span> sposob),</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">colour =</span> <span class="st">"grey85"</span>, <span class="at">linewidth =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">colour =</span> <span class="st">"salmon4"</span>) <span class="sc">+</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">sk</span>(odhad)), <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">nudge_x =</span> <span class="sc">-</span><span class="fl">0.018</span>,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">size =</span> <span class="dv">3</span>, <span class="at">colour =</span> <span class="st">"grey30"</span>) <span class="sc">+</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.34</span>, <span class="fl">0.10</span>)) <span class="sc">+</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Okunov koeficient (α)"</span>, <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(g4) <span class="sc">|&gt;</span> <span class="fu">layout</span>(<span class="at">font =</span> <span class="fu">list</span>(<span class="at">family =</span> <span class="st">"sans-serif"</span>))</span></code><button title="Kopírovať do schránky" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-suhrn" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-suhrn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-9097596420179005b123" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-9097596420179005b123">{"x":{"data":[{"x":[0,0],"y":[0.40000000000000002,6.5999999999999996],"text":"xintercept: 0","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(153,153,153,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0,-0.08836858159586615,null,0,-0.016203259359591177,null,0,-0.09543847475167215,null,0,-0.062253253116224969,null,0,-0.17661833906317409,null,0,-0.2401291030805906],"y":[6,6,null,5,5,null,4,4,null,3,3,null,2,2,null,1,1],"text":["x: 0<br />sposob: Celá vzorka (statický)<br />odhad: -0.08836858<br />sposob: 6","x: 0<br />sposob: Celá vzorka (statický)<br />odhad: -0.08836858<br />sposob: 6",null,"x: 0<br />sposob: Pred 2020<br />odhad: -0.01620326<br />sposob: 5","x: 0<br />sposob: Pred 2020<br />odhad: -0.01620326<br />sposob: 5",null,"x: 0<br />sposob: Po 2020<br />odhad: -0.09543847<br />sposob: 4","x: 0<br />sposob: Po 2020<br />odhad: -0.09543847<br />sposob: 4",null,"x: 0<br />sposob: V recesii (yc ≤ 0)<br />odhad: -0.06225325<br />sposob: 3","x: 0<br />sposob: V recesii (yc ≤ 0)<br />odhad: -0.06225325<br />sposob: 3",null,"x: 0<br />sposob: V expanzii (yc > 0)<br />odhad: -0.17661834<br />sposob: 2","x: 0<br />sposob: V expanzii (yc > 0)<br />odhad: -0.17661834<br />sposob: 2",null,"x: 0<br />sposob: Dynamický (dlhodobý)<br />odhad: -0.24012910<br />sposob: 1","x: 0<br />sposob: Dynamický (dlhodobý)<br />odhad: -0.24012910<br />sposob: 1"],"type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(217,217,217,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-0.08836858159586615,-0.016203259359591177,-0.09543847475167215,-0.062253253116224969,-0.17661833906317409,-0.2401291030805906],"y":[6,5,4,3,2,1],"text":["odhad: -0.08836858<br />sposob: Celá vzorka (statický)","odhad: -0.01620326<br />sposob: Pred 2020","odhad: -0.09543847<br />sposob: Po 2020","odhad: -0.06225325<br />sposob: V recesii (yc ≤ 0)","odhad: -0.17661834<br />sposob: V expanzii (yc > 0)","odhad: -0.24012910<br />sposob: Dynamický (dlhodobý)"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(139,76,57,1)","opacity":1,"size":11.338582677165356,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(139,76,57,1)"}},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-0.10636858159586615,-0.034203259359591176,-0.11343847475167215,-0.080253253116224971,-0.19461833906317408,-0.25812910308059062],"y":[6,5,4,3,2,1],"text":["-0,09","-0,02","-0,10","-0,06","-0,18","-0,24"],"hovertext":["odhad: -0.08836858<br />sposob: Celá vzorka (statický)<br />sk(odhad): -0,09","odhad: -0.01620326<br />sposob: Pred 2020<br />sk(odhad): -0,02","odhad: -0.09543847<br />sposob: Po 2020<br />sk(odhad): -0,10","odhad: -0.06225325<br />sposob: V recesii (yc ≤ 0)<br />sk(odhad): -0,06","odhad: -0.17661834<br />sposob: V expanzii (yc > 0)<br />sk(odhad): -0,18","odhad: -0.24012910<br />sposob: Dynamický (dlhodobý)<br />sk(odhad): -0,24"],"textfont":{"size":11.338582677165356,"color":"rgba(77,77,77,1)"},"type":"scatter","mode":"text","hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":23.305936073059364,"r":7.3059360730593621,"b":37.260273972602747,"l":139.54337899543381},"paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"sans-serif","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.36200000000000004,0.12200000000000001],"tickmode":"array","ticktext":["-0.3","-0.2","-0.1","0.0","0.1"],"tickvals":[-0.30000000000000004,-0.20000000000000001,-0.099999999999999978,0,0.099999999999999978],"categoryorder":"array","categoryarray":["-0.3","-0.2","-0.1","0.0","0.1"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Okunov koeficient (α)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,6.5999999999999996],"tickmode":"array","ticktext":["Dynamický (dlhodobý)","V expanzii (yc > 0)","V recesii (yc ≤ 0)","Po 2020","Pred 2020","Celá vzorka (statický)"],"tickvals":[1,2,3,3.9999999999999996,5,6],"categoryorder":"array","categoryarray":["Dynamický (dlhodobý)","V expanzii (yc > 0)","V recesii (yc ≤ 0)","Po 2020","Pred 2020","Celá vzorka (statický)"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[],"showlegend":false,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"1e04713532e":{"xintercept":{},"type":"scatter"},"1e0411ab40e7":{"x":{},"y":{},"xend":{},"yend":{}},"1e046b482b5b":{"x":{},"y":{}},"1e04372d5283":{"x":{},"y":{},"label":{}}},"cur_data":"1e04713532e","visdat":{"1e04713532e":["function (y) ","x"],"1e0411ab40e7":["function (y) ","x"],"1e046b482b5b":["function (y) ","x"],"1e04372d5283":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-suhrn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Obrázok&nbsp;4: Šesť odhadov Okunovho koeficientu z tých istých dát.
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="pozor-na-univerzálne-hodnoty" class="level2">
+<h2 class="anchored" data-anchor-id="pozor-na-univerzálne-hodnoty">Pozor na <em>„univerzálne hodnoty”</em></h2>
+<p>Firmy sa niekedy opierajú o jedno číslo úplne rovnako: konverzný pomer, marža, sezónny koeficient, náklad na získanie zákazníka, „zákazník minie o X % viac, keď…“. Tak ako Okunov koeficient, ani tieto nie sú konštanty. Menia sa v čase, podľa fázy, podľa segmentu aj podľa toho, ako ich zmeráte. Alebo ako započítate vstupné hodnoty. Každý model má svoje predpoklady. Ak ich netušíte, nerozumiete validite výpočtu. Tri praktické varovania priamo z tejto analýzy:</p>
+<p><strong>Číslo odhadnuté hlavne z výnimočného obdobia opisuje to obdobie, nie bežnú prevádzku.</strong> Koeficient z celej vzorky ťahali covidové roky. Konverzný pomer odmeraný počas kampane, či podiel odchodov z jedného krízového mesiaca nie sú základnou líniou — sú to čísla tej výnimočnej chvíle.</p>
+<p><strong>Než uveríte priemeru, rozdeľte podľa segmentu a fázy.</strong> Pred/po roku 2020 aj recesia/expanzia dali výrazne odlišné odpovede. Presne tak sa budú líšiť vaši zákazníci, kanály či sezóny — priemer cez všetko môže zakryť úplne odlišné svety.</p>
+<p><strong>Odhadujte na vlastných dátach, nepreberajte benchmark.</strong> „Učebnicový” Okun (pre USA sa uvádza rádovo −0,3 až −0,5) jednoducho nie je švajčiarske číslo. Marža alebo konverzia z odvetvového benchmarku je cudzí koeficient, z iného obdobia a inej štruktúry, než je tá vaša.</p>
+</section>
+<section id="pre-zvedavých-a-technicky-zdatných" class="level2">
+<h2 class="anchored" data-anchor-id="pre-zvedavých-a-technicky-zdatných">Pre zvedavých a technicky zdatných</h2>
+<p>Celá ekonometrická analýza — testy štrukturálneho zlomu (Chowov breakpoint aj predpovedný test), dynamická špecifikácia s výberom oneskorení a intervaly spoľahlivosti cez delta metódu aj Monte Carlo — je ako tímová úloha z predmetu Ekonometria (Masarykova univerzita) na GitHube: <a href="https://github.com/danakozakova/econometrics/tree/main/02-okun-law">econometrics/02-okun-law</a>. Dáta pochádzajú z <a href="https://data-explorer.oecd.org">OECD Data Explorer</a> (reálny HDP a miera nezamestnanosti, Švajčiarsko).</p>
+</section>
+<section id="ak-máte-dáta-a-otázky" class="level2">
+<h2 class="anchored" data-anchor-id="ak-máte-dáta-a-otázky">Ak máte dáta a otázky</h2>
+<ul>
+<li>neváhajte ma kontaktovať. Rada sa pozriem na vaše čísla a na to, ktoré „univerzálne hodnoty” u vás v skutočnosti nie akosi “univerzálne” neplatia.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Skopírované!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Skopírované!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/datovadana\.sk");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© 2026 datovadana.sk · postavené v <a href="https://quarto.org">Quarto</a></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
