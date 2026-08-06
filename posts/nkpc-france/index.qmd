@@ -33,7 +33,7 @@ Tento model (odborne sa volá novokeynesiánska Phillipsova krivka) má však aj
 
 ## Aké dáta boli k dispozícii
 
-Zobrali sme **verejné francúzske dáta** z troch databáz (OECD, [FRED](https://fred.stlouisfed.org/) a Európska centrálna banka): ako rástli ceny (inflácia), koľko stála firmy výroba (náklady) a v akej kondícii bola ekonomika. Všetko štvrťročné dáta.
+Stiahli sme **verejné francúzske dáta** z troch databáz (OECD, [FRED](https://fred.stlouisfed.org/) a Európska centrálna banka): ako rástli ceny (inflácia), koľko stála firmy výroba (náklady) a v akej kondícii bola ekonomika. Všetko štvrťročné dáta.
 
 Jeden rad je dostupný až od roku 2003, takže celá analýza je pre obdobie **2003 – 2025** (88 štvrťrokov) — na takýto model je to skôr kratší rad. A niektoré veci, ako „skutočné náklady" či „sila dopytu", sa nedajú odmerať priamo, len odhadnúť náhradným, tzv. proxy, ukazovateľom. Každý taký kompromis trochu pohne číslami — na hlavný záver však nemá vplyv.
 
