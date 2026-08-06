@@ -1,0 +1,147 @@
+---
+title: "Dá sa predpovedať kurz eura?"
+description: "Mesačný kurz EUR/USD za 25 rokov: úroveň je takmer čistá náhoda, no v zmenách sa skrýva drobná stopa — a aj model, čo poráža náhodu, nakoniec povie „skoro nič sa nezmení\"."
+date: 2026-08-06
+categories: [financie, menový kurz, predikcia, časové rady]
+image: ""
+draft: false
+engine: knitr
+code-fold: true
+code-summary: "Zobraziť kód"
+execute:
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(dplyr)
+library(ggplot2)
+library(plotly)
+library(readr)
+library(tidyr)
+
+d <- "data/"
+eur  <- read_csv(paste0(d, "eurusd.csv"),   show_col_types = FALSE)
+acf  <- read_csv(paste0(d, "acf.csv"),      show_col_types = FALSE)
+rmse <- read_csv(paste0(d, "rmse.csv"),     show_col_types = FALSE)
+fc   <- read_csv(paste0(d, "forecast.csv"), show_col_types = FALSE)
+```
+
+Keby sa dal kurz eura spoľahlivo predpovedať, asi by som neučila matematiku — obchodovala by som. Stiahla som si kurz EUR/USD za štvrťstoročie ako svoju prvú úlohu z časových radov a vyskúšala prvé nástroje pre časové rady. Samotný kurz eura voči doláru sa z pohľadu časových radov v podstate správa ako náhodná prehádzka. A aj ten najlepší model, ktorý som skúsila, nakoniec predpovedal takmer rovnako ako naivný model: *„ostane, ako je\".*
+
+## Aké dáta boli k dispozícii
+
+Pracovala som s **mesačným kurzom EUR/USD** z databázy americkej centrálnej banky **[FRED](https://fred.stlouisfed.org/series/DEXUSEU)** (séria DEXUSEU), za obdobie január 2000 – december 2025 — spolu **312 mesiacov**. Sú to verejné dáta.
+
+V dátach nie sú úrokové sadzby, inflácia, politika ani nálada trhu — teda nič z toho, čo kurzom naozaj hýbe. Nedá sa z nich preto modelovať *prečo* sa kurz pohol, len *ako veľmi* sa hýbe a či v tých pohyboch je nejaká zapamätateľná štruktúra. Namiesto samotného kurzu skúmam jeho **mesačné zmeny v percentách** (odborne log-diferencie). Kurz je totiž multiplikatívny — zaujíma nás, o koľko *percent* sa pohol, nie o koľko centov — a percentuálne zmeny sa dajú zmysluplne modelovať, kým samotná úroveň nie.
+
+## Čo sa z nich dalo zistiť
+
+Keď vykreslíte úroveň kurzu (horný graf), vidíte putovanie bez cieľa: žiadna „normálna\" hodnota, ku ktorej by sa vracal, žiadna gravitácia. Presne takto vyzerá **náhodná prechádzka** — každý ďalší mesiac je predošlý plus nepredvídateľný krok. Mesačné zmeny (dolný graf) sú oproti tomu ustálené: kmitajú symetricky okolo nuly, typicky o ±2 %. To je dobrá aj zlá správa naraz — zmeny sa dajú modelovať, ale ich priemer je nula, takže kurz nemá dlhodobý trend nahor ani nadol.
+
+```{r}
+#| label: fig-uroven-zmeny
+#| fig-cap: "Úroveň kurzu EUR/USD (hore) putuje bez návratu k priemeru — náhodná prechádzka. Mesačné zmeny (dole) kmitajú okolo nuly."
+lvl <- eur |> transmute(Date, hodnota = EURUSD, panel = "Úroveň kurzu (EUR/USD)")
+dlg <- eur |> filter(!is.na(logdiff)) |>
+  transmute(Date, hodnota = logdiff, panel = "Mesačná zmena (log-diferencia)")
+both <- bind_rows(lvl, dlg) |>
+  mutate(panel = factor(panel, levels = c("Úroveň kurzu (EUR/USD)",
+                                          "Mesačná zmena (log-diferencia)")))
+
+g1 <- ggplot(both, aes(Date, hodnota)) +
+  geom_hline(data = data.frame(panel = factor("Mesačná zmena (log-diferencia)",
+                                              levels = levels(both$panel)), y = 0),
+             aes(yintercept = y), linetype = "dashed", colour = "grey60") +
+  geom_line(colour = "#2c6e8f", linewidth = 0.5) +
+  facet_wrap(~ panel, ncol = 1, scales = "free_y") +
+  labs(x = NULL, y = NULL) +
+  theme_minimal()
+ggplotly(g1) |> layout(font = list(family = "sans-serif"))
+```
+
+**Nová hodnota si trochu pamätá predošlú.** Ako zistiť, či v tých zmenách vôbec je čo modelovať? Autokorelačná funkcia zmeria, nakoľko každý mesiac súvisí s tými pred ním. Keby boli zmeny čistá náhoda, všetky stĺpce by ostali v šedom páse nevýznamnosti. Namiesto toho **jediný stĺpec vyčnieva — na odstupe jeden mesiac (hodnota 0,31)**, všetko ostatné je šum. To je celá využiteľná štruktúra: mesačná zmena si nesie slabú odozvu tej predchádzajúcej, a nič viac. Presne tento jeden hrot je typický pre MA(1) model.
+
+```{r}
+#| label: fig-acf
+#| fig-cap: "Autokorelácia mesačných zmien."
+ac <- acf |> filter(lag >= 1, lag <= 18)
+g2 <- ggplot(ac, aes(lag, acf)) +
+  geom_hline(yintercept = 0, colour = "grey40") +
+  geom_hline(aes(yintercept =  ci), linetype = "dashed", colour = "grey60") +
+  geom_hline(aes(yintercept = -ci), linetype = "dashed", colour = "grey60") +
+  geom_segment(aes(xend = lag, yend = 0), colour = "#2c6e8f", linewidth = 0.8) +
+  geom_point(colour = "#2c6e8f", size = 1.8) +
+  scale_x_continuous(breaks = 1:18) +
+  labs(x = "odstup v mesiacoch", y = "autokorelácia") +
+  theme_minimal()
+ggplotly(g2, tooltip = c("x", "y")) |> layout(font = list(family = "sans-serif"))
+```
+
+Vyskúšala som podobné modely AR(1), MA(1), ARMA(1,1) a porovnala ich predpovede: každý mesiac predpovedali dopredu kurz na 1 až 4 mesiace. Porovnávala som ich so skutočnosťou na 60 mesiacoch, ktoré modely „nevideli\". Súperom bol **naivný odhad** — jednoduché pravidlo „budúca zmena kurzu bude rovnaká  ako posledná\". Modely ho porazili na celej čiare: pri predpovedi o dva mesiace dopredu je chyba naivného pravidla asi **o 40 % väčšia** než chyba modelu. Modely boli prekvapivo vyrovnané. Ako najvhodnejší by bol **najúspornejší**, MA(1). Pridanie ďalších parametrov v ARMA(1,1) presnosť nezlepšilo, len model skomplikovalo.
+
+```{r}
+#| label: fig-rmse
+#| fig-cap: "Priemerná veľkosť chyby predpovede (RMSE) podľa horizontu."
+por <- rmse |>
+  filter(window == "Expanding", model %in% c("MA(1)", "Naive")) |>
+  mutate(model = recode(model,
+                        "MA(1)" = "Model MA(1)",
+                        "Naive" = "Naivný odhad (zopakuj poslednú zmenu)"))
+g3 <- ggplot(por, aes(h, rmse, colour = model, group = model)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 2.4) +
+  scale_x_continuous(breaks = 1:4) +
+  scale_colour_manual(values = c("Model MA(1)" = "#2c6e8f",
+                                 "Naivný odhad (zopakuj poslednú zmenu)" = "#c9772f")) +
+  labs(x = "horizont predpovede (mesiace dopredu)",
+       y = "chyba predpovede (RMSE)", colour = NULL) +
+  theme_minimal() +
+  theme(legend.position = "top")
+ggplotly(g3, tooltip = c("x", "y")) |> layout(font = list(family = "sans-serif"))
+```
+
+Keď necháte MA(1) predpovedať kurz na prvé štyri mesiace roku 2026, jeho bodová predpoveď sa takmer okamžite ustáli na hodnote blízkej poslednej známej — lebo priemer zmien je nula. To je vlastnosť stacionárnych radov. A okolo tej tenkej čiary sa rozprestrie **obrovský interval neistoty**: už o štyri mesiace 95%-ný interval siaha zhruba od 1,00 po 1,39. Model teda „vyhral\", ale jeho predpovede sú úplne neisté. Poraziť naivné pravidlo a mať krištáľovú guľu sú dve rôzne veci.
+
+```{r}
+#| label: fig-predikcia
+#| fig-cap: "Predpoveď MA(1) na jan–apr 2026 (modrá) s 95 % intervalom."
+hist <- eur |> filter(Date >= as.Date("2023-01-01")) |>
+  transmute(Date, kurz = EURUSD)
+last_pt <- tail(hist, 1)
+fcl <- fc |> mutate(Date = as.Date(Date)) |>
+  bind_rows(transmute(last_pt, Date, point = kurz, lo = kurz, hi = kurz)) |>
+  arrange(Date)
+
+g4 <- ggplot() +
+  geom_ribbon(data = fcl, aes(Date, ymin = lo, ymax = hi),
+              fill = "#2c6e8f", alpha = 0.15) +
+  geom_line(data = hist, aes(Date, kurz), colour = "grey40", linewidth = 0.6) +
+  geom_line(data = fcl, aes(Date, point), colour = "#2c6e8f",
+            linewidth = 0.9, linetype = "twodash") +
+  labs(x = NULL, y = "kurz EUR/USD") +
+  theme_minimal()
+ggplotly(g4) |> layout(font = list(family = "sans-serif"))
+```
+
+## Aký model použiť na predpovedanie firemných dát?
+
+Tento príbeh je ukážkou ako náhodné prechádzky znamenajú, že vlastne nevieme takmer nič. Ale potvrdenie, že rad sa správa ako náhradná prechádzka, je taktiež istým typom odpovede.
+
+**Vždy majte lacný benchmark — a najprv ho porazte.** Prvá otázka pri každej predpovedi nie je *„aký zložitý model použiť\"*, ale *„o koľko je lepší než triviálne pravidlo?\"*. Pri kurze bolo tým pravidlom *„zopakuj poslednú zmenu\"*. Vo firme je to *„predáme toľko, čo minulý mesiac\"*, *„dopyt bude ako vlani v tomto období\"*, *„reklamácií bude ako obvykle\"*. Prekvapivo veľa nákladných predpovedí tento naivný odhad *neporazí* — a ak neporazí, netreba ho. Bez tohto porovnania neviete, či váš model niečo vie, alebo len draho opisuje samozrejmosť.
+
+**Predpoveď je rozpätie, nie číslo.** Bodová predpoveď *„kurz bude 1,18\"* je bez intervalu klamlivá — pointa príbehu je v tom intervale neistoty. Keď vám niekto (alebo nástroj) povie *„tržby budú 47 300\"*, užitočná odpoveď znie *„s akým rozpätím a akou istotou?\"*. Plánovať zásoby, cash-flow či kapacitu sa dá rozumne len na rozpätí — na jednom čísle sa dá len naletieť.
+
+**Jednoduchší model často vyhráva.** Zložitejší ARMA(1,1) nepridal oproti úspornému MA(1) nič lepšie len viac parametrov, ktoré sa dali „preučiť\" na náhodnom šume. Rovnako vo firme: model s desiatimi premennými, ktorý dokonale sadne na minulé dáta, býva horší prediktor než jednoduché pravidlo, ktoré chytí to podstatné. Viac zložitosti nie je viac presnosti — často je to len viac spôsobov, ako sa pomýliť.
+
+## Pre zvedavých a technicky zdatných
+
+Celá analýza — voľba transformácie, identifikácia cez ACF/PACF, odhad a diagnostika modelov (Ljung-Box, stabilita a invertibilita, AIC/BIC), rekurzívne predikcie s expandujúcim aj rolling oknom a vlastná implementácia Diebold-Marianovho testu — je moja prvá úloha z predmetu Časové rady, riešená v Pythone (statsmodels), a s podrobným reportom je na GitHube: [danakozakova/time-series-econometrics — 01-arma-forecasting-eurusd](https://github.com/danakozakova/time-series-econometrics/tree/main/01-arma-forecasting-eurusd).
+
+Dáta sú verejná séria **DEXUSEU** z [FRED](https://fred.stlouisfed.org/series/DEXUSEU) (mesačný kurz EUR/USD, 2000–2025). Grafy na tejto stránke počítajú priamo z tejto rady a z odvodených súhrnov (autokorelácie, chyby predpovedí, predikčný interval), nie zo živého spojenia na databázu.
+
+## Ak máte dáta a otázky
+
+- neváhajte ma kontaktovať. Rada sa na vaše čísla pozriem a poviem, či sa z nich dá predpovedať viac než „bude ako naposledy\" — a s akou istotou.

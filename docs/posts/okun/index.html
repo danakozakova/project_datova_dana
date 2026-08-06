@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Dátová Dana">
+<meta name="description" content="Učebnica ho podáva ako konštantu. Na slovenských dátach 1998–2025 vyšli podľa metódy tri rôzne čísla — a COVID vzťah zmazal celkom.">
 
-<title>Dátová Dana</title>
+<title>Prečo jeden Okunov koeficient neexistuje – Dátová Dana</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,25 +25,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./favicon.ico" rel="icon">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../favicon.ico" rel="icon">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,76 +69,18 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Hľadať"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-najnovsie .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-najnovsie'] = new List('listing-najnovsie', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Dátová Dana</span>
     </a>
   </div>
@@ -149,15 +91,15 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Domov</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./pribehy.html"> 
+    <a class="nav-link" href="../../pribehy.html"> 
 <span class="menu-text">Príbehy</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">O mne</span></a>
   </li>  
 </ul>
@@ -175,153 +117,121 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Prečo jeden Okunov koeficient neexistuje</h1>
+                  <div>
+        <div class="description">
+          Učebnica ho podáva ako konštantu. Na slovenských dátach 1998–2025 vyšli podľa metódy tri rôzne čísla — a COVID vzťah zmazal celkom.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">ekonómia</div>
+                <div class="quarto-category">časové rady</div>
+                <div class="quarto-category">HDP</div>
+                <div class="quarto-category">nezamestnanosť</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Autor</div>
+      <div class="quarto-title-meta-contents">
+               <p>Dátová Dana </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Publikované</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">5. augusta 2026</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Na tejto stránke</h2>
+   
+  <ul>
+  <li><a href="#aké-dáta-boli-k-dispozícii" id="toc-aké-dáta-boli-k-dispozícii" class="nav-link active" data-scroll-target="#aké-dáta-boli-k-dispozícii">Aké dáta boli k dispozícii</a></li>
+  <li><a href="#čo-sa-z-nich-dalo-zistiť" id="toc-čo-sa-z-nich-dalo-zistiť" class="nav-link" data-scroll-target="#čo-sa-z-nich-dalo-zistiť">Čo sa z nich dalo zistiť</a></li>
+  <li><a href="#rovnaká-pasca-číha-aj-vo-firemných-dátach" id="toc-rovnaká-pasca-číha-aj-vo-firemných-dátach" class="nav-link" data-scroll-target="#rovnaká-pasca-číha-aj-vo-firemných-dátach">Rovnaká pasca číha aj vo firemných dátach</a></li>
+  <li><a href="#pre-zvedavých-a-technicky-zdatných" id="toc-pre-zvedavých-a-technicky-zdatných" class="nav-link" data-scroll-target="#pre-zvedavých-a-technicky-zdatných">Pre zvedavých a technicky zdatných</a></li>
+  <li><a href="#ak-máte-dáta-a-otázky" id="toc-ak-máte-dáta-a-otázky" class="nav-link" data-scroll-target="#ak-máte-dáta-a-otázky">Ak máte dáta a otázky</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Dátová Dana</h1>
-<p class="subtitle lead">Čo všetko sa dá vyčítať z dát</p>
+
+
+
+
+<p>Ekonomická učebnica to podá ako pravidlo palca: <em>keď HDP klesne o pár percent pod svoj potenciál, nezamestnanosť stúpne o toľko-a-toľko.</em> Volá sa to Okunov zákon a znie to ako fyzikálna konštanta — jedno číslo, ktoré platí vždy a všade. Lenže konštanta to nie je. Skúsila som ten „zákon” odhadnúť na slovenských dátach za posledných takmer tridsať rokov a vyšlo mi niečo nepohodlné: <strong>koeficient nie je jeden. Mení sa podľa toho, ako počítate — a v čase sa vie rozpadnúť úplne.</strong></p>
+<section id="aké-dáta-boli-k-dispozícii" class="level2">
+<h2 class="anchored" data-anchor-id="aké-dáta-boli-k-dispozícii">Aké dáta boli k dispozícii</h2>
+<p>Pracovala som so štvrťročným <strong>reálnym HDP</strong> a <strong>mierou nezamestnanosti Slovenska</strong> z databázy <a href="https://fred.stlouisfed.org">FRED</a> (Federal Reserve Economic Data), za obdobie 1998 Q1 – 2025 Q4, teda 112 štvrťrokov. To okno pokrýva dve veľké otrasy: finančnú krízu 2008–2009 aj pandémiu COVID-19 v roku 2020.</p>
+<p>Poctivo aj to, čo v dátach <strong>nie je</strong>. Okunov zákon nehovorí o samotnom HDP a nezamestnanosti, ale o ich <em>cyklickej zložke</em> — o tom, o koľko je ekonomika nad alebo pod svojím „normálom”. Ten normál — potenciálny produkt a prirodzená miera nezamestnanosti — sa ale nikde nemeria. Nie je to údaj, ktorý by niekto zbieral; je to konštrukt, ktorý si musíte z dát vypočítať. A práve tu sa začína problém: podľa toho, akou metódou trend od cyklu oddelíte, dostanete iné „medzery” — a iný Okunov koeficient. Druhá poznámka na okraj: sezónne očistený rad HDP bol vo FREDe dostupný len do roku 2020, takže som pracovala so sezónne neočistenou sériou a očistenie riešila sama.</p>
+</section>
+<section id="čo-sa-z-nich-dalo-zistiť" class="level2">
+<h2 class="anchored" data-anchor-id="čo-sa-z-nich-dalo-zistiť">Čo sa z nich dalo zistiť</h2>
+<p><strong>Rast výstupu, klesajúca nezamestnanosť.</strong> Za tie tri dekády slovenská ekonomika zhruba zdvojnásobila reálny výstup a nezamestnanosť klesla z takmer 20 % na 6 %. Obe krivky ale nejdú rovno — vidno na nich krízu 2008 aj covidový prepad 2020. Práve tieto výkyvy okolo trendu sú to, čo Okunov zákon skúma.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/prehlad.png" class="img-fluid figure-img"></p>
+<figcaption>Reálny HDP a miera nezamestnanosti Slovenska, 1998–2025. Tenká čiara je štvrťročný údaj, hrubá je vyhladený trend (HP filter).</figcaption>
+</figure>
 </div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<p>Volám sa Dana a viac než dvadsať rokov pomáham číslam prehovoriť. Tento web je ukážkou toho, <strong>čo sa dá z dát vyčítať</strong> — na verejných dátach, aby ste videli postup skôr, než sa spýtate, čo by povedal o tých vašich. Píšem hlavne pre ľudí, ktorí majú dáta a otázky. Chcem im ukázať, čo dokáže jednoduchá, ale aj zložitejšia analýza rôznych typov dát.</p>
-<p>Každý príbeh má podobnú štruktúru:</p>
+<p><strong>Toto je Okunov zákon.</strong> Keď proti sebe vynesiem výstupnú medzeru (o koľko % je HDP nad/pod potenciálom) a medzeru nezamestnanosti (o koľko p.b. je nad/pod prirodzenou úrovňou), dostanem klesajúci mrak bodov: keď ekonomika beží nad potenciál, nezamestnanosť je pod svojím normálom, a naopak. Sklon tej priamky <strong>je</strong> Okunov koeficient. Pri tomto spôsobe výpočtu vyšiel <strong>α = −0,23</strong> — pri raste HDP o 1 % nad potenciál klesne nezamestnanosť zhruba o 0,23 p.b. Štatisticky významný, pekný, čitateľný výsledok.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/okun-zakon.png" class="img-fluid figure-img"></p>
+<figcaption>Okunov vzťah pre Slovensko, cyklické zložky oddelené HP filtrom. Každý bod je jeden štvrťrok.</figcaption>
+</figure>
+</div>
+<p><strong>Tie isté dáta, tri koeficienty.</strong> Až sem by to bol učebnicový príbeh. Lenže „−0,23” platí len preto, že som trend oddelila práve HP filtrom. Skúsila som to isté ešte dvomi bežnými metódami — polynomiálnym trendom a polynomiálnym trendom so štrukturálnym zlomom. Tie isté dáta, to isté obdobie, tá istá krajina — a tri rôzne odpovede: <strong>−0,23, −0,37 a prakticky nula.</strong> Posledná metóda „ukryla” cyklus do samotného trendu, takže na Okunov vzťah nezostalo nič. Nie je to chyba jednej z metód; je to ukážka, že koeficient nie je vlastnosť ekonomiky, ale čiastočne aj vlastnosť vášho výpočtu.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/tri-metody.png" class="img-fluid figure-img"></p>
+<figcaption>Tri metódy dekompozície na tých istých dátach dávajú tri rôzne Okunove koeficienty. Červená priamka je odhadnutý vzťah.</figcaption>
+</figure>
+</div>
+<p><strong>A potom prišiel COVID.</strong> Aby toho nebolo málo, koeficient nie je stabilný ani v čase. Rozdelila som obdobie na „pred covidom” a „covid a po ňom” a vzťah, ktorý dovtedy pekne fungoval (α ≈ −0,26), sa po roku 2020 <strong>splošťuje k nule</strong>. Počas pandémie výstup prudko klesol, ale nezamestnanosť za ním nešla — udržali ju vládne schémy na podporu zamestnanosti (kurzarbeit). Zaujímavé je, že finančná kríza 2008 vzťah nezlomila (testy žiadnu zmenu koeficientu nenašli) — trh práce vtedy reagoval ako inokedy. COVID bol iný: puto medzi HDP a nezamestnanosťou na čas jednoducho prestalo platiť.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/covid-zlom.png" class="img-fluid figure-img"></p>
+<figcaption>Pred covidom mal vzťah jasný sklon (α ≈ −0,26). Body z covidu a po ňom (červené) ležia takmer vodorovne — vzťah sa vytratil.</figcaption>
+</figure>
+</div>
+</section>
+<section id="rovnaká-pasca-číha-aj-vo-firemných-dátach" class="level2">
+<h2 class="anchored" data-anchor-id="rovnaká-pasca-číha-aj-vo-firemných-dátach">Rovnaká pasca číha aj vo firemných dátach</h2>
+<p>Príbeh nie je o Okunovi. Je o pokušení brať jedno číslo ako konštantu, keď je to v skutočnosti odhad, ktorý závisí od metódy aj od obdobia. A presne to isté pokušenie číha v každej firemnej tabuľke.</p>
+<p><strong>„Univerzálne pomery”, ktoré nie sú univerzálne.</strong> Konverzný pomer e-shopu, marža na produkte, sezónny koeficient dopytu, priemerná hodnota objednávky — všetko to sú čísla, ktoré radi berieme ako pevné („naša konverzia je 2 %“). Lenže rovnako ako Okunov koeficient sa menia v čase a naprieč segmentmi. Číslo prevzaté z benchmarku alebo z minulého roka môže dnes klamať — treba ho odhadovať na vlastných, aktuálnych dátach.</p>
+<p><strong>Odpoveď závisí od toho, ako definujete „normál”.</strong> Okunov koeficient sa zmenil podľa toho, ako som oddelila trend od cyklu. Vo firme je to voľba základne: rátate rast oproti minulému mesiacu, alebo oproti rovnakému mesiacu vlani? Očistíte tržby o sezónu, alebo nie? Definícia „normálu” nie je technický detail — priamo rozhoduje, aké číslo vám nakoniec vyjde. Oplatí sa výsledok overiť viacerými spôsobmi a dôverovať mu až vtedy, keď vydrží.</p>
+<p><strong>Vzťahy sa lámu — všímajte si kedy.</strong> COVID ukázal, že aj spoľahlivá súvislosť môže zo dňa na deň prestať platiť. Rovnako sa firme môže „odlepiť” vzťah medzi návštevnosťou a predajom, medzi zľavou a vernosťou či medzi cenou a dopytom — po zmene trhu, produktu alebo správania zákazníkov. Model odhadnutý na starých dátach potom ticho zavádza. Užitočné je nielen odhadnúť vzťah, ale aj testovať, či sa niekde nezlomil.</p>
+</section>
+<section id="pre-zvedavých-a-technicky-zdatných" class="level2">
+<h2 class="anchored" data-anchor-id="pre-zvedavých-a-technicky-zdatných">Pre zvedavých a technicky zdatných</h2>
+<p>Celá analýza v Pythone — testy stacionarity a štrukturálnych zlomov (ADF, KPSS, Zivot-Andrews, Chow, CUSUM), tri metódy dekompozície trendu aj odhady Okunovho koeficientu — je na GitHube: <a href="https://github.com/danakozakova/time-series-econometrics/tree/main/02-okun-law-slovakia">time-series-econometrics/02-okun-law-slovakia</a>. Dáta pochádzajú z <a href="https://fred.stlouisfed.org">FRED</a> (rady <code>CLVMNACNSAB1GQSK</code> pre HDP a <code>LRHUTTTTSKQ156S</code> pre nezamestnanosť).</p>
+</section>
+<section id="ak-máte-dáta-a-otázky" class="level2">
+<h2 class="anchored" data-anchor-id="ak-máte-dáta-a-otázky">Ak máte dáta a otázky</h2>
 <ul>
-<li>aké dáta boli k dispozícii,</li>
-<li>ako som ich analyzovala,</li>
-<li>čo som z nich zistila,</li>
-<li>ako sa ten postup dá využiť na firemných, či iných dátach. <a href="./about.html">Viac o mne →</a></li>
+<li>neváhajte ma kontaktovať. Rada sa pozriem na Vaše čísla a na to, ktoré „konštanty” vo Vašom biznise konštantami naozaj sú — a ktoré len vyzerajú.</li>
 </ul>
-<section id="najnovšie-príbehy" class="level2">
-<h2 class="anchored" data-anchor-id="najnovšie-príbehy">Najnovšie príbehy</h2>
-<div id="listing-najnovsie" class="quarto-listing quarto-listing-container-default">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="financie,menový kurz,predikcia,časové rady" data-listing-date-sort="1785967200000" data-listing-file-modified-sort="1786035359859" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1569">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/arma-eurusd/index.html" class="no-external">Dá sa predpovedať kurz eura?</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/arma-eurusd/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('financie'); return false;">
-financie
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('menový kurz'); return false;">
-menový kurz
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('predikcia'); return false;">
-predikcia
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('časové rady'); return false;">
-časové rady
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/arma-eurusd/index.html" class="no-external">Mesačný kurz EUR/USD za 25 rokov: úroveň je takmer čistá náhoda, no v zmenách sa skrýva drobná stopa — a aj model, čo poráža náhodu, nakoniec povie „skoro nič sa nezmení”.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/arma-eurusd/index.html" class="no-external">
-<div class="listing-date">
-6. 8. 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="strojové učenie,chýbajúce dáta,imputácia,predikcia" data-listing-date-sort="1785967200000" data-listing-file-modified-sort="1786029974913" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1539">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/chybajuce-data/index.html" class="no-external">Keď chýbajúce dáta nie sú náhodné</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/chybajuce-data/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('strojové učenie'); return false;">
-strojové učenie
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('chýbajúce dáta'); return false;">
-chýbajúce dáta
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('imputácia'); return false;">
-imputácia
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('predikcia'); return false;">
-predikcia
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/chybajuce-data/index.html" class="no-external">Skoro polovica meraní slnečného svitu chýbala. Kľúčové bolo nie koľko chýba, ale prečo — a že to nebola náhoda.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/chybajuce-data/index.html" class="no-external">
-<div class="listing-date">
-6. 8. 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="financie,akcie,CAPM,regresia" data-listing-date-sort="1785880800000" data-listing-file-modified-sort="1786000932787" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1390">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/capm/index.html" class="no-external">Keď vyššie riziko neprináša vyšší výnos</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/capm/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('financie'); return false;">
-financie
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('akcie'); return false;">
-akcie
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('CAPM'); return false;">
-CAPM
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('regresia'); return false;">
-regresia
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/capm/index.html" class="no-external">Učebnicové pravidlo „vyššie riziko, vyšší výnos” sa na 476 akciách S&amp;P 500 obrátilo naopak — a nešlo o výkyv jedného roka.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/capm/index.html" class="no-external">
-<div class="listing-date">
-5. 8. 2026
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-Žiadne nájdené výsledky
-</div>
-</div>
-
 
 
 </section>
