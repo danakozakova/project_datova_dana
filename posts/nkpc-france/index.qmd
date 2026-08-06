@@ -1,0 +1,118 @@
+---
+title: "Prečo ceny rastú? Učebnica má na to vzorec — dáta z Francúzska ho ale nepotvrdzujú"
+description: "Učebnice tvrdia, že Phillipsova krivka je v dlhom období zvislá — dve sily, čo ženú infláciu, by sa mali spočítať do jednotky. Na francúzskych dátach 2003–2025 to testy zamietajú a ukazujú, čo infláciu naozaj ženie."
+date: 2026-08-05
+categories: [inflácia, ceny, makroekonómia, ekonometria]
+image: ""
+draft: false
+engine: knitr
+code-fold: true
+code-summary: "Zobraziť kód"
+execute:
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(dplyr)
+library(ggplot2)
+library(plotly)
+library(readr)
+
+d <- "data/"
+drivers    <- read_csv(paste0(d, "nkpc_drivers.csv"),     show_col_types = FALSE)
+verticalita <- read_csv(paste0(d, "nkpc_verticalita.csv"), show_col_types = FALSE)
+rigidita   <- read_csv(paste0(d, "nkpc_rigidita.csv"),     show_col_types = FALSE)
+```
+
+Prečo vlastne rastú ceny? Ekonómia má na to svoj model a jeho hlavná myšlienka je celkom ľudská: ceny dnes rastú najmä preto, že ľudia a firmy **očakávajú**, že porastú aj zajtra. Inflácia je do veľkej miery sebanapĺňajúce sa proroctvo — keď všetci čakajú, že bude drahšie, podľa toho sa aj správajú, až sa to naozaj stane.
+
+Tento model (odborne sa volá novokeynesiánska Phillipsova krivka) má však aj jedno pravidlo navyše, ktoré sa v učebniciach traduje ako samozrejmosť — a práve preto ho stojí za to overiť pre Francúzsko na reálnych dátach z rokov 2003 – 2025. A výsledok? To, čo infláciu naozaj ženie, model trafil pekne — ale učebnicové pravidlo na dátach **neobstálo**.
+
+## Aké dáta boli k dispozícii
+
+Zobrali sme **verejné francúzske dáta** z troch databáz (OECD, [FRED](https://fred.stlouisfed.org/) a Európska centrálna banka): ako rástli ceny (inflácia), koľko stála firmy výroba (náklady) a v akej kondícii bola ekonomika. Všetko štvrťročné dáta.
+
+Jeden rad je dostupný až od roku 2003, takže celá analýza je pre obdobie **2003 – 2025** (88 štvrťrokov) — na takýto model je to skôr kratší rad. A niektoré veci, ako „skutočné náklady" či „sila dopytu", sa nedajú odmerať priamo, len odhadnúť náhradným, tzv. proxy, ukazovateľom. Každý taký kompromis trochu pohne číslami — na hlavný záver však nemá vplyv.
+
+## Čo sa z nich dalo zistiť
+
+**Ceny ženie budúcnosť, nie minulosť.** Model rozdelí dnešnú infláciu na dve sily: koľko z nej sú *očakávania dopredu* a koľko *zotrvačnosť* (aké boli ceny nedávno). Výsledok je jednoznačný — pohľad dopredu je zhruba **šesťkrát silnejší** než zotrvačnosť. Presne toto je jadro modelu a dáta ho potvrdzujú: keď firmy a domácnosti veria, že bude drahšie, tá viera sa do cien premietne.
+
+```{r}
+#| label: fig-drivers
+#| fig-cap: "Čo ženie francúzsku infláciu: sila očakávaní (pozeranie dopredu) verzus sila zotrvačnosti (minulá inflácia)."
+g1 <- ggplot(drivers |> arrange(poradie),
+             aes(x = reorder(faktor, -vaha), y = vaha, fill = typ)) +
+  geom_col(width = 0.6, alpha = 0.9) +
+  geom_text(aes(label = sprintf("%.2f", vaha)),
+            vjust = -0.4, fontface = "bold", size = 4) +
+  scale_fill_manual(values = c("Očakávania" = "#2c7bb6", "Minulosť" = "#c9a27b")) +
+  labs(x = NULL, y = "sila v tvorbe inflácie", fill = NULL) +
+  ylim(0, 1) +
+  theme_minimal(base_size = 12)
+ggplotly(g1, tooltip = c("y")) |> layout(font = list(family = "sans-serif"))
+```
+
+**Číslo, ktoré malo byť 1 — a nie je.** A tu prichádza to učebnicové pravidlo. Podľa neho by mali byť obe sily tak vyvážené, že keď ich **spočítame, vyjde presne 1**. Vo francúzskych dátach ale súčet vyšiel **mierne nad jednotku (≈ 1,04)** — a keď som model *donútila*, aby to bola presne 1, štatistické testy hodnotu 1 jednoznačne zamietli. A nešlo o náhodu jednej metódy — k rovnakému číslu som sa dostala dvoma nezávislými spôsobmi výpočtu. 
+
+```{r}
+#| label: fig-verticalita
+#| fig-cap: "Učebnica hovorí, že súčet oboch síl je presne 1 (prerušovaná čiara). Dva nezávislé výpočty dávajú ≈ 1,04."
+vlong <- bind_rows(
+  verticalita |> transmute(model, zlozka = "budúca inflácia (očakávania)", hodnota = gamma_f),
+  verticalita |> transmute(model, zlozka = "minulá inflácia (zotrvačnosť)", hodnota = gamma_b)
+)
+g2 <- ggplot(vlong, aes(x = model, y = hodnota, fill = zlozka)) +
+  geom_col(width = 0.55, alpha = 0.9) +
+  geom_hline(yintercept = 1, linetype = "dashed", colour = "firebrick", linewidth = 0.8) +
+  annotate("text", x = 0.6, y = 1.02, label = "učebnica: súčet = 1",
+           colour = "firebrick", hjust = 0, size = 3.5) +
+  scale_fill_manual(values = c("budúca inflácia (očakávania)" = "#2c7bb6",
+                               "minulá inflácia (zotrvačnosť)" = "#c9a27b")) +
+  labs(x = NULL, y = "súčet oboch síl", fill = NULL) +
+  theme_minimal(base_size = 12) +
+  theme(axis.text.x = element_text(size = 9))
+ggplotly(g2, tooltip = c("fill", "y")) |> layout(font = list(family = "sans-serif"))
+```
+
+**Prečo náklady hýbu cenami tak málo? Lebo ceny sú sticky=lepkavé.** Zostáva otázka, prečo rast nákladov ženie ceny len slabo. Odpoveď je v tom, ako často firmy vôbec prepisujú cenníky. Z dát vychádza, že v rámci štvrťroka **zhruba 57 % firiem ceny vôbec nemení** — priemerná cena tak „vydrží" asi **2,3 štvrťroka**, kým sa zmení. Keď väčšina cien v každom kvartáli stojí, ani skok v nákladoch sa neprejaví hneď. 
+
+```{r}
+#| label: fig-rigidita
+#| fig-cap: "Ako často firmy menia ceny: zhruba 57 % ich v danom štvrťroku nemení."
+rig <- rigidita |>
+  mutate(stav = factor(stav, levels = c("Mení ceny v danom štvrťroku",
+                                        "Nemení ceny v danom štvrťroku")))
+g3 <- ggplot(rig, aes(x = "firmy", y = podiel, fill = stav)) +
+  geom_col(width = 0.5, alpha = 0.9) +
+  geom_text(aes(label = scales::percent(podiel, accuracy = 1)),
+            position = position_stack(vjust = 0.5),
+            colour = "white", fontface = "bold", size = 4.5) +
+  scale_fill_manual(values = c("Nemení ceny v danom štvrťroku" = "#2c7bb6",
+                               "Mení ceny v danom štvrťroku"   = "#bcbddc")) +
+  scale_y_continuous(labels = scales::percent) +
+  coord_flip() +
+  labs(x = NULL, y = NULL, fill = NULL) +
+  theme_minimal(base_size = 12)
+ggplotly(g3, tooltip = c("fill", "y")) |> layout(font = list(family = "sans-serif"))
+```
+
+## Firemné dáta
+
+**Predpoklad zabudovaný do plánu je testovateľný — nie axióma navždy platná.** „Súčet musí byť presne 1" znie ako fakt z učebnice, no je to len domnienka, ktorú dáta môžu potvrdiť alebo vyvrátiť. Presne také „samozrejmé" predpoklady si nosíme aj do firemných plánov: *„budúci rok bude ako tento plus rast", „vrátivší zákazník sa správa ako nový", „sezónny nárast býva každý rok rovnaký".* Kým ste to na **vlastných** dátach neotestovali, je to domnienka, nie pravidlo.
+
+**Rozložte výsledok na „budúcnosť verzus minulosť verzus príčina".** Najsilnejší nástroj tejto analýzy bol rozklad inflácie na to, koľko z nej ženú *očakávania budúcnosti*, koľko *zotrvačnosť z minulosti* a koľko *reálne náklady*. Podobná otázka: čím sa riadia vaši zákazníci — tým, čo čakajú, že príde, zvykom z minulosti alebo aktuálnou cenou a ponukou? Keď viete, ktorá zložka nesie najväčšiu váhu, viete aj, kde zabrať — či má zmysel investovať do očakávaní (komunikácia, dôvera, predobjednávky) alebo do okamžitých stimulov.
+
+**A ešte jedno:** to, že model niekde zlyhá, neznamená, že je nesprávny. model správne ukázal, že inflácii vládnu očakávania a že ceny sú lepkavé; „pomýlila sa" len v jednom čistom tvrdení — a práve toto odhalené zlyhanie je užitočnejšie než slepá dôvera vo vzorec. Aj firemné pravidlo má cenu vtedy, keď viete, kde presne prestáva platiť.
+
+## Pre zvedavých a technicky zdatných
+
+Celá analýza — GMM odhady dopredu pozerajúcej aj hybridnej NKPC v redukovanej i štrukturálnej forme s J-testami, obmedzené modely a testy dlhodobej vertikality (Wald, LR), a porovnanie s odhadmi metódou nelineárnych najmenších štvorcov (NLS) a maximálnej vierohodnosti (ML, normálne aj t-rozdelenie) — je tímová úloha z ekonometrie (Masarykova univerzita), napísaná v R a s podrobným reportom je na GitHube: [danakozakova/econometrics — 03-nkpc-france](https://github.com/danakozakova/econometrics/tree/main/03-nkpc-france). Metodicky nadväzuje na starší pomerne známy článok Galí & Gertler (1999), *Inflation dynamics: A structural econometric analysis*.
+
+Dáta sú verejné štvrťročné rady pre Francúzsko (2003Q2 – 2025Q1, 88 pozorovaní) z **OECD**, **FRED** a **ECB**: deflátor HDP a CPI, reálne HDP, jednotkové náklady práce, dlhodobá a krátkodobá úroková miera a mzdy. Grafy na tejto stránke počítajú z odvodených súhrnov (odhadnuté koeficienty modelu), nie z celého dátového súboru.
+
+## Ak máte dáta a otázky
+- neváhajte ma kontaktovať. Rada sa na vaše čísla pozriem a poviem, ktoré z vašich „samozrejmých" pravidiel na nich naozaj platia a ktoré sú len prevzatá legenda.
