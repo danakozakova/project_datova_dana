@@ -75,7 +75,7 @@ Na ekonómii učia pomerne priamočiare pravidlo: keď ekonomika spomalí, nezam
 
 ## Aké dáta boli k dispozícii
 
-Použila som dva verejného radu z **[OECD Data Explorer](https://data-explorer.oecd.org)**: štvrťročný reálny HDP (objemový index, sezónne očistený) a štvrťročnú mieru nezamestnanosti, oboje za Švajčiarsko, obdobie 2010Q1 – 2025Q4.
+Použila som dva verejného rady z **[OECD Data Explorer](https://data-explorer.oecd.org)**: štvrťročný reálny HDP (objemový index, sezónne očistený) a štvrťročnú mieru nezamestnanosti, oboje za Švajčiarsko, obdobie 2010Q1 – 2025Q4.
 
 Okunov zákon pracuje s **cyklickou zložkou** a s odchýlkami od dlhodobého trendu. Tá cyklická zložka je práve ten teoretický základný stav. Jeden časový rad je teda rozdelený na dve časti:
 
