@@ -1,6 +1,6 @@
 ---
 title: "Dá sa predpovedať kurz eura?"
-description: "Mesačný kurz EUR/USD za 25 rokov: úroveň je takmer čistá náhoda, no v zmenách sa skrýva drobná stopa — a aj model, čo poráža náhodu, nakoniec povie „skoro nič sa nezmení\"."
+description: "Mesačný kurz EUR/USD za 25 rokov: dá sa uhádnuť, kedy kúpiť doláre a kedy eurá? Nie."
 date: 2026-08-07
 categories: [financie, menový kurz, predikcia, časové rady]
 image: ""
@@ -94,6 +94,7 @@ g3 <- ggplot(por, aes(h, rmse, colour = model, group = model)) +
   geom_line(linewidth = 1) +
   geom_point(size = 2.4) +
   scale_x_continuous(breaks = 1:4) +
+  ylim(0, NA) +
   scale_colour_manual(values = c("Model MA(1)" = "#2c6e8f",
                                  "Naivný odhad (zopakuj poslednú zmenu)" = "#c9772f")) +
   labs(x = "horizont predpovede (mesiace dopredu)",
