@@ -2,7 +2,7 @@
 title: "Dá sa predpovedať kurz eura?"
 description: "Mesačný kurz EUR/USD za 25 rokov: dá sa uhádnuť, kedy kúpiť doláre a kedy eurá? Nie."
 date: 2026-08-07
-categories: [financie, menový kurz, predikcia, časové rady]
+categories: [menový kurz, predikcia, časové rady, verejné dáta, makroekonómia]
 image: ""
 draft: false
 engine: knitr
