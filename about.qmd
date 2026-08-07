@@ -5,7 +5,7 @@ title: "O mne"
 Volám sa Dana. Vyše dvadsať rokov pomáham číslam prehovoriť — a tento web je
 ukážkou toho, **čo všetko sa dá z dát vyčítať**, keď sa na ne pozrie štatistik.
 
-Som **štatistička a učiteľka**. Moje analytické ja pripraví a vymyslí model. Ale nezostane to len komplikované niečo. Moje učiteľské ja vysvetlí polopate, čo tie dáta hovoria, čo nám ukazujú. Viem Vám výstupy vysvetliť ta, že sa na základe týchto výstupov viete rozhodnúť.
+Som **štatistička a učiteľka**. Moje analytické ja pripraví a vymyslí model. Ale nezostanem len pri zložitej matematike/štatistike. Moje učiteľské ja vysvetlí polopate, čo tie dáta hovoria, čo nám ukazujú. Viem Vám výstupy vysvetliť tak, že im porozumiete a na základe týchto výstupov sa viete rozhodnúť.
 
 - **20+ rokov praxe so štatistikou a dátami** — Excel, SPSS, R, Python, SQL.
 - **Učím, vysvetľujem, doučujem** doučujem matematiku, operačnú analýzu, štatistiku a ďalšie predmety

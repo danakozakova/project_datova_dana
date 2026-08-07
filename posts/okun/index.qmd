@@ -11,35 +11,37 @@ execute:
   message: false
 ---
 
-Ekonomická učebnica to podáva ako pravidlo: *keď HDP klesne o pár percent pod svoj potenciál, nezamestnanosť stúpne o toľko-a-toľko.* Volá sa to Okunov zákon a znie to ako fyzikálna konštanta — jedno číslo, ktoré platí vždy a všade. Skúsila som ten „zákon" odhadnúť na slovenských dátach za posledných takmer tridsať rokov a vyšlo mi niekoľko hodnôt: **koeficient nie je jeden. Mení sa podľa toho, ako počítate — a v čase sa vie rozpadnúť úplne.**
+Ekonomická učebnica to podáva ako pravidlo: *keď HDP klesne o pár percent pod svoj potenciál, nezamestnanosť stúpne o toľko-a-toľko.* Volá sa to Okunov zákon a znie to ako fyzikálna konštanta — jedno číslo, ktoré platí vždy a všade. Skúsila som ten „zákon" odhadnúť na slovenských dátach za posledných takmer tridsať rokov a vyšlo mi niekoľko hodnôt tohto parametra. Hodnota sa mení podľa metódy a obdobia.
 
 ## Aké dáta boli k dispozícii
 
-Pracovala som so štvrťročným **reálnym HDP** a **mierou nezamestnanosti Slovenska** z databázy [FRED](https://fred.stlouisfed.org) (Federal Reserve Economic Data), za obdobie 1998 Q1 – 2025 Q4, teda 112 štvrťrokov. To okno pokrýva dve veľké otrasy: finančnú krízu 2008–2009 aj pandémiu COVID-19 v roku 2020.
+Pracovala som so štvrťročným **reálnym HDP** a **mierou nezamestnanosti Slovenska** z databázy [FRED](https://fred.stlouisfed.org) (Federal Reserve Economic Data), za obdobie Q1/1998 – Q4/2025. To okno pokrýva dve väčšie neštandardné obdobia: finančnú krízu 2008–2009 aj pandémiu COVID-19.
 
-Poctivo aj to, čo v dátach **nie je**. Okunov zákon nehovorí o samotnom HDP a nezamestnanosti, ale o ich *cyklickej zložke* — o tom, o koľko je ekonomika nad alebo pod svojím „normálom". Ten normál — potenciálny produkt a prirodzená miera nezamestnanosti — sa ale nikde nemeria. Nie je to údaj, ktorý by niekto zbieral; je to konštrukt, ktorý si musíte z dát vypočítať. A práve tu sa začína problém: podľa toho, akou metódou trend od cyklu oddelíte, dostanete iné „medzery" — a iný Okunov koeficient. Druhá poznámka na okraj: sezónne očistený rad HDP bol vo FREDe dostupný len do roku 2020, takže som pracovala so sezónne neočistenou sériou a očistenie riešila sama.
+Okunov zákon nehovorí o samotnom HDP a nezamestnanosti, ale o ich *cyklickej zložke* — o tom, o koľko je ekonomika nad alebo pod svojím „normálom". Ten normál — potenciálny produkt a prirodzená miera nezamestnanosti — sú však teoretickými hodnotami. Nie sú to údaje, ktorý by niekto zbieral; je to konštrukt, ktorý treba z dát vypočítať. A práve tu sa začína problém: podľa toho, akou metódou trend od cyklu oddelíte, dostanete iné „medzery" — a tým iný Okunov koeficient. 
 
-## Čo sa z nich dalo zistiť
+Centrálne banky a finančné inštitúcie majú na to modely, ako tieto teoretické hodnoty vypočítať. Avšak sezónne očistený rad HDP bol vo FREDe dostupný len do roku 2020, takže som pracovala so sezónne neočistenou sériou a očistenie, teda tú teoretickú hodnotu, som si odvodila sama.
 
-**Rast výstupu, klesajúca nezamestnanosť.** Za tie tri dekády slovenská ekonomika zhruba zdvojnásobila reálny výstup a nezamestnanosť klesla z takmer 20 % na 6 %. Obe krivky ale nejdú rovno — vidno na nich krízu 2008 aj covidový prepad 2020. Práve tieto výkyvy okolo trendu sú to, čo Okunov zákon skúma.
+## Čo som zistila z dát
 
-![Reálny HDP a miera nezamestnanosti Slovenska, 1998–2025. Tenká čiara je štvrťročný údaj, hrubá je vyhladený trend (HP filter).](images/prehlad.png)
+**Rast výstupu, klesajúca nezamestnanosť.** Za tie tri dekády slovenská ekonomika zhruba zdvojnásobila reálny výstup a nezamestnanosť klesla z takmer 20 % na 6 %. Obe krivky ale nejdú priamočiaro nahor — vidno na nich krízu 2008 aj covidový prepad 2020.
 
-**Toto je Okunov zákon.** Keď proti sebe vynesiem výstupnú medzeru (o koľko % je HDP nad/pod potenciálom) a medzeru nezamestnanosti (o koľko p.b. je nad/pod prirodzenou úrovňou), dostanem klesajúci mrak bodov: keď ekonomika beží nad potenciál, nezamestnanosť je pod svojím normálom, a naopak. Sklon tej priamky **je** Okunov koeficient. Pri tomto spôsobe výpočtu vyšiel **α = −0,23** — pri raste HDP o 1 % nad potenciál klesne nezamestnanosť zhruba o 0,23 p.b. Štatisticky významný, pekný, čitateľný výsledok.
+![Reálny HDP a miera nezamestnanosti Slovenska, 1998–2025. Štvrťročné údaje + vyhladený trend (HP filter).](images/prehlad.png)
 
-![Okunov vzťah pre Slovensko, cyklické zložky oddelené HP filtrom. Každý bod je jeden štvrťrok.](images/okun-zakon.png)
+**Okunov zákon.** Keď proti sebe vynesieme výstupnú medzeru (o koľko % je HDP nad/pod potenciálom) a medzeru nezamestnanosti (o koľko p.b. je nad/pod prirodzenou úrovňou), dostaneme klesajúci mrak bodov: keď ekonomika beží nad potenciál, nezamestnanosť je pod svojím normálom, a naopak. Sklon tej priamky **je** Okunov koeficient. Pri tomto spôsobe výpočtu vyšiel **α = −0,23** — pri raste HDP o 1 % nad potenciál klesne nezamestnanosť zhruba o 0,23 p.b. Štatisticky významný, pekný, čitateľný výsledok.
 
-**Tie isté dáta, tri koeficienty.** Až sem by to bol učebnicový príbeh. Lenže „−0,23" platí len preto, že som trend oddelila práve HP filtrom. Skúsila som to isté ešte dvomi bežnými metódami — polynomiálnym trendom a polynomiálnym trendom so štrukturálnym zlomom. Tie isté dáta, to isté obdobie, tá istá krajina — a tri rôzne odpovede: **−0,23, −0,37 a prakticky nula.** Posledná metóda „ukryla" cyklus do samotného trendu, takže na Okunov vzťah nezostalo nič. Nie je to chyba jednej z metód; je to ukážka, že koeficient nie je vlastnosť ekonomiky, ale čiastočne aj vlastnosť vášho výpočtu.
+![Okunov vzťah pre Slovensko, cyklické zložky oddelené HP filtrom. bod = štvrťrok](images/okun-zakon.png)
 
-![Tri metódy dekompozície na tých istých dátach dávajú tri rôzne Okunove koeficienty. Červená priamka je odhadnutý vzťah.](images/tri-metody.png)
+**Tie isté dáta, tri koeficienty.** Až sem by to bol učebnicový príbeh. Lenže „−0,23" platí len preto, že som trend oddelila práve HP filtrom. Skúsila som to isté ešte dvomi bežnými metódami — polynomiálnym trendom a polynomiálnym trendom so štrukturálnym zlomom. A vyšli tri rôzne odpovede: **−0,23, −0,37 a -0,01.** Posledná metóda „ukryla" cyklus do samotného trendu, takže pre Okunov vzťah nezostalo nič. Nie je to chyba jednej z metód; je to ukážka, že koeficient nie je vlastnosť ekonomiky, ale čiastočne aj vlastnosť použitého výpočtu.
 
-**A potom prišiel COVID.** Aby toho nebolo málo, koeficient nie je stabilný ani v čase. Rozdelila som obdobie na „pred covidom" a „covid a po ňom" a vzťah, ktorý dovtedy pekne fungoval (α ≈ −0,26), sa po roku 2020 **splošťuje k nule**. Počas pandémie výstup prudko klesol, ale nezamestnanosť za ním nešla — udržali ju vládne schémy na podporu zamestnanosti (kurzarbeit). Zaujímavé je, že finančná kríza 2008 vzťah nezlomila (testy žiadnu zmenu koeficientu nenašli) — trh práce vtedy reagoval ako inokedy. COVID bol iný: puto medzi HDP a nezamestnanosťou na čas jednoducho prestalo platiť.
+![Tri metódy dekompozície na tých istých dátach.](images/tri-metody.png)
 
-![Pred covidom mal vzťah jasný sklon (α ≈ −0,26). Body z covidu a po ňom (červené) ležia takmer vodorovne — vzťah sa vytratil.](images/covid-zlom.png)
+**Obdobie COVIDu.** Koeficient nie je stabilný ani v čase. Rozdelila som obdobie na „pred covidom" a „počas covidu a po ňom". Vzťah, ktorý dovtedy pekne fungoval (α ≈ −0,26) sa po roku 2020 **splošťuje k nule**. Počas pandémie výstupná medzera prudko klesla, ale nezamestnanosť sa spolu s ňou nemenila — udržali ju vládne schémy na podporu zamestnanosti ( tzv. kurzarbeit). Zaujímavé je, že finančná kríza 2008 vzťah nezlomila (testy žiadnu zmenu koeficientu nenašli) — trh práce vtedy reagoval ako inokedy. COVID bol iný: puto medzi HDP a nezamestnanosťou na čas jednoducho prestalo platiť. Bolo to de facto vďaka umelému zásahu štátu do pravidel trhovej ekonomiky.
 
-## Rovnaká pasca číha aj vo firemných dátach
+![Pred covidom mal vzťah sklon (α ≈ −0,26). Počas covidu a po ňom — nulový vzťah (vodorovná priamka)](images/covid-zlom.png)
 
-Príbeh nie je o Okunovi. Je o pokušení brať jedno číslo ako konštantu, keď je to v skutočnosti odhad, ktorý závisí od metódy aj od obdobia. A presne to isté pokušenie číha v každej firemnej tabuľke.
+## Pasca jednej konštanty
+
+Príbeh ukazuje ako možno uvažovať o jednom čísle, ktorý sa považuje za konštantu. V skutočnosti je to odhad, ktorý závisí od metódy aj od obdobia. A presne to isté pokušenie číha v každej firemnej tabuľke.
 
 **„Univerzálne pomery", ktoré nie sú univerzálne.** Konverzný pomer e-shopu, marža na produkte, sezónny koeficient dopytu, priemerná hodnota objednávky — všetko to sú čísla, ktoré radi berieme ako pevné („naša konverzia je 2 %"). Lenže rovnako ako Okunov koeficient sa menia v čase a naprieč segmentmi. Číslo prevzaté z benchmarku alebo z minulého roka môže dnes klamať — treba ho odhadovať na vlastných, aktuálnych dátach.
 
