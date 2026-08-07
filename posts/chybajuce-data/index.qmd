@@ -1,8 +1,8 @@
 ---
-title: "Keď chýbajúce dáta nie sú náhodné"
-description: "Skoro polovica meraní slnečného svitu chýbala. Kľúčové bolo nie koľko chýba, ale prečo — a že to nebola náhoda."
+title: "Ako natrénovať model, keď chýbajúce dáta nie sú náhodné"
+description: "Predpoveď počasia, keď skoro polovica meraní chýbala."
 date: 2026-08-06
-categories: [strojové učenie, chýbajúce dáta, imputácia, predikcia]
+categories: [strojové učenie, chýbajúce dáta, predikcia]
 image: "images/nahlad.png"
 draft: false
 engine: knitr
@@ -35,17 +35,17 @@ km <- kmeans(scale(co[, c("Lat", "Lon")]), centers = 9, nstart = 25)
 co$region <- factor(km$cluster)
 ```
 
-Keď staviate predikčný model, najviac času vás nezožerie samotný model — ale dodávka dát pred ním. V mojom projekte na predikciu dažďa v Austrálii som mala vyše 156 000 denných meraní z 49 staníc a hneď na začiatku problém, ktorý má v praxi skoro každý: **veľa hodnôt jednoducho chýbalo.** Slnečný svit chýbal skoro v polovici riadkov. Lákavé je taký stĺpec buď zahodiť, alebo diery rýchlo „upchať" priemerom — a ísť ďalej. Lenže keď som sa pozrela poriadne, ukázalo sa, že chýbanie **nebolo náhodné**: dalo sa takmer dokonale predpovedať tým, o *ktorú stanicu* ide. A to celé mení, ako sa chýbajúce dáta majú doplniť. (Projekt vznikol ako semestrálna práca zo strojového učenia na Masarykovej univerzite; tu z neho rozprávam tú menej viditeľnú, ale dôležitú časť.)
+Keď staviate predikčný model, najviac času vás nezožerie samotný model — ale získanie, analýza a úprava dát pred ním. V mojom projekte na predikciu dažďa v Austrálii som mala vyše 156 000 denných meraní z 49 staníc a hneď na začiatku problém, ktorý má v praxi skoro každý: **veľa hodnôt jednoducho chýbalo.** Slnečný svit chýbal skoro v polovici riadkov. Lákavé je taký stĺpec buď zahodiť, alebo diery rýchlo „upchať" priemerom — a ísť ďalej. Lenže keď som sa pozrela poriadne, ukázalo sa, že chýbanie **nebolo náhodné**: niektoré stanice nezbierali všetky parametre, zrejme nemali k dispozícii príslušné merače.(Projekt vznikol ako semestrálna práca zo strojového učenia na Masarykovej univerzite.)
 
 ## Aké dáta boli k dispozícii
 
 Dáta sú verejné denné meteorologické pozorovania **Australian Bureau of Meteorology** za roky 2008 – 2017 — **156 000 záznamov, 49 lokalít** naprieč celou Austráliou (v ML komunite známe ako *Rain in Australia*). Pre každý deň a stanicu je tam teplota, vlhkosť, tlak, vietor, oblačnosť, slnečný svit a napokon cieľová premenná: *bude zajtra pršať?*
 
-A poctivo hneď to, čo v dátach **nie je poriadku**. Cieľová premenná je kompletná, ale merania nie. Štyri veličiny chýbajú vo veľkom (slnečný svit, evaporácia, oblačnosť ráno aj poobede), zvyšok len málo. Navyše sa v dátach skrývali aj chybné merania — tlak zapísaný ako ~10 340 hPa (o rád vedľa) či oblačnosť s hodnotou 9, ktorá v škále 0 – 8 neexistuje. Ale hlavný príbeh nie je o chybách; je o tých dierach.
+Cieľová premenná je kompletná, ale merania nie. Štyri veličiny chýbajú veľmi často (slnečný svit, evaporácia, oblačnosť ráno aj poobede), zvyšné premenné chýbajú len výnimočne. Navyše sa v dátach skrývali aj chybné merania — tlak zapísaný ako ~10 340 hPa (o rád vedľa) či oblačnosť s hodnotou 9, ktorá v škále 0 – 8 neexistuje.
 
-## Čo sa z nich dalo zistiť
+## Čo sa z dát dalo zistiť
 
-**Nechýba všetko rovnako.** Väčšine stĺpcov chýba len pár percent hodnôt — s tým sa dá ľahko žiť. Problém sú štyri veličiny, kde chýba **30 až skoro 50 %**: slnečný svit, evaporácia a oblačnosť ráno aj poobede. Práve to sú pritom premenné, ktoré s dažďom súvisia najviac — takže ich nemožno len tak zahodiť.
+**Nechýba všetko rovnako.** Väčšine stĺpcov chýba len pár percent hodnôt — s tým sa dá ľahko žiť. Problém sú štyri veličiny, kde chýba **30 až skoro 50 %**: slnečný svit, evaporácia a oblačnosť ráno aj poobede. Práve to sú pritom premenné, ktoré s dažďom súvisia najviac — takže som zvažovala, čo s nimi.
 
 ```{r}
 #| label: fig-missing
@@ -64,11 +64,11 @@ g1 <- ggplot(m, aes(chyba_pct, premenna, fill = kriticka,
 ggplotly(g1, tooltip = "text") |> layout(font = list(family = "sans-serif"))
 ```
 
-**Diera, ktorá má tvar mapy.** Keď som sa spýtala *kde* tie hodnoty chýbajú, ukázalo sa, že to nie je náhodne roztrúsené po celom datasete. Chýbanie je vlastnosť **stanice**: niektoré stanice slnečný svit merajú prakticky vždy, iné ho nemerajú **vôbec** (senzor tam jednoducho nie je). Zo 49 staníc slnečný svit **vôbec nemeria 19** a spoľahlivo ho meria asi štvrtina; podobne je to s evaporáciou a oblačnosťou. To je učebnicový príklad mechanizmu, ktorému sa hovorí **MAR — chýbanie závislé od iného známeho znaku** (tu od lokality), nie od samotnej nameranej hodnoty.
+Keď som sa zisťovala, *kde* tie hodnoty chýbajú, ukázalo sa, že nie sú náhodne roztrúsené po celom datasete. Chýbanie je vlastnosť **stanice**: niektoré stanice slnečný svit merajú prakticky vždy, iné ho nemerajú **vôbec** (senzor tam jednoducho nie je). Zo 49 staníc slnečný svit **vôbec nemeria 19** a spoľahlivo ho meria asi štvrtina; podobne je to s evaporáciou a oblačnosťou. To je učebnicový príklad mechanizmu, ktorému sa hovorí **MAR — chýbanie závislé od iného známeho znaku**, nie od samotnej nameranej hodnoty.
 
 ```{r}
 #| label: fig-stanice
-#| fig-cap: "Koľko z 49 staníc danú veličinu nemeria takmer vôbec / čiastočne / takmer vždy. Chýbanie je väčšinou „všetko alebo nič\" na úrovni stanice — nie náhodný šum."
+#| fig-cap: "Koľko z 49 staníc danú veličinu nemeria takmer vôbec / čiastočne / takmer vždy."
 buckets <- st |>
   transmute(Location,
             `Slnečný svit`  = sunshine_miss,
@@ -93,11 +93,11 @@ g2 <- ggplot(buckets, aes(n, premenna, fill = kat,
 ggplotly(g2, tooltip = "text") |> layout(font = list(family = "sans-serif"))
 ```
 
-**Preto sa diery nedopĺňajú jedným priemerom.** Keby som každú chýbajúcu hodnotu nahradila celoštátnym priemerom, tropickému Darwinu by som pririekla oblačnosť spriemerovanú s Tasmániou. Ak je ale chýbanie viazané na lokalitu, riešenie je liečiť ho lokalitou: stanice som rozdelila **K-means zhlukovaním podľa súradníc na 9 regiónov** a diery dopĺňala mediánom (číselné) a najčastejšou hodnotou (kategorické) **v rámci regiónu**. Zhluky pekne kopírujú skutočnú geografiu — tropický sever, Viktória, Tasmánia, Západná Austrália, okolie Sydney — takže sused, z ktorého sa hodnota požičia, je naozaj podobný.
+**Preto sa chýbajce hodnoty nedopĺňajú jedným priemerom.** Keby som každú chýbajúcu hodnotu nahradila celoštátnym priemerom, tropickému Darwinu by som pririekla oblačnosť spriemerovanú s Tasmániou. Ak je ale chýbanie viazané na lokalitu, riešenie je v lokalite: stanice som rozdelila **K-means zhlukovaním podľa súradníc na 9 regiónov** a chýbajúce dáta doplnila mediánom (číselné) a najčastejšou hodnotou (kategorické) **v rámci regiónu**. Zhluky pekne kopírujú skutočnú geografiu — tropický sever, Viktória, Tasmánia, Západná Austrália, okolie Sydney — takže sused, z ktorého sa hodnota preberie, je naozaj podobný.
 
 ```{r}
 #| label: fig-regiony
-#| fig-cap: "49 staníc rozdelených K-means zhlukovaním do 9 regiónov podľa zemepisných súradníc. Diery sa dopĺňajú v rámci regiónu, nie celoštátnym priemerom."
+#| fig-cap: "49 staníc rozdelených K-means zhlukovaním do 9 regiónov podľa zemepisných súradníc."
 co2 <- co |> left_join(st |> select(Location, sunshine_miss), by = "Location")
 
 g3 <- ggplot(co2, aes(Lon, Lat, colour = region,
@@ -111,17 +111,17 @@ g3 <- ggplot(co2, aes(Lon, Lat, colour = region,
 ggplotly(g3, tooltip = "text") |> layout(font = list(family = "sans-serif"))
 ```
 
-A ešte jeden krok, ktorý sa oplatí: pre každý doplnený stĺpec som pridala **binárny príznak `chýbalo` (0/1)**. Model tak vidí nielen dosadenú hodnotu, ale aj to, že pôvodne chýbala — a samotný fakt chýbania môže niesť informáciu (stanica bez senzoru slnečného svitu je iný typ miesta).
+A ešte jeden krok, ktorý sa zvykne pri trénovaní používať: pre každý doplnený stĺpec som pridala **binárny príznak `chýbalo` (0/1)**. Model tak vidí nielen dosadenú hodnotu, ale aj to, že pôvodne chýbala — a samotný fakt chýbania môže niesť informáciu.
 
-## Kde sa tento postup dá použiť — aj na firemných dátach
+## Firemné dáta
 
-Chýbajúce dáta nie sú meteorologická špecialita — má ich každý dataset z reálnej prevádzky: prázdne políčka v CRM, nevyplnený príjem v žiadosti o úver, výpadok senzora na linke, nezodpovedané otázky v dotazníku. A rovnaká pasca číha všade. Tri poučenia priamo z tejto analýzy:
+Firemné dáta majú nezriedka prázdne hodnoty. Má ich takmer každý dataset z reálnej prevádzky: prázdne políčka v CRM, nevyplnený príjem v žiadosti o úver, výpadok senzora na linke, nezodpovedané otázky v dotazníku. Tri poučenia z tejto analýzy (pre chýbajúce dáta):
 
-**Prvá otázka nie je „koľko chýba", ale „prečo chýba".** Ak zákazníci nevypĺňajú príjem náhodne, môžete políčko pokojne dorátať. Ak ho ale nevypĺňajú systematicky tí s najnižším alebo najvyšším príjmom, samotné chýbanie nesie informáciu a slepé dosadenie priemeru ju zničí. Rozdiel medzi „náhodne" a „systematicky" rozhodne, čo s dierami vôbec smiete robiť.
+**Prvá otázka nie je „koľko chýba", ale „prečo chýba".** Ak zákazníci nevypĺňajú príjem náhodne, môžete políčko pokojne dorátať. Ak ho ale nevypĺňajú systematicky tí s najnižším alebo najvyšším príjmom, samotné chýbanie nesie informáciu a slepé dosadenie priemeru ju zničí. Rozdiel medzi „náhodne" a „systematicky" rozhodne, čo s chýbajúcimi dátami vôbec smiete robiť.
 
-**Diery dopĺňajte v rámci podobnej skupiny, nie jedným priemerom cez všetko.** Tak ako Darwin nemá dostať oblačnosť spriemerovanú s Tasmániou, chýbajúca tržba pobočky sa má dopĺňať z podobných pobočiek, nie z celofiremného priemeru; chýbajúci údaj o produkte z jeho kategórie, nie zo sortimentu ako celku. Najprv rozumné segmenty (región, pobočka, kategória, sezóna), až potom dopĺňanie v rámci nich.
+**Chýbajúce dáta dopĺňajte v rámci podobnej skupiny, nie jedným priemerom cez všetko.** Tak ako Darwin nemá dostať oblačnosť spriemerovanú s Tasmániou, chýbajúca tržba pobočky sa má dopĺňať z podobných pobočiek, nie z celofiremného priemeru; chýbajúci údaj o produkte z jeho kategórie, nie zo sortimentu ako celku. Najprv rozumné segmenty (región, pobočka, kategória, sezóna), až potom dopĺňanie v rámci nich.
 
-**Fakt, že údaj chýbal, si podržte ako samostatnú informáciu.** Jednoduchý príznak „táto hodnota bola pôvodne prázdna" býva prekvapivo silný signál — zákazník, ktorý nevyplní kontakt, sa správa inak než ten, čo ho vyplní. Keď diery ticho zaplníte, túto stopu nenávratne zmažete.
+**Fakt, že údaj chýbal, si uchovajte ako samostatnú informáciu.** Jednoduchý príznak „táto hodnota bola pôvodne prázdna" býva prekvapivo silný signál — zákazník, ktorý nevyplní kontakt, sa správa inak než ten, čo ho vyplní. Keď chýbajúce dáta ticho zaplníte, túto stopu nenávratne zmažete.
 
 ## Pre zvedavých a technicky zdatných
 
