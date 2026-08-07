@@ -1,7 +1,7 @@
 ---
 title: "Dá sa predpovedať kurz eura?"
 description: "Mesačný kurz EUR/USD za 25 rokov: úroveň je takmer čistá náhoda, no v zmenách sa skrýva drobná stopa — a aj model, čo poráža náhodu, nakoniec povie „skoro nič sa nezmení\"."
-date: 2026-08-06
+date: 2026-08-07
 categories: [financie, menový kurz, predikcia, časové rady]
 image: ""
 draft: false
