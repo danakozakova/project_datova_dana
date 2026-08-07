@@ -3,7 +3,7 @@ title: "Model s 94 % presnosťou, ktorý nepredikuje nič rozumné"
 description: "Prečo vysoká presnosť občas zavádza a čo model napriek tomu prezradí."
 date: 2026-08-04
 categories: [zdravie, regresia, logit, diabetes]
-image: ""
+image: "images/nahlad.png"
 draft: false
 engine: knitr
 code-fold: true

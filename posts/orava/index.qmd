@@ -3,7 +3,7 @@ title: "Quo vadis, oravské školstvo?"
 description: "Polovica hornooravských tínedžerov študuje strednú mimo svojho okresu, hovoria verejné dáta."
 date: 2026-07-29
 categories: [regióny, verejné dáta, školstvo]
-image: ""
+image: "images/nahlad.png"
 draft: false
 engine: knitr
 code-fold: true

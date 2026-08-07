@@ -3,7 +3,7 @@ title: "Prečo ceny rastú? Učebnica má na to vzorec — dáta z Francúzska h
 description: "Učebnice tvrdia, že Phillipsova krivka je v dlhom období zvislá — dve sily, čo ženú infláciu, by sa mali spočítať do jednotky. Na francúzskych dátach 2003–2025 to testy zamietajú a ukazujú, čo infláciu naozaj ženie."
 date: 2026-08-05
 categories: [inflácia, ceny, makroekonómia, ekonometria]
-image: ""
+image: "images/nahlad.png"
 draft: false
 engine: knitr
 code-fold: true

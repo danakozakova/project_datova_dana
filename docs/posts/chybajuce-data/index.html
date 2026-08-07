@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="sk" xml:lang="sk"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dátová Dana">
+<meta name="description" content="Skoro polovica meraní slnečného svitu chýbala. Kľúčové bolo nie koľko chýba, ale prečo — a že to nebola náhoda.">
+
+<title>Keď chýbajúce dáta nie sú náhodné – Dátová Dana</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../favicon.ico" rel="icon">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Žiadne výsledky",
+    "search-matching-documents-text": "zhodné dokumenty",
+    "search-copy-link-title": "Skopírovať odkaz pre vyhľadávanie",
+    "search-hide-matches-text": "Skryť ďalšie výsledky",
+    "search-more-match-text": "ďalší výsledok v tomto dokumente",
+    "search-more-matches-text": "ďalších výsledkov v tomto dokumente",
+    "search-clear-button-title": "Vymazať",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Zrušiť",
+    "search-submit-button-title": "Odoslať",
+    "search-label": "Hľadať"
+  }
+}</script>
+<link href="../../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+
+<script src="../../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<script src="../../site_libs/plotly-binding-4.12.1/plotly.js"></script>
+
+<script src="../../site_libs/typedarray-0.1/typedarray.min.js"></script>
+
+<script src="../../site_libs/jquery-3.5.1/jquery.min.js"></script>
+
+<link href="../../site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+
+<script src="../../site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+
+<link href="../../site_libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet">
+
+<script src="../../site_libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
+
+
+
+<meta property="og:title" content="Keď chýbajúce dáta nie sú náhodné – Dátová Dana">
+<meta property="og:description" content="Skoro polovica meraní slnečného svitu chýbala. Kľúčové bolo nie koľko chýba, ale prečo — a že to nebola náhoda.">
+<meta property="og:image" content="https://datovadana.sk/posts/chybajuce-data/images/nahlad.png">
+<meta property="og:site_name" content="Dátová Dana">
+<meta property="og:image:height" content="622">
+<meta property="og:image:width" content="1188">
+<meta name="twitter:title" content="Keď chýbajúce dáta nie sú náhodné – Dátová Dana">
+<meta name="twitter:description" content="Skoro polovica meraní slnečného svitu chýbala. Kľúčové bolo nie koľko chýba, ale prečo — a že to nebola náhoda.">
+<meta name="twitter:image" content="https://datovadana.sk/posts/chybajuce-data/images/nahlad.png">
+<meta name="twitter:image-height" content="622">
+<meta name="twitter:image-width" content="1188">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Dátová Dana</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Hľadať"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Prepnúť navigáciu" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Domov</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../pribehy.html"> 
+<span class="menu-text">Príbehy</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">O mne</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/danakozakova"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Keď chýbajúce dáta nie sú náhodné</h1>
+                  <div>
+        <div class="description">
+          Skoro polovica meraní slnečného svitu chýbala. Kľúčové bolo nie koľko chýba, ale prečo — a že to nebola náhoda.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">strojové učenie</div>
+                <div class="quarto-category">chýbajúce dáta</div>
+                <div class="quarto-category">imputácia</div>
+                <div class="quarto-category">predikcia</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Autor</div>
+      <div class="quarto-title-meta-contents">
+               <p>Dátová Dana </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Publikované</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">6. augusta 2026</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Na tejto stránke</h2>
+   
+  <ul>
+  <li><a href="#aké-dáta-boli-k-dispozícii" id="toc-aké-dáta-boli-k-dispozícii" class="nav-link active" data-scroll-target="#aké-dáta-boli-k-dispozícii">Aké dáta boli k dispozícii</a></li>
+  <li><a href="#čo-sa-z-nich-dalo-zistiť" id="toc-čo-sa-z-nich-dalo-zistiť" class="nav-link" data-scroll-target="#čo-sa-z-nich-dalo-zistiť">Čo sa z nich dalo zistiť</a></li>
+  <li><a href="#kde-sa-tento-postup-dá-použiť-aj-na-firemných-dátach" id="toc-kde-sa-tento-postup-dá-použiť-aj-na-firemných-dátach" class="nav-link" data-scroll-target="#kde-sa-tento-postup-dá-použiť-aj-na-firemných-dátach">Kde sa tento postup dá použiť — aj na firemných dátach</a></li>
+  <li><a href="#pre-zvedavých-a-technicky-zdatných" id="toc-pre-zvedavých-a-technicky-zdatných" class="nav-link" data-scroll-target="#pre-zvedavých-a-technicky-zdatných">Pre zvedavých a technicky zdatných</a></li>
+  <li><a href="#ak-máte-dáta-a-otázky" id="toc-ak-máte-dáta-a-otázky" class="nav-link" data-scroll-target="#ak-máte-dáta-a-otázky">Ak máte dáta a otázky</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<p>Keď staviate predikčný model, najviac času vás nezožerie samotný model — ale dodávka dát pred ním. V mojom projekte na predikciu dažďa v Austrálii som mala vyše 156 000 denných meraní z 49 staníc a hneď na začiatku problém, ktorý má v praxi skoro každý: <strong>veľa hodnôt jednoducho chýbalo.</strong> Slnečný svit chýbal skoro v polovici riadkov. Lákavé je taký stĺpec buď zahodiť, alebo diery rýchlo „upchať” priemerom — a ísť ďalej. Lenže keď som sa pozrela poriadne, ukázalo sa, že chýbanie <strong>nebolo náhodné</strong>: dalo sa takmer dokonale predpovedať tým, o <em>ktorú stanicu</em> ide. A to celé mení, ako sa chýbajúce dáta majú doplniť. (Projekt vznikol ako semestrálna práca zo strojového učenia na Masarykovej univerzite; tu z neho rozprávam tú menej viditeľnú, ale dôležitú časť.)</p>
+<section id="aké-dáta-boli-k-dispozícii" class="level2">
+<h2 class="anchored" data-anchor-id="aké-dáta-boli-k-dispozícii">Aké dáta boli k dispozícii</h2>
+<p>Dáta sú verejné denné meteorologické pozorovania <strong>Australian Bureau of Meteorology</strong> za roky 2008 – 2017 — <strong>156 000 záznamov, 49 lokalít</strong> naprieč celou Austráliou (v ML komunite známe ako <em>Rain in Australia</em>). Pre každý deň a stanicu je tam teplota, vlhkosť, tlak, vietor, oblačnosť, slnečný svit a napokon cieľová premenná: <em>bude zajtra pršať?</em></p>
+<p>A poctivo hneď to, čo v dátach <strong>nie je poriadku</strong>. Cieľová premenná je kompletná, ale merania nie. Štyri veličiny chýbajú vo veľkom (slnečný svit, evaporácia, oblačnosť ráno aj poobede), zvyšok len málo. Navyše sa v dátach skrývali aj chybné merania — tlak zapísaný ako ~10 340 hPa (o rád vedľa) či oblačnosť s hodnotou 9, ktorá v škále 0 – 8 neexistuje. Ale hlavný príbeh nie je o chybách; je o tých dierach.</p>
+</section>
+<section id="čo-sa-z-nich-dalo-zistiť" class="level2">
+<h2 class="anchored" data-anchor-id="čo-sa-z-nich-dalo-zistiť">Čo sa z nich dalo zistiť</h2>
+<p><strong>Nechýba všetko rovnako.</strong> Väčšine stĺpcov chýba len pár percent hodnôt — s tým sa dá ľahko žiť. Problém sú štyri veličiny, kde chýba <strong>30 až skoro 50 %</strong>: slnečný svit, evaporácia a oblačnosť ráno aj poobede. Práve to sú pritom premenné, ktoré s dažďom súvisia najviac — takže ich nemožno len tak zahodiť.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Zobraziť kód</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> miss <span class="sc">|&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(chyba_pct <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">kriticka =</span> chyba_pct <span class="sc">&gt;=</span> <span class="dv">30</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">premenna =</span> <span class="fu">factor</span>(premenna, <span class="at">levels =</span> <span class="fu">rev</span>(premenna)))</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(m, <span class="fu">aes</span>(chyba_pct, premenna, <span class="at">fill =</span> kriticka,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">text =</span> <span class="fu">paste0</span>(premenna, <span class="st">": "</span>, <span class="fu">sk</span>(chyba_pct, <span class="dv">1</span>), <span class="st">" %"</span>))) <span class="sc">+</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.75</span>) <span class="sc">+</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">`</span><span class="at">FALSE</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"grey72"</span>, <span class="st">`</span><span class="at">TRUE</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"salmon"</span>), <span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"podiel chýbajúcich hodnôt (%)"</span>, <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(g1, <span class="at">tooltip =</span> <span class="st">"text"</span>) <span class="sc">|&gt;</span> <span class="fu">layout</span>(<span class="at">font =</span> <span class="fu">list</span>(<span class="at">family =</span> <span class="st">"sans-serif"</span>))</span></code><button title="Kopírovať do schránky" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-missing" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-missing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-9865c08def308a9b1136" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-9865c08def308a9b1136">{"x":{"data":[{"orientation":"v","width":[9.8000000000000007,9.8000000000000007,7,6.5999999999999996,6.5,2.7000000000000002,2.6000000000000001,1.8999999999999999,1.8999999999999999,1.2,1,1,1,0.59999999999999998,0.40000000000000002,0.20000000000000001],"base":[15.625,14.625,13.625,12.625,11.625,10.625,9.625,8.625,7.625,6.625,5.625,4.625,3.625,2.625,1.625,0.625],"x":[4.9000000000000004,4.9000000000000004,3.5,3.2999999999999998,3.25,1.3500000000000001,1.3,0.94999999999999996,0.94999999999999996,0.59999999999999998,0.5,0.5,0.5,0.29999999999999999,0.20000000000000001,0.10000000000000001],"y":[0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75],"text":["Pressure3pm: 9,8 %","Pressure9am: 9,8 %","WindDir9am: 7,0 %","WindGustDir: 6,6 %","WindGustSpeed: 6,5 %","WindDir3pm: 2,7 %","Humidity3pm: 2,6 %","WindSpeed3pm: 1,9 %","Temp3pm: 1,9 %","Humidity9am: 1,2 %","RainToday: 1,0 %","WindSpeed9am: 1,0 %","Rainfall: 1,0 %","Temp9am: 0,6 %","TempMin: 0,4 %","TempMax: 0,2 %"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(184,184,184,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[47.700000000000003,42.799999999999997,40.100000000000001,37.700000000000003],"base":[19.625,18.625,17.625,16.625],"x":[23.850000000000001,21.399999999999999,20.050000000000001,18.850000000000001],"y":[0.75,0.75,0.75,0.75],"text":["Sunshine: 47,7 %","Evaporation: 42,8 %","Cloud3pm: 40,1 %","Cloud9am: 37,7 %"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(250,128,114,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":23.305936073059364,"r":7.3059360730593621,"b":37.260273972602747,"l":86.940639269406418},"paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"sans-serif","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-2.3850000000000002,50.085000000000001],"tickmode":"array","ticktext":["0","10","20","30","40","50"],"tickvals":[0,10,20,29.999999999999996,40,50],"categoryorder":"array","categoryarray":["0","10","20","30","40","50"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"podiel chýbajúcich hodnôt (%)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,20.600000000000001],"tickmode":"array","ticktext":["TempMax","TempMin","Temp9am","Rainfall","WindSpeed9am","RainToday","Humidity9am","Temp3pm","WindSpeed3pm","Humidity3pm","WindDir3pm","WindGustSpeed","WindGustDir","WindDir9am","Pressure9am","Pressure3pm","Cloud9am","Cloud3pm","Evaporation","Sunshine"],"tickvals":[1,2,3,4.0000000000000009,5,6.0000000000000009,7,8,9,10,11,12.000000000000002,13,14.000000000000002,15,16,17,18,19,20],"categoryorder":"array","categoryarray":["TempMax","TempMin","Temp9am","Rainfall","WindSpeed9am","RainToday","Humidity9am","Temp3pm","WindSpeed3pm","Humidity3pm","WindDir3pm","WindGustSpeed","WindGustDir","WindDir9am","Pressure9am","Pressure3pm","Cloud9am","Cloud3pm","Evaporation","Sunshine"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[],"showlegend":false,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"6320fac789":{"x":{},"y":{},"fill":{},"text":{},"type":"bar"}},"cur_data":"6320fac789","visdat":{"6320fac789":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-missing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Obrázok&nbsp;1: Podiel chýbajúcich hodnôt podľa premennej. Štyri kritické (červené) chýbajú v 30–48 % riadkov; zvyšok je takmer kompletný.
+</figcaption>
+</figure>
+</div>
+</div>
+<p><strong>Diera, ktorá má tvar mapy.</strong> Keď som sa spýtala <em>kde</em> tie hodnoty chýbajú, ukázalo sa, že to nie je náhodne roztrúsené po celom datasete. Chýbanie je vlastnosť <strong>stanice</strong>: niektoré stanice slnečný svit merajú prakticky vždy, iné ho nemerajú <strong>vôbec</strong> (senzor tam jednoducho nie je). Zo 49 staníc slnečný svit <strong>vôbec nemeria 19</strong> a spoľahlivo ho meria asi štvrtina; podobne je to s evaporáciou a oblačnosťou. To je učebnicový príklad mechanizmu, ktorému sa hovorí <strong>MAR — chýbanie závislé od iného známeho znaku</strong> (tu od lokality), nie od samotnej nameranej hodnoty.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Zobraziť kód</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>buckets <span class="ot">&lt;-</span> st <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(Location,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">Slnečný svit</span><span class="st">`</span>  <span class="ot">=</span> sunshine_miss,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">Evaporácia</span><span class="st">`</span>    <span class="ot">=</span> evap_miss,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">Oblačnosť 3pm</span><span class="st">`</span> <span class="ot">=</span> cloud_miss) <span class="sc">|&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>Location, <span class="at">names_to =</span> <span class="st">"premenna"</span>, <span class="at">values_to =</span> <span class="st">"miss"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">kat =</span> <span class="fu">case_when</span>(miss <span class="sc">&gt;=</span> <span class="dv">95</span> <span class="sc">~</span> <span class="st">"nemeria takmer vôbec"</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                         miss <span class="sc">&lt;=</span> <span class="dv">5</span>  <span class="sc">~</span> <span class="st">"meria takmer vždy"</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                         <span class="cn">TRUE</span>       <span class="sc">~</span> <span class="st">"čiastočne"</span>),</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">kat =</span> <span class="fu">factor</span>(kat, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"meria takmer vždy"</span>, <span class="st">"čiastočne"</span>, <span class="st">"nemeria takmer vôbec"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(premenna, kat)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(buckets, <span class="fu">aes</span>(n, premenna, <span class="at">fill =</span> kat,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>                          <span class="at">text =</span> <span class="fu">paste0</span>(kat, <span class="st">": "</span>, n, <span class="st">" staníc"</span>))) <span class="sc">+</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"meria takmer vždy"</span>    <span class="ot">=</span> <span class="st">"#7ba7c9"</span>,</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"čiastočne"</span>            <span class="ot">=</span> <span class="st">"grey75"</span>,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"nemeria takmer vôbec"</span> <span class="ot">=</span> <span class="st">"salmon"</span>),</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>                    <span class="at">name =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"počet staníc (z 49)"</span>, <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(g2, <span class="at">tooltip =</span> <span class="st">"text"</span>) <span class="sc">|&gt;</span> <span class="fu">layout</span>(<span class="at">font =</span> <span class="fu">list</span>(<span class="at">family =</span> <span class="st">"sans-serif"</span>))</span></code><button title="Kopírovať do schránky" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-stanice" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-stanice-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-e1f9a92393cebc46701a" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-e1f9a92393cebc46701a">{"x":{"data":[{"orientation":"v","width":[14,10,13],"base":[0.65000000000000002,1.6499999999999999,2.6499999999999999],"x":[42,44,42.5],"y":[0.70000000000000007,0.70000000000000018,0.70000000000000018],"text":["meria takmer vždy: 14 staníc","meria takmer vždy: 10 staníc","meria takmer vždy: 13 staníc"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(123,167,201,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"meria takmer vždy","legendgroup":"meria takmer vždy","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[18,27,17],"base":[0.65000000000000002,1.6499999999999999,2.6499999999999999],"x":[26,25.5,27.5],"y":[0.70000000000000007,0.70000000000000018,0.70000000000000018],"text":["čiastočne: 18 staníc","čiastočne: 27 staníc","čiastočne: 17 staníc"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(191,191,191,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"čiastočne","legendgroup":"čiastočne","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[17,12,19],"base":[0.65000000000000002,1.6499999999999999,2.6499999999999999],"x":[8.5,6,9.5],"y":[0.70000000000000007,0.70000000000000018,0.70000000000000018],"text":["nemeria takmer vôbec: 17 staníc","nemeria takmer vôbec: 12 staníc","nemeria takmer vôbec: 19 staníc"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(250,128,114,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"nemeria takmer vôbec","legendgroup":"nemeria takmer vôbec","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":23.305936073059364,"r":7.3059360730593621,"b":37.260273972602747,"l":86.940639269406418},"paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"sans-serif","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-2.4500000000000002,51.450000000000003],"tickmode":"array","ticktext":["0","10","20","30","40","50"],"tickvals":[0,10,20,30.000000000000004,40,50],"categoryorder":"array","categoryarray":["0","10","20","30","40","50"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"počet staníc (z 49)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,3.6000000000000001],"tickmode":"array","ticktext":["Evaporácia","Oblačnosť 3pm","Slnečný svit"],"tickvals":[1,2,3],"categoryorder":"array","categoryarray":["Evaporácia","Oblačnosť 3pm","Slnečný svit"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"632057d1425":{"x":{},"y":{},"fill":{},"text":{},"type":"bar"}},"cur_data":"632057d1425","visdat":{"632057d1425":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stanice-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Obrázok&nbsp;2: Koľko z 49 staníc danú veličinu nemeria takmer vôbec / čiastočne / takmer vždy. Chýbanie je väčšinou „všetko alebo nič” na úrovni stanice — nie náhodný šum.
+</figcaption>
+</figure>
+</div>
+</div>
+<p><strong>Preto sa diery nedopĺňajú jedným priemerom.</strong> Keby som každú chýbajúcu hodnotu nahradila celoštátnym priemerom, tropickému Darwinu by som pririekla oblačnosť spriemerovanú s Tasmániou. Ak je ale chýbanie viazané na lokalitu, riešenie je liečiť ho lokalitou: stanice som rozdelila <strong>K-means zhlukovaním podľa súradníc na 9 regiónov</strong> a diery dopĺňala mediánom (číselné) a najčastejšou hodnotou (kategorické) <strong>v rámci regiónu</strong>. Zhluky pekne kopírujú skutočnú geografiu — tropický sever, Viktória, Tasmánia, Západná Austrália, okolie Sydney — takže sused, z ktorého sa hodnota požičia, je naozaj podobný.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Zobraziť kód</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>co2 <span class="ot">&lt;-</span> co <span class="sc">|&gt;</span> <span class="fu">left_join</span>(st <span class="sc">|&gt;</span> <span class="fu">select</span>(Location, sunshine_miss), <span class="at">by =</span> <span class="st">"Location"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>g3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(co2, <span class="fu">aes</span>(Lon, Lat, <span class="at">colour =</span> region,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">text =</span> <span class="fu">paste0</span>(Location,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">"</span><span class="sc">\n</span><span class="st">región "</span>, region,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">"</span><span class="sc">\n</span><span class="st">slnečný svit chýba: "</span>, <span class="fu">sk</span>(sunshine_miss), <span class="st">" %"</span>))) <span class="sc">+</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.6</span>, <span class="at">alpha =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_quickmap</span>() <span class="sc">+</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"zemepisná dĺžka"</span>, <span class="at">y =</span> <span class="st">"zemepisná šírka"</span>, <span class="at">colour =</span> <span class="st">"región"</span>) <span class="sc">+</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(g3, <span class="at">tooltip =</span> <span class="st">"text"</span>) <span class="sc">|&gt;</span> <span class="fu">layout</span>(<span class="at">font =</span> <span class="fu">list</span>(<span class="at">family =</span> <span class="st">"sans-serif"</span>))</span></code><button title="Kopírovať do schránky" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-regiony" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-regiony-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-5d84559371f9a88adb25" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-5d84559371f9a88adb25">{"x":{"data":[{"x":[153.03,153.12,153.40000000000001,149.84,167.94999999999999],"y":[-27.469999999999999,-30.300000000000001,-28.02,-29.460000000000001,-29.039999999999999],"text":["Brisbane<br />región 1<br />slnečný svit chýba: 1 %","CoffsHarbour<br />región 1<br />slnečný svit chýba: 49 %","GoldCoast<br />región 1<br />slnečný svit chýba: 100 %","Moree<br />región 1<br />slnečný svit chýba: 28 %","NorfolkIsland<br />región 1<br />slnečný svit chýba: 13 %"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":0.90000000000000002,"size":9.8267716535433092,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"1","legendgroup":"1","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[146.91999999999999,143.86000000000001,144.28,141.28,144.96000000000001,144.84,140.78,141.65000000000001,141.59999999999999,147.06999999999999,145.08000000000001],"y":[-36.079999999999998,-37.560000000000002,-36.759999999999998,-37.920000000000002,-37.810000000000002,-37.670000000000002,-37.829999999999998,-36.329999999999998,-38.350000000000001,-38.100000000000001,-37.710000000000001],"text":["Albury<br />región 2<br />slnečný svit chýba: 100 %","Ballarat<br />región 2<br />slnečný svit chýba: 100 %","Bendigo<br />región 2<br />slnečný svit chýba: 100 %","Dartmoor<br />región 2<br />slnečný svit chýba: 15 %","Melbourne<br />región 2<br />slnečný svit chýba: 0 %","MelbourneAirport<br />región 2<br />slnečný svit chýba: 0 %","MountGambier<br />región 2<br />slnečný svit chýba: 15 %","Nhil<br />región 2<br />slnečný svit chýba: 100 %","Portland<br />región 2<br />slnečný svit chýba: 15 %","Sale<br />región 2<br />slnečný svit chýba: 39 %","Watsonia<br />región 2<br />slnečný svit chýba: 0 %"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(211,146,0,1)","opacity":0.90000000000000002,"size":9.8267716535433092,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(211,146,0,1)"}},"hoveron":"points","name":"2","legendgroup":"2","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[150.74000000000001,149.13,145.83000000000001,148.77000000000001,151.78,151.56999999999999,150.69,150.75,151.21000000000001,151.18000000000001,149.09,147.37,151.84,150.88999999999999],"y":[-33.880000000000003,-35.280000000000001,-31.5,-35.530000000000001,-32.93,-33.280000000000001,-33.75,-33.600000000000001,-33.869999999999997,-33.950000000000003,-35.420000000000002,-35.109999999999999,-32.789999999999999,-34.420000000000002],"text":["BadgerysCreek<br />región 3<br />slnečný svit chýba: 100 %","Canberra<br />región 3<br />slnečný svit chýba: 56 %","Cobar<br />región 3<br />slnečný svit chýba: 81 %","MountGinini<br />región 3<br />slnečný svit chýba: 100 %","Newcastle<br />región 3<br />slnečný svit chýba: 100 %","NorahHead<br />región 3<br />slnečný svit chýba: 100 %","Penrith<br />región 3<br />slnečný svit chýba: 100 %","Richmond<br />región 3<br />slnečný svit chýba: 100 %","Sydney<br />región 3<br />slnečný svit chýba: 0 %","SydneyAirport<br />región 3<br />slnečný svit chýba: 0 %","Tuggeranong<br />región 3<br />slnečný svit chýba: 100 %","WaggaWagga<br />región 3<br />slnečný svit chýba: 14 %","Williamtown<br />región 3<br />slnečný svit chýba: 47 %","Wollongong<br />región 3<br />slnečný svit chýba: 100 %"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(147,170,0,1)","opacity":0.90000000000000002,"size":9.8267716535433092,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(147,170,0,1)"}},"hoveron":"points","name":"3","legendgroup":"3","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[117.88,116.02,115.86,115.98,121.64,116.73,115.09999999999999],"y":[-35.020000000000003,-31.670000000000002,-31.949999999999999,-31.940000000000001,-32.979999999999997,-34.979999999999997,-34.030000000000001],"text":["Albany<br />región 4<br />slnečný svit chýba: 17 %","PearceRAAF<br />región 4<br />slnečný svit chýba: 0 %","Perth<br />región 4<br />slnečný svit chýba: 0 %","PerthAirport<br />región 4<br />slnečný svit chýba: 0 %","SalmonGums<br />región 4<br />slnečný svit chýba: 100 %","Walpole<br />región 4<br />slnečný svit chýba: 100 %","Witchcliffe<br />región 4<br />slnečný svit chýba: 100 %"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":0.90000000000000002,"size":9.8267716535433092,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"4","legendgroup":"4","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[147.33000000000001,147.16],"y":[-42.880000000000003,-41.43],"text":["Hobart<br />región 5<br />slnečný svit chýba: 0 %","Launceston<br />región 5<br />slnečný svit chýba: 100 %"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,193,159,1)","opacity":0.90000000000000002,"size":9.8267716535433092,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,193,159,1)"}},"hoveron":"points","name":"5","legendgroup":"5","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[133.88,131.03999999999999],"y":[-23.699999999999999,-25.34],"text":["AliceSprings<br />región 6<br />slnečný svit chýba: 17 %","Uluru<br />región 6<br />slnečný svit chýba: 100 %"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,185,227,1)","opacity":0.90000000000000002,"size":9.8267716535433092,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,185,227,1)"}},"hoveron":"points","name":"6","legendgroup":"6","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[130.84,132.25999999999999],"y":[-12.460000000000001,-14.470000000000001],"text":["Darwin<br />región 7<br />slnečný svit chýba: 0 %","Katherine<br />región 7<br />slnečný svit chýba: 100 %"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":0.90000000000000002,"size":9.8267716535433092,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"7","legendgroup":"7","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[145.77000000000001,146.81999999999999],"y":[-16.920000000000002,-19.260000000000002],"text":["Cairns<br />región 8<br />slnečný svit chýba: 14 %","Townsville<br />región 8<br />slnečný svit chýba: 14 %"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(219,114,251,1)","opacity":0.90000000000000002,"size":9.8267716535433092,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(219,114,251,1)"}},"hoveron":"points","name":"8","legendgroup":"8","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[138.59999999999999,142.16,138.99000000000001,136.81999999999999],"y":[-34.93,-34.189999999999998,-34.479999999999997,-31.199999999999999],"text":["Adelaide<br />región 9<br />slnečný svit chýba: 45 %","Mildura<br />región 9<br />slnečný svit chýba: 4 %","Nuriootpa<br />región 9<br />slnečný svit chýba: 5 %","Woomera<br />región 9<br />slnečný svit chýba: 33 %"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(255,97,195,1)","opacity":0.90000000000000002,"size":9.8267716535433092,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(255,97,195,1)"}},"hoveron":"points","name":"9","legendgroup":"9","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":23.305936073059364,"r":7.3059360730593621,"b":37.260273972602747,"l":43.105022831050235},"paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"sans-serif","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[112.4575,170.5925],"tickmode":"array","ticktext":["120","130","140","150","160","170"],"tickvals":[120,130,140,150,160,170],"categoryorder":"array","categoryarray":["120","130","140","150","160","170"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"zemepisná dĺžka","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"scaleanchor":"y","scaleratio":1,"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-44.401000000000003,-10.939],"tickmode":"array","ticktext":["-40","-30","-20"],"tickvals":[-40,-30,-20.000000000000004],"categoryorder":"array","categoryarray":["-40","-30","-20"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"zemepisná šírka","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"scaleanchor":"x","scaleratio":1,"hoverformat":".2f"},"shapes":[],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"región","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"63207a8f5a93":{"x":{},"y":{},"colour":{},"text":{},"type":"scatter"}},"cur_data":"63207a8f5a93","visdat":{"63207a8f5a93":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-regiony-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Obrázok&nbsp;3: 49 staníc rozdelených K-means zhlukovaním do 9 regiónov podľa zemepisných súradníc. Diery sa dopĺňajú v rámci regiónu, nie celoštátnym priemerom.
+</figcaption>
+</figure>
+</div>
+</div>
+<p>A ešte jeden krok, ktorý sa oplatí: pre každý doplnený stĺpec som pridala <strong>binárny príznak <code>chýbalo</code> (0/1)</strong>. Model tak vidí nielen dosadenú hodnotu, ale aj to, že pôvodne chýbala — a samotný fakt chýbania môže niesť informáciu (stanica bez senzoru slnečného svitu je iný typ miesta).</p>
+</section>
+<section id="kde-sa-tento-postup-dá-použiť-aj-na-firemných-dátach" class="level2">
+<h2 class="anchored" data-anchor-id="kde-sa-tento-postup-dá-použiť-aj-na-firemných-dátach">Kde sa tento postup dá použiť — aj na firemných dátach</h2>
+<p>Chýbajúce dáta nie sú meteorologická špecialita — má ich každý dataset z reálnej prevádzky: prázdne políčka v CRM, nevyplnený príjem v žiadosti o úver, výpadok senzora na linke, nezodpovedané otázky v dotazníku. A rovnaká pasca číha všade. Tri poučenia priamo z tejto analýzy:</p>
+<p><strong>Prvá otázka nie je „koľko chýba”, ale „prečo chýba”.</strong> Ak zákazníci nevypĺňajú príjem náhodne, môžete políčko pokojne dorátať. Ak ho ale nevypĺňajú systematicky tí s najnižším alebo najvyšším príjmom, samotné chýbanie nesie informáciu a slepé dosadenie priemeru ju zničí. Rozdiel medzi „náhodne” a „systematicky” rozhodne, čo s dierami vôbec smiete robiť.</p>
+<p><strong>Diery dopĺňajte v rámci podobnej skupiny, nie jedným priemerom cez všetko.</strong> Tak ako Darwin nemá dostať oblačnosť spriemerovanú s Tasmániou, chýbajúca tržba pobočky sa má dopĺňať z podobných pobočiek, nie z celofiremného priemeru; chýbajúci údaj o produkte z jeho kategórie, nie zo sortimentu ako celku. Najprv rozumné segmenty (región, pobočka, kategória, sezóna), až potom dopĺňanie v rámci nich.</p>
+<p><strong>Fakt, že údaj chýbal, si podržte ako samostatnú informáciu.</strong> Jednoduchý príznak „táto hodnota bola pôvodne prázdna” býva prekvapivo silný signál — zákazník, ktorý nevyplní kontakt, sa správa inak než ten, čo ho vyplní. Keď diery ticho zaplníte, túto stopu nenávratne zmažete.</p>
+</section>
+<section id="pre-zvedavých-a-technicky-zdatných" class="level2">
+<h2 class="anchored" data-anchor-id="pre-zvedavých-a-technicky-zdatných">Pre zvedavých a technicky zdatných</h2>
+<p>Celý projekt — exploračná analýza, region-aware imputácia, feature engineering (cyklické kódovanie smerov vetra, logaritmické transformácie) aj tréning a poctivé porovnanie modelov cez TimeSeriesSplit — je moja samostatná práca a je na GitHube: <a href="https://github.com/danakozakova/MachineLearningProjekt">danakozakova/MachineLearningProjekt</a>. Dáta vlastní <a href="http://www.bom.gov.au/climate">Australian Bureau of Meteorology</a> a sú verejne dostupné (dataset <em>Rain in Australia</em> / <em>weatherAUS</em>).</p>
+</section>
+<section id="ak-máte-dáta-a-otázky" class="level2">
+<h2 class="anchored" data-anchor-id="ak-máte-dáta-a-otázky">Ak máte dáta a otázky</h2>
+<ul>
+<li>neváhajte ma kontaktovať. Rada sa pozriem na vaše dáta — aj na to, či diery v nich naozaj chýbajú náhodne, alebo vám niečo dôležité prezrádzajú.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Skopírované!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Skopírované!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/datovadana\.sk");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© 2026 datovadana.sk · postavené v <a href="https://quarto.org">Quarto</a></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

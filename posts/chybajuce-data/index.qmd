@@ -3,7 +3,7 @@ title: "Keď chýbajúce dáta nie sú náhodné"
 description: "Skoro polovica meraní slnečného svitu chýbala. Kľúčové bolo nie koľko chýba, ale prečo — a že to nebola náhoda."
 date: 2026-08-06
 categories: [strojové učenie, chýbajúce dáta, imputácia, predikcia]
-image: ""
+image: "images/nahlad.png"
 draft: false
 engine: knitr
 code-fold: true

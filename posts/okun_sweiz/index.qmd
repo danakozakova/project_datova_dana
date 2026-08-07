@@ -3,7 +3,7 @@ title: "Platí Okunov koeficient vo Švajčiarsku?"
 description: "Učebnica sľubuje jedno číslo. Švajčiarske dáta ukazujú, že sa mení podľa obdobia, fázy cyklu aj metódy výpočtu."
 date: 2026-08-05
 categories: [makroekonómia, Okunov zákon, HDP, nezamestnanosť, ekonometria]
-image: ""
+image: "images/nahlad.png"
 draft: false
 engine: knitr
 code-fold: true

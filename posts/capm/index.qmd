@@ -3,7 +3,7 @@ title: "Keď vyššie riziko neprináša vyšší výnos"
 description: "Učebnicové pravidlo „vyššie riziko, vyšší výnos\" sa na 476 akciách S&P 500 obrátilo naopak — a nešlo o výkyv jedného roka."
 date: 2026-08-05
 categories: [financie, akcie, CAPM, regresia]
-image: ""
+image: "images/nahlad.png"
 draft: false
 engine: knitr
 code-fold: true

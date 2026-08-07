@@ -1,12 +1,16 @@
 project:
   type: website
   output-dir: docs        # web sa renderuje sem → commit + push cez GitHub Desktop
+  resources:
+    - CNAME               # koreňový CNAME sa pri každom renderi skopíruje do docs/ (custom doména)
 
 website:
   title: "Dátová Dana"
   description: "Čo všetko sa dá vyčítať z dát"
   site-url: "https://datovadana.sk"
   favicon: favicon.ico
+  open-graph: true          # og:image pre náhľad pri zdieľaní na FB/LinkedIn
+  twitter-card: true        # náhľadová karta pre X/Twitter
   navbar:
     left:
       - text: "Domov"

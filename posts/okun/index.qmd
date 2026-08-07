@@ -1,8 +1,8 @@
 ---
-title: "Prečo jeden Okunov koeficient neexistuje"
-description: "Učebnica ho podáva ako konštantu. Na slovenských dátach 1998–2025 vyšli podľa metódy tri rôzne čísla — a COVID vzťah zmazal celkom."
-date: 2026-08-05
-categories: [ekonómia, časové rady, HDP, nezamestnanosť]
+title: "Platí Okunov koeficient na Slovensku?"
+description: "Učebnica ho podáva jedno číslo z Ameriky. Na slovenských dátach 1998–2025 vyšli podľa metódy tri rôzne čísla — a COVID vzťah zmazal celkom."
+date: 2026-08-07
+categories: [makroekonómia, Okunov zákon, HDP, nezamestnanosť, ekonometria]
 image: "images/nahlad.png"
 draft: false
 engine: knitr
@@ -11,7 +11,7 @@ execute:
   message: false
 ---
 
-Ekonomická učebnica to podá ako pravidlo palca: *keď HDP klesne o pár percent pod svoj potenciál, nezamestnanosť stúpne o toľko-a-toľko.* Volá sa to Okunov zákon a znie to ako fyzikálna konštanta — jedno číslo, ktoré platí vždy a všade. Lenže konštanta to nie je. Skúsila som ten „zákon" odhadnúť na slovenských dátach za posledných takmer tridsať rokov a vyšlo mi niečo nepohodlné: **koeficient nie je jeden. Mení sa podľa toho, ako počítate — a v čase sa vie rozpadnúť úplne.**
+Ekonomická učebnica to podáva ako pravidlo: *keď HDP klesne o pár percent pod svoj potenciál, nezamestnanosť stúpne o toľko-a-toľko.* Volá sa to Okunov zákon a znie to ako fyzikálna konštanta — jedno číslo, ktoré platí vždy a všade. Skúsila som ten „zákon" odhadnúť na slovenských dátach za posledných takmer tridsať rokov a vyšlo mi niekoľko hodnôt: **koeficient nie je jeden. Mení sa podľa toho, ako počítate — a v čase sa vie rozpadnúť úplne.**
 
 ## Aké dáta boli k dispozícii
 
